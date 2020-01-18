@@ -1,0 +1,2 @@
+include ':app',':BleKitLibrary'
+rootProject.name='BtWriter'
