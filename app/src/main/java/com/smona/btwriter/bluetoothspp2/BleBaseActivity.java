@@ -3,17 +3,16 @@ package com.smona.btwriter.bluetoothspp2;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.smona.base.ui.activity.BaseActivity;
 
 import java.util.Locale;
 
 /**
  * Created by QunChen on 2018/5/5.
  */
-public class BleBaseActivity extends AppCompatActivity {
+public class BleBaseActivity extends BaseActivity {
     protected ProgressDialog mProgressDlg;
     protected Context mContent;
 

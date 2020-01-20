@@ -1,2 +1,2 @@
-include ':app',':BleKitLibrary'
-rootProject.name='BtWriter'
+include ':app', 'httpwrapper', ':BleKitLibrary'
+rootProject.name = 'BtWriter'

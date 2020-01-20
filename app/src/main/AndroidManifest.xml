@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme">
         <service android:name="com.inuker.bluetooth.library.BluetoothService" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
