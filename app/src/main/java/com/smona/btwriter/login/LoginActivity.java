@@ -98,8 +98,9 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
             ToastUtil.showShort(R.string.no_than_pwd);
             return;
         }
-        showLoadingDialog();
-        mPresenter.login(emailEt.getText().toString(), emailPwd.getText().toString());
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
+        //showLoadingDialog();
+        //mPresenter.login(emailEt.getText().toString(), emailPwd.getText().toString());
     }
 
     @Override

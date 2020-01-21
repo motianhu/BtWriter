@@ -150,6 +150,7 @@
     <orderEntry type="library" name="Gradle: android.arch.core:runtime:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.hotchemi:permissionsdispatcher:3.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.youth.banner:banner:1.4.10@aar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/home/motianhu/work/code/smona/BtWriter/httpwrapper/libs/http.aar:unspecified@jar" level="project" />
     <orderEntry type="module" module-name="httpwrapper" />
     <orderEntry type="module" module-name="BleKitLibrary" />

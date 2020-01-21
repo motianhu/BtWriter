@@ -90,6 +90,8 @@ dependencies {
 
     implementation EVENTBUS
 
+    implementation 'com.youth.banner:banner:1.4.10'
+
     implementation project(':httpwrapper')
     implementation project(':BleKitLibrary')
 }

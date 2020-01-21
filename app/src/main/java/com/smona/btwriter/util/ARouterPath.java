@@ -17,6 +17,9 @@ public interface ARouterPath {
     String PATH_TO_MAIN = "/app/activity/main";
     String PATH_TO_SCAN = "/app/activity/scan";
 
+    String PATH_TO_MESSAGELIST = "/app/activity/message";
+    String PATH_TO_PURCHASELIST = "/app/activity/purchase";
+
     //request code
     int REQUEST_DEVICE_DETAIL = 1;
     int REQUEST_DEVICE_DETAIL_MODIFY_PIC = 2;
