@@ -81,4 +81,7 @@
     <string name="logout">退出登录</string>
 
     <string name="systemmsg">系统消息</string>
+    <string name="select_brand">选择品牌</string>
+    <string name="select_model">选择机型</string>
+    <string name="addressList">我的地址</string>
 </resources>

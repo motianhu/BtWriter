@@ -19,6 +19,9 @@ public interface ARouterPath {
 
     String PATH_TO_MESSAGELIST = "/app/activity/message";
     String PATH_TO_PURCHASELIST = "/app/activity/purchase";
+    String PATH_TO_BRAND = "/app/activity/brand";
+    String PATH_TO_MODEL = "/app/activity/model";
+    String PATH_TO_ADDRESS = "/app/activity/address";
 
     //request code
     int REQUEST_DEVICE_DETAIL = 1;
