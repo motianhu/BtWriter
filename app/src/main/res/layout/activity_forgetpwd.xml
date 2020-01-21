@@ -2,4 +2,145 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <include
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/common_navigation_layout" />
+
+    <LinearLayout
+        android:id="@+id/codeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/dimen_50dp"
+        android:paddingEnd="@dimen/dimen_50dp"
+        android:layout_below="@+id/navigation"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:background="@drawable/text_border"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:drawableStart="@drawable/email"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:gravity="center_vertical"
+            android:hint="@string/email"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/et_input_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:background="@drawable/text_border"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:drawableStart="@drawable/email"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:gravity="center_vertical"
+            android:hint="@string/email"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:id="@+id/next_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/dimen_76dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bg_corner"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_18"
+            android:text="@string/next_step" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resetView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:paddingStart="@dimen/dimen_50dp"
+        android:paddingEnd="@dimen/dimen_50dp"
+        android:layout_below="@+id/navigation"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/reset_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:background="@drawable/text_border"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:drawableStart="@drawable/email"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:gravity="center_vertical"
+            android:hint="@string/email"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/et_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/et_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:id="@+id/submitTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/dimen_76dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bg_corner"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_18"
+            android:text="@string/next_step" />
+    </LinearLayout>
+
 </RelativeLayout>

@@ -1,5 +1,104 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/common_navigation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/register_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="51dp"
+        android:paddingEnd="51dp">
+
+        <EditText
+            android:id="@+id/serial_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@drawable/text_border"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/serial_number"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/user_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/email"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/user_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bg_corner"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:text="@string/register_action"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_18" />
+    </LinearLayout>
+
+</LinearLayout>

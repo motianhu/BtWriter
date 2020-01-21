@@ -8,8 +8,12 @@ public class LoginPresenter extends BasePresenter<LoginPresenter.ILoginView> {
 
     private LoginModel loginModel = new LoginModel();
 
-    public interface ILoginView extends ICommonView {
+    public void login(String email, String pwd) {
+        loginModel.login();
+    }
 
+    public interface ILoginView extends ICommonView {
+        void onLoginSuccess();
     }
 
 }

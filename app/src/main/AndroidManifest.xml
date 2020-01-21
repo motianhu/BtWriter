@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.smona.btwriter">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -18,29 +19,30 @@
 
     <application
         android:name=".BtWriterApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/NoActionBarTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
         <service android:name="com.inuker.bluetooth.library.BluetoothService" />
 
         <activity android:name=".SplashActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity
-            android:name=".bluetoothspp2.BleSppSearchActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".bluetoothspp2.BleSppSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".bluetoothspp2.SPPOperationActivity"
             android:screenOrientation="portrait"
@@ -76,6 +78,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".model.ModelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".scan.ScanActivity"
             android:screenOrientation="portrait" />
     </application>
 

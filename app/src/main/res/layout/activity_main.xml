@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="qunchen.com.mytestapplication.MainActivity">
-
-    <Button
-        android:id="@+id/btn_bluetoothspp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.smona.btwriter.widget.NoScrollViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2.0蓝牙调试" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tabs" />
 
-    <Button
-        android:id="@+id/btn_ble"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="4.0蓝牙调试" />
+        android:layout_height="1px"
+        android:layout_above="@+id/tabs"
+        android:background="#70D8D8D8" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_tab_line_bg"
+        android:tag="tabs"
+        app:tabBackground="@android:color/transparent"
+        app:tabPaddingEnd="0dp"
+        app:tabPaddingStart="0dp"
+        app:tabSelectedTextColor="@color/color_222A37"
+        app:tabTextAppearance="@style/TabLayout_18Size"
+        app:tabTextColor="@color/color_A4A9AF" />
 </RelativeLayout>

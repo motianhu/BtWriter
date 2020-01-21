@@ -10,4 +10,50 @@
     <string name="reload_click">点击重试</string>
     <string name="no_data">没有数据</string>
     <string name="no_content">暂时没有数据</string>
+    <string name="app_exit_tip">再按一次离开App</string>
+
+    <string name="home">首页</string>
+    <string name="param">参数设置</string>
+    <string name="mine">我的</string>
+
+
+    <string name="switch_language">切换语言</string>
+    <string name="welcome">您好,\n欢迎登录</string>
+    <string name="login">登录</string>
+    <string name="email">邮箱</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+
+    <string name="guide_forgetpwd">忘记密码?</string>
+    <string name="guide_register">没有账号?</string>
+    <string name="guide_register1">去注册</string>
+
+    <string name="chinese">中文</string>
+    <string name="english">英文</string>
+
+    <string name="register">用戶註冊</string>
+    <string name="register_action">註冊</string>
+    <string name="serial_number">序列号</string>
+
+    <string name="email_code_error">请输入验证码</string>
+    <string name="empty_serialnum">请输入序列号</string>
+    <string name="empty_email">请输入邮箱</string>
+
+    <string name="next_step">下一步</string>
+
+    <string name="empty_pwd">请输入密码</string>
+    <string name="not_pwd_common">密码与确认密码不一致</string>
+    <string name="invalid_email">邮箱格式不正确</string>
+    <string name="no_than_pwd">密码必需8至60位</string>
+    <string name="no_than_n_pwd">新密码必需8至60位</string>
+    <string name="no_than_s_pwd">当前密码必需8至60位</string>
+    <string name="no_than_c_pwd">确认密码必需8至60位</string>
+    <string name="empty_cpwd">请输入确认密码</string>
+
+
+    <string name="scan">扫一扫</string>
+    <string name="click_light">点触照亮</string>
+    <string name="authorization_is_prohibited">授权被禁止</string>
+    <string name="qr_code_auto_scan_notification">将二维码放入框内，即可自动扫描</string>
+
 </resources>

@@ -1,5 +1,111 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/switchLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:text="@string/switch_language" />
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_50dp"
+        android:text="@string/welcome"
+        android:textColor="@color/color_222A37"
+        android:textSize="@dimen/font_24" />
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_68dp"
+        android:layout_marginEnd="@dimen/dimen_50dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/email"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <EditText
+            android:id="@+id/et_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@drawable/text_border"
+            android:drawableStart="@drawable/password"
+            android:drawablePadding="@dimen/dimen_20dp"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:id="@+id/forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_gravity="end"
+            android:text="@string/guide_forgetpwd" />
+
+
+        <TextView
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_60dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/bg_corner"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_18" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/guide_register" />
+
+            <TextView
+                android:id="@+id/goRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/guide_register1" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
