@@ -1,7 +1,7 @@
 package com.smona.btwriter.ble;
 
 import com.inuker.bluetooth.library.BluetoothClient;
-import com.smona.btwriter.MyApplication;
+import com.smona.btwriter.common.exception.AppContext;
 
 /**
  * Created by chen on 2018/6/13.
@@ -12,7 +12,7 @@ public class BleTool {
 
     public static BluetoothClient getClient() {
         if (mClient == null) {
-            mClient = new BluetoothClient(MyApplication.getContext());
+            mClient = new BluetoothClient(AppContext.getAppContext());
         }
         return mClient;
     }

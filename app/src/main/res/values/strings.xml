@@ -6,4 +6,8 @@
     <string name="title_activity_terminal">TerminalActivity</string>
     <string name="action_settings">Settings</string>
 
+    <string name="network_error">连接失败</string>
+    <string name="reload_click">点击重试</string>
+    <string name="no_data">没有数据</string>
+    <string name="no_content">暂时没有数据</string>
 </resources>
