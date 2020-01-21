@@ -22,6 +22,7 @@ public interface ARouterPath {
     String PATH_TO_BRAND = "/app/activity/brand";
     String PATH_TO_MODEL = "/app/activity/model";
     String PATH_TO_ADDRESS = "/app/activity/address";
+    String PATH_TO_MAKE = "/app/activity/make";
 
     //request code
     int REQUEST_DEVICE_DETAIL = 1;

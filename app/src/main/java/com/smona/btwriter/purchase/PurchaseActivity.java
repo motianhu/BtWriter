@@ -37,11 +37,11 @@ public class PurchaseActivity extends BaseLoadingPresenterActivity<PurchasePrese
     private void initHeader() {
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
-        titleTv.setText(R.string.message_list);
+        titleTv.setText(R.string.purchase);
     }
 
     private void initViews() {
-        xRecyclerView = findViewById(R.id.messageList);
+        xRecyclerView = findViewById(R.id.purchaseList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PurchaseAdapter(R.layout.adapter_item_message);
         xRecyclerView.setAdapter(adapter);

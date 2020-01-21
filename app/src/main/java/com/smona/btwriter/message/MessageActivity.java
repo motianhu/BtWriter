@@ -11,7 +11,7 @@ import com.smona.btwriter.message.adapter.MessageAdapter;
 import com.smona.btwriter.message.presenter.MessagePreseter;
 import com.smona.btwriter.util.ARouterPath;
 
-@Route(path = ARouterPath.PATH_TO_CHANGEPWD)
+@Route(path = ARouterPath.PATH_TO_MESSAGELIST)
 public class MessageActivity extends BaseLoadingPresenterActivity<MessagePreseter, MessagePreseter.IMessageView> implements MessagePreseter.IMessageView {
 
     private XRecyclerView xRecyclerView;
