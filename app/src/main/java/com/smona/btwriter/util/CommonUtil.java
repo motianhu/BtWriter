@@ -81,4 +81,8 @@ public class CommonUtil {
             e.printStackTrace();
         }
     }
+
+    public static void showToastByFilter(String stateCode, String msg) {
+        ToastUtil.showShort(msg);
+    }
 }

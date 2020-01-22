@@ -21,17 +21,9 @@ public class HttpCallbackProxy<K> extends HttpCallBack<K> {
     }
 
     @Override
-    public void onError(int stateCode, String errorInfo) {
+    public void onError(String stateCode, String errorInfo) {
         if (realListener != null) {
-            try {
-                ErrorInfo error = sGson.fromJson(errorInfo, ErrorInfo.class);
-                realListener.onError(stateCode, error);
-            } catch (Exception e) {
-                ErrorInfo ei= new ErrorInfo();
-                ei.setStatus(stateCode);
-                ei.setMessage(errorInfo);
-                realListener.onError(stateCode, ei);
-            }
+            realListener.onError(stateCode, errorInfo);
         }
         FilterChains.getInstance().exeFilter(stateCode);
     }

@@ -94,18 +94,17 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
             ToastUtil.showShort(R.string.empty_pwd);
             return;
         }
-        if (pwd.length() < 8) {
+        if (pwd.length() < 6) {
             ToastUtil.showShort(R.string.no_than_pwd);
             return;
         }
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
-        //showLoadingDialog();
-        //mPresenter.login(emailEt.getText().toString(), emailPwd.getText().toString());
+        showLoadingDialog();
+        mPresenter.login(emailEt.getText().toString(), emailPwd.getText().toString());
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
-
+        CommonUtil.showToastByFilter(errCode, errInfo);
     }
 
     @Override

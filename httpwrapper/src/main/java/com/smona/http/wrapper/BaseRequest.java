@@ -1,6 +1,6 @@
 package com.smona.http.wrapper;
 
-import com.smona.http.config.LoadConfig;
+import com.smona.http.business.BusinessHttpService;
 
 public abstract class BaseRequest<T> extends BaseBuilder<T> {
     private String path;
@@ -16,6 +16,6 @@ public abstract class BaseRequest<T> extends BaseBuilder<T> {
 
     @Override
     protected String getBaseUrl() {
-        return LoadConfig.appConfig.getApiUrl();
+        return BusinessHttpService.API_URL;
     }
 }

@@ -1,6 +1,5 @@
 package com.smona.http.business;
 
-import com.smona.http.config.LoadConfig;
 import com.smona.http.wrapper.BaseDeleteRequest;
 
 /**
