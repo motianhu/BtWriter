@@ -104,11 +104,14 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        hideLoadingDialog();
         CommonUtil.showToastByFilter(errCode, errInfo);
     }
 
     @Override
     public void onLoginSuccess() {
+        hideLoadingDialog();
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
+        finish();
     }
 }

@@ -1,92 +1,129 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/color_F5F4F9"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/titleTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/param"
+        android:gravity="center"
+        android:paddingTop="@dimen/dimen_15dp"
+        android:paddingBottom="@dimen/dimen_15dp"
+        android:background="@color/color_main"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:text="@string/home" />
+        android:textSize="@dimen/font_16" />
 
-    <RelativeLayout
-        android:id="@+id/speed"
+    <LinearLayout
+        android:id="@+id/param_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleTv"
-        android:layout_marginTop="@dimen/dimen_20dp">
+        android:background="@color/white"
+        android:paddingStart="@dimen/dimen_17dp"
+        android:paddingEnd="@dimen/dimen_17dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/speedName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cut_speed" />
-
-        <SeekBar
-            android:id="@+id/speedBar"
+        <RelativeLayout
+            android:id="@+id/speed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/speedValue"
-            android:layout_toEndOf="@+id/speedName" />
+            android:layout_marginTop="@dimen/dimen_30dp">
 
-        <TextView
-            android:id="@+id/speedValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/speedName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_15"
+                android:textColor="@color/color_333333"
+                android:text="@string/cut_speed" />
 
-    <RelativeLayout
-        android:id="@+id/press"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/speed"
-        android:layout_marginTop="@dimen/dimen_10dp">
+            <SeekBar
+                android:id="@+id/speedBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/speedValue"
+                android:layout_toEndOf="@+id/speedName" />
 
-        <TextView
-            android:id="@+id/pressureName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/knife_press" />
+            <TextView
+                android:id="@+id/speedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
-        <SeekBar
-            android:id="@+id/pressureBar"
+        <RelativeLayout
+            android:id="@+id/press"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/pressureValue"
-            android:layout_toEndOf="@+id/pressureName" />
+            android:layout_marginTop="@dimen/dimen_30dp">
+
+            <TextView
+                android:id="@+id/pressureName"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/font_15"
+                android:textColor="@color/color_333333"
+                android:layout_height="wrap_content"
+                android:text="@string/knife_press" />
+
+            <SeekBar
+                android:id="@+id/pressureBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/pressureValue"
+                android:layout_toEndOf="@+id/pressureName" />
+
+            <TextView
+                android:id="@+id/pressureValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/pressureValue"
-            android:layout_width="wrap_content"
+            android:id="@+id/resetValue"
+            android:background="@drawable/bg_corner_maincolor"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:textColor="@color/white"
+            android:paddingTop="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
+            android:paddingBottom="@dimen/dimen_15dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+            android:text="@string/reset_value" />
 
-    <TextView
-        android:id="@+id/resetValue"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/press"
-        android:text="@string/reset_value" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/resetValue"
-        android:layout_marginTop="@dimen/dimen_20dp">
+        android:layout_below="@+id/param_container"
+        android:background="@color/white"
+        android:paddingStart="@dimen/dimen_10dp"
+        android:paddingEnd="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp">
 
         <TextView
             android:id="@+id/commonInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/font_15"
+            android:textColor="@color/color_333333"
+            android:layout_marginTop="@dimen/dimen_24dp"
             android:text="@string/common_info" />
 
         <TextView
             android:id="@+id/add"
+            android:textSize="@dimen/font_15"
+            android:textColor="@color/color_333333"
+            android:layout_marginTop="@dimen/dimen_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:drawableStart="@drawable/add_icon"
             android:layout_alignParentEnd="true"
             android:text="@string/add" />
 

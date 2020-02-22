@@ -43,7 +43,7 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     private void initHeader() {
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
-        titleTv.setText(R.string.register);
+        titleTv.setText(R.string.forget_pwd);
     }
 
     private void initViews() {

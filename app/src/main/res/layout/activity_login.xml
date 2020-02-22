@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/color_main"
     android:layout_height="match_parent">
 
     <TextView
@@ -8,7 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/dimen_20dp"
+        android:textColor="@color/white"
         android:layout_marginTop="@dimen/dimen_20dp"
+        android:textSize="@dimen/font_14"
         android:text="@string/switch_language" />
 
     <TextView
@@ -18,8 +21,9 @@
         android:layout_marginStart="@dimen/dimen_50dp"
         android:layout_marginTop="@dimen/dimen_50dp"
         android:text="@string/welcome"
-        android:textColor="@color/color_222A37"
-        android:textSize="@dimen/font_24" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_40"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/ll_login"
@@ -36,15 +40,15 @@
             android:id="@+id/et_input_email"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
-            android:background="@drawable/text_border"
+            android:background="@drawable/edit_underline"
             android:drawableStart="@drawable/email"
             android:drawablePadding="@dimen/dimen_20dp"
             android:gravity="center_vertical"
             android:hint="@string/email"
             android:paddingStart="@dimen/dimen_20dp"
             android:text="635642897@qq.com"
-            android:textColor="@color/color_9E9E9E"
-            android:textColorHint="@color/color_80E9E9E"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="@dimen/font_12" />
 
         <EditText
@@ -52,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
             android:layout_marginTop="@dimen/dimen_12dp"
-            android:background="@drawable/text_border"
+            android:background="@drawable/edit_underline"
             android:drawableStart="@drawable/password"
             android:drawablePadding="@dimen/dimen_20dp"
             android:gravity="center_vertical"
@@ -60,8 +64,8 @@
             android:text="4698083"
             android:inputType="textPassword"
             android:paddingStart="@dimen/dimen_20dp"
-            android:textColor="@color/color_9E9E9E"
-            android:textColorHint="@color/color_80E9E9E"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="@dimen/font_12" />
 
         <TextView
@@ -70,8 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_gravity="end"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_12"
             android:text="@string/guide_forgetpwd" />
-
 
         <TextView
             android:id="@+id/btn_login"
@@ -86,7 +91,7 @@
             android:paddingTop="@dimen/dimen_10dp"
             android:paddingBottom="@dimen/dimen_10dp"
             android:text="@string/login"
-            android:textColor="@color/white"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/font_18" />
 
         <LinearLayout
@@ -99,12 +104,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12"
                 android:text="@string/guide_register" />
 
             <TextView
                 android:id="@+id/goRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_12"
                 android:text="@string/guide_register1" />
         </LinearLayout>
 

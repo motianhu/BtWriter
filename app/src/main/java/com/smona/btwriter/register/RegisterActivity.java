@@ -40,7 +40,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     private void initHeader() {
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
-        titleTv.setText(R.string.register);
+        titleTv.setText(R.string.register_account);
     }
 
     private void initViews() {
