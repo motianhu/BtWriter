@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.register.presenter.RegisterPresetenr;
+import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
@@ -17,6 +18,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
 
     private EditText serialNumEt;
     private EditText userEmailEt;
+    private EditText codeEt;
     private EditText userPwdEt;
     private EditText userConfirmPwdEt;
 
@@ -48,6 +50,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
         CommonUtil.setMaxLenght(serialNumEt, CommonUtil.MAX_NAME_LENGHT);
         userEmailEt = findViewById(R.id.user_email);
         CommonUtil.setMaxLenght(userEmailEt, CommonUtil.MAX_NAME_LENGHT);
+        codeEt = findViewById(R.id.email_code);
         userPwdEt = findViewById(R.id.user_password);
         CommonUtil.disableEditTextCopy(userPwdEt);
         CommonUtil.setMaxLenght(userPwdEt, CommonUtil.MAX_PWD_LENGHT);
@@ -55,14 +58,12 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
         CommonUtil.disableEditTextCopy(userConfirmPwdEt);
         CommonUtil.setMaxLenght(userConfirmPwdEt, CommonUtil.MAX_PWD_LENGHT);
 
-        findViewById(R.id.btn_register).setOnClickListener(view -> clickRegister(serialNumEt.getText().toString(), userEmailEt.getText().toString(), userPwdEt.getText().toString(), userConfirmPwdEt.getText().toString()));
+        findViewById(R.id.getCode).setOnClickListener(v -> clickGetCode());
+        findViewById(R.id.btn_register).setOnClickListener(view -> clickRegister());
     }
 
-    private void clickRegister(String userName, String email, String pwd, String cpwd) {
-        if (TextUtils.isEmpty(userName)) {
-            ToastUtil.showShort(R.string.empty_serialnum);
-            return;
-        }
+    private void clickGetCode() {
+        String email = userEmailEt.getText().toString();
         if (TextUtils.isEmpty(email)) {
             ToastUtil.showShort(R.string.empty_email);
             return;
@@ -71,6 +72,31 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
             ToastUtil.showShort(R.string.invalid_email);
             return;
         }
+        showLoadingDialog();
+        mPresenter.requestEmailCode(email);
+    }
+
+    private void clickRegister() {
+        String userName = serialNumEt.getText().toString();
+        if (TextUtils.isEmpty(userName)) {
+            ToastUtil.showShort(R.string.empty_serialnum);
+            return;
+        }
+        String email = userEmailEt.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            ToastUtil.showShort(R.string.empty_email);
+            return;
+        }
+        if (!CommonUtil.isEmail(email)) {
+            ToastUtil.showShort(R.string.invalid_email);
+            return;
+        }
+        String code = codeEt.getText().toString();
+        if (TextUtils.isEmpty(code)) {
+            ToastUtil.showShort(R.string.empty_code);
+            return;
+        }
+        String pwd = userPwdEt.getText().toString();
         if (TextUtils.isEmpty(pwd)) {
             ToastUtil.showShort(R.string.empty_pwd);
             return;
@@ -79,6 +105,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
             ToastUtil.showShort(R.string.no_than_pwd);
             return;
         }
+        String cpwd = userConfirmPwdEt.getText().toString();
         if (TextUtils.isEmpty(cpwd)) {
             ToastUtil.showShort(R.string.empty_cpwd);
             return;
@@ -92,11 +119,23 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
             return;
         }
         showLoadingDialog();
-        mPresenter.register(userName, email, pwd, cpwd);
+        mPresenter.requestRegister(userName, email, code, pwd);
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        hideLoadingDialog();
+        CommonUtil.showToastByFilter(errCode, errInfo);
+    }
 
+    @Override
+    public void onEmailCode() {
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onRegister() {
+        hideLoadingDialog();
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
     }
 }

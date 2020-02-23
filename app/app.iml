@@ -108,6 +108,7 @@
     <orderEntry type="library" name="Gradle: com.alibaba:arouter-annotation:1.0.4@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.greenrobot:eventbus:3.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/Users/Moth/work/code/smona/BtWriter/app/libs/imageloader.aar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:/Users/Moth/work/code/smona/BtWriter/app/libs/ui.aar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/Users/Moth/work/code/smona/BtWriter/app/libs/zxing.aar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/Users/Moth/work/code/smona/BtWriter/app/libs/mvp.aar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/Users/Moth/work/code/smona/BtWriter/app/libs/logger.aar:unspecified@jar" level="project" />
@@ -151,12 +152,6 @@
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.hotchemi:permissionsdispatcher:3.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.youth.banner:banner:1.4.10@aar" level="project" />
-    <orderEntry type="module" module-name="httpwrapper" />
-    <orderEntry type="module" module-name="BleKitLibrary" />
-    <orderEntry type="module" module-name="http" />
-    <orderEntry type="module" module-name="httpwrapper" />
-    <orderEntry type="module" module-name="BleKitLibrary" />
-    <orderEntry type="module" module-name="http" />
     <orderEntry type="module" module-name="httpwrapper" />
     <orderEntry type="module" module-name="BleKitLibrary" />
     <orderEntry type="module" module-name="http" />

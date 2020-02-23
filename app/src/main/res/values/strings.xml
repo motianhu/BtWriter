@@ -25,6 +25,8 @@
     <string name="email_input">邮  箱:</string>
     <string name="email_hint">请输入您的邮箱</string>
     <string name="password">密码</string>
+    <string name="vercodeinput">验证码:</string>
+    <string name="getvercode">获取验证码</string>
 
     <string name="password_input">密  码:</string>
     <string name="password_hint">请设置登录密码</string>
@@ -49,8 +51,9 @@
     <string name="empty_serialnum">请输入序列号</string>
     <string name="empty_email">请输入邮箱</string>
 
-    <string name="next_step">下一步</string>
+    <string name="confirm">确定</string>
 
+    <string name="empty_code">请输入验证码</string>
     <string name="empty_pwd">请输入密码</string>
     <string name="not_pwd_common">密码与确认密码不一致</string>
     <string name="invalid_email">邮箱格式不正确</string>

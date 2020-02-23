@@ -9,89 +9,11 @@
         layout="@layout/common_navigation_layout" />
 
     <LinearLayout
-        android:id="@+id/codeView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="@dimen/dimen_50dp"
-        android:paddingEnd="@dimen/dimen_50dp"
-        android:layout_below="@+id/navigation"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_50dp"
-            android:layout_marginStart="@dimen/dimen_23dp"
-            android:layout_marginTop="@dimen/dimen_15dp"
-            android:layout_marginEnd="@dimen/dimen_23dp"
-            android:background="@drawable/text_border"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/dimen_21dp"
-            android:paddingEnd="@dimen/dimen_21dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/email_input"
-                android:textColor="@color/color_333333"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/code_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_underline"
-                android:gravity="center_vertical"
-                android:hint="@string/email_hint"
-                android:paddingStart="@dimen/dimen_20dp"
-                android:paddingEnd="@dimen/dimen_20dp"
-                android:textColor="@color/color_9E9E9E"
-                android:textColorHint="@color/color_80E9E9E"
-                android:textSize="@dimen/font_12" />
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/et_input_code"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_50dp"
-            android:paddingStart="@dimen/dimen_20dp"
-            android:paddingEnd="@dimen/dimen_20dp"
-            android:layout_marginTop="@dimen/dimen_30dp"
-            android:background="@drawable/edit_underline"
-            android:drawablePadding="@dimen/dimen_20dp"
-            android:drawableStart="@drawable/email"
-            android:textColor="@color/color_9E9E9E"
-            android:textColorHint="@color/color_80E9E9E"
-            android:gravity="center_vertical"
-            android:hint="@string/email"
-            android:textSize="@dimen/font_12" />
-
-        <TextView
-            android:id="@+id/next_step"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="@dimen/dimen_76dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/bg_corner_maincolor"
-            android:gravity="center"
-            android:paddingTop="@dimen/dimen_10dp"
-            android:paddingBottom="@dimen/dimen_10dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_18"
-            android:text="@string/next_step" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/resetView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="@dimen/dimen_50dp"
         android:paddingEnd="@dimen/dimen_50dp"
-        android:visibility="gone"
         android:layout_below="@+id/navigation"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -129,6 +51,54 @@
                 android:textColorHint="@color/color_80E9E9E"
                 android:textSize="@dimen/font_12" />
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginStart="@dimen/dimen_23dp"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginEnd="@dimen/dimen_23dp"
+            android:background="@drawable/text_border"
+            android:paddingStart="@dimen/dimen_21dp"
+            android:paddingEnd="@dimen/dimen_21dp">
+
+            <TextView
+                android:id="@+id/email_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="@string/vercodeinput"
+                android:textColor="@color/color_333333"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/email_code"
+                android:layout_width="match_parent"
+                android:layout_toStartOf="@+id/getCode"
+                android:layout_toEndOf="@+id/email_hint"
+                android:layout_centerVertical="true"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_edit_trans"
+                android:gravity="center_vertical"
+                android:hint="@string/email_hint"
+                android:paddingStart="@dimen/dimen_20dp"
+                android:paddingEnd="@dimen/dimen_20dp"
+                android:textColor="@color/color_9E9E9E"
+                android:textColorHint="@color/color_80E9E9E"
+                android:textSize="@dimen/font_12" />
+
+            <TextView
+                android:id="@+id/getCode"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="@string/getvercode"
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_333333"
+                android:textStyle="bold"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -214,7 +184,7 @@
             android:paddingBottom="@dimen/dimen_10dp"
             android:textColor="@color/white"
             android:textSize="@dimen/font_18"
-            android:text="@string/next_step" />
+            android:text="@string/confirm" />
     </LinearLayout>
 
 </RelativeLayout>

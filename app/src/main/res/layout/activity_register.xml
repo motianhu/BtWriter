@@ -33,7 +33,7 @@
             android:id="@+id/serial_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edit_underline"
+            android:background="@drawable/bg_edit_trans"
             android:gravity="center_vertical"
             android:hint="@string/serial_number_hint"
             android:paddingStart="@dimen/dimen_20dp"
@@ -68,7 +68,7 @@
             android:id="@+id/user_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edit_underline"
+            android:background="@drawable/bg_edit_trans"
             android:gravity="center_vertical"
             android:hint="@string/email_hint"
             android:paddingStart="@dimen/dimen_20dp"
@@ -77,6 +77,54 @@
             android:textColorHint="@color/color_80E9E9E"
             android:textSize="@dimen/font_12" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:layout_marginStart="@dimen/dimen_23dp"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_marginEnd="@dimen/dimen_23dp"
+        android:background="@drawable/text_border"
+        android:paddingStart="@dimen/dimen_21dp"
+        android:paddingEnd="@dimen/dimen_21dp">
+
+        <TextView
+            android:id="@+id/email_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:text="@string/vercodeinput"
+            android:textColor="@color/color_333333"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/email_code"
+            android:layout_width="match_parent"
+            android:layout_toStartOf="@+id/getCode"
+            android:layout_toEndOf="@+id/email_hint"
+            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_edit_trans"
+            android:gravity="center_vertical"
+            android:hint="@string/email_hint"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:id="@+id/getCode"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:text="@string/getvercode"
+            android:layout_width="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textStyle="bold"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +150,7 @@
             android:id="@+id/user_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edit_underline"
+            android:background="@drawable/bg_edit_trans"
             android:gravity="center_vertical"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
@@ -137,7 +185,7 @@
             android:id="@+id/confirm_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edit_underline"
+            android:background="@drawable/bg_edit_trans"
             android:gravity="center_vertical"
             android:hint="@string/confirm_password_hint"
             android:inputType="textPassword"

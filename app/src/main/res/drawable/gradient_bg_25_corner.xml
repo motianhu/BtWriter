@@ -10,14 +10,14 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <size android:height="@dimen/dimen_40dp" />
-            <gradient android:angle="0" android:endColor="@color/color_64B8D7" android:startColor="@color/color_64B8D7" />
+            <gradient android:angle="0" android:endColor="@color/color_main" android:startColor="@color/color_main" />
             <corners android:radius="25dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
             <size android:height="@dimen/dimen_40dp" />
-            <gradient android:angle="0" android:endColor="@color/color_64B8D7" android:startColor="@color/color_64B8D7" />
+            <gradient android:angle="0" android:endColor="@color/color_main" android:startColor="@color/color_main" />
             <corners android:radius="25dp" />
         </shape>
     </item>

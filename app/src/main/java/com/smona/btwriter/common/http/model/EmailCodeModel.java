@@ -1,16 +1,16 @@
-package com.smona.btwriter.forget.model;
+package com.smona.btwriter.common.http.model;
 
+import com.smona.btwriter.common.http.bean.ReqEmailCode;
 import com.smona.btwriter.common.http.bean.RespEmpty;
-import com.smona.btwriter.forget.bean.ReqResetPwd;
 import com.smona.http.business.BaseResponse;
 import com.smona.http.business.BtBuilder;
 import com.smona.http.business.BusinessHttpService;
 import com.smona.http.wrapper.HttpCallbackProxy;
 import com.smona.http.wrapper.OnResultListener;
 
-public class ForgetPwdModel {
-    public void requestResetPwd(ReqResetPwd resetPwd, OnResultListener<BaseResponse<RespEmpty>> listener) {
+public class EmailCodeModel {
+    public void requestEmailCode(ReqEmailCode emailCode, OnResultListener<BaseResponse<RespEmpty>> listener) {
         HttpCallbackProxy<BaseResponse<RespEmpty>> callbackProxy = new HttpCallbackProxy<BaseResponse<RespEmpty>>(listener){};
-        new BtBuilder<RespEmpty>(BtBuilder.REQUEST_POST, BusinessHttpService.RESETPWD).requestData(resetPwd, callbackProxy);
+        new BtBuilder<RespEmpty>(BtBuilder.REQUEST_POST, BusinessHttpService.EMAILCODE).requestData(emailCode, callbackProxy);
     }
 }
