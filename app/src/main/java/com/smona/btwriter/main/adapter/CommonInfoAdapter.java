@@ -12,6 +12,6 @@ public class CommonInfoAdapter extends XBaseAdapter<CommonInfo, CommonInfoHolder
 
     @Override
     protected void convert(CommonInfoHolder holder, CommonInfo item, int pos) {
-
+        holder.bindViews(item);
     }
 }

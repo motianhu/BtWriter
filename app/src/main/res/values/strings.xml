@@ -65,6 +65,10 @@
 
     <string name="forget_pwd">忘记密码</string>
 
+    <string name="home_phone_full">手机前膜 全面</string>
+    <string name="home_phone_shell">手机前膜 带壳</string>
+    <string name="home_phone_behind">彩膜 背贴</string>
+
     <string name="scan">扫一扫</string>
     <string name="click_light">点触照亮</string>
     <string name="authorization_is_prohibited">授权被禁止</string>
@@ -78,6 +82,12 @@
 
     <string name="cut_speed">切割速度</string>
     <string name="knife_press">下刀压力</string>
+
+    <string name="cut_speed1">切割速度: </string>
+    <string name="knife_press1">下刀压力: </string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="use">使用</string>
 
     <string name="reset_value">刻刀起始点位置调节</string>
     <string name="common_info">常用信息</string>

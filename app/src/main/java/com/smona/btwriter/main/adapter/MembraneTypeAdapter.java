@@ -12,6 +12,6 @@ public class MembraneTypeAdapter extends XBaseAdapter<MembraneBean, MembraneHold
 
     @Override
     protected void convert(MembraneHolder holder, MembraneBean item, int pos) {
-
+        holder.bindViews(item);
     }
 }
