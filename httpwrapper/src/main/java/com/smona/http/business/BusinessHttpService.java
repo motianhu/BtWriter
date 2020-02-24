@@ -9,4 +9,10 @@ public interface BusinessHttpService {
     String LOGIN = "/app/account/login";
     String RESETPWD = "/app/account/resetPassword";
     String LOGOUT = "/app/account/logout";
+
+    //home
+    String HOME_INFO = "/api/index/indexInfo";
+
+    //goods
+    String GOODS_LIST = "/api/goods/queryGoodsByPage";
 }

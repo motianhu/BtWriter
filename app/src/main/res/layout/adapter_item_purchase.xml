@@ -1,5 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content"
+    android:weightSum="2">
 
-</RelativeLayout>
+    <include
+        android:id="@+id/leftItem"
+        layout="@layout/item_purchase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="@dimen/dimen_10dp"
+        android:layout_height="match_parent"/>
+
+    <include
+        android:id="@+id/rightItem"
+        layout="@layout/item_purchase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>

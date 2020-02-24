@@ -73,7 +73,7 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
             ToastUtil.showShort(R.string.empty_pwd);
             return;
         }
-        if (pwd.length() < 8) {
+        if (pwd.length() < 6) {
             ToastUtil.showShort(R.string.no_than_pwd);
             return;
         }
@@ -82,7 +82,7 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
             ToastUtil.showShort(R.string.empty_cpwd);
             return;
         }
-        if (cpwd.length() < 8) {
+        if (cpwd.length() < 6) {
             ToastUtil.showShort(R.string.no_than_c_pwd);
             return;
         }
@@ -122,6 +122,6 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     @Override
     public void onResetPwd() {
         hideLoadingDialog();
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
+        finish();
     }
 }

@@ -10,9 +10,11 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.MembraneTypeAdapter;
 import com.smona.btwriter.main.bean.MembraneBean;
+import com.smona.btwriter.main.bean.RespHomeBean;
 import com.smona.btwriter.main.presenter.HomePresenter;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
+import com.smona.btwriter.util.CommonUtil;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -93,6 +95,12 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        CommonUtil.showToastByFilter(errCode, errInfo);
+    }
 
+    @Override
+    public void onHome(RespHomeBean homeBean) {
+        totalCutTimesTv.setText(homeBean.getUseAmount() + "");
+        remainCutTimesTv.setText(homeBean.getUnUseAmount() + "");
     }
 }

@@ -108,4 +108,14 @@
     <string name="select_brand">选择品牌</string>
     <string name="select_model">选择机型</string>
     <string name="addressList">我的地址</string>
+
+    <string name="seach_tips">请输入你需要的商品名称</string>
+    <string name="seach">搜索</string>
+    <string name="sort_all">综合</string>
+    <string name="sort_sales">销量</string>
+    <string name="sort_price">价格</string>
+    <string name="sales_num">已售: </string>
+
+    <string name="price_two_dot">%1$.2f</string>
+    <string name="rmb_sign">¥</string>
 </resources>
