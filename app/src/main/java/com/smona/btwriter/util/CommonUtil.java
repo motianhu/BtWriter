@@ -8,11 +8,16 @@ import android.widget.TextView;
 import com.smona.btwriter.common.ActionModeCallbackInterceptor;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommonUtil {
+
+    public static final int START_PAGE = 1;
+    public static final int SIZE = 10;
+
     /**
      * 获取启动时的系统语言，并转换为可支持的语言。
      * @return
@@ -84,5 +89,9 @@ public class CommonUtil {
 
     public static void showToastByFilter(String stateCode, String msg) {
         ToastUtil.showShort(msg);
+    }
+
+    public static boolean isEmptyList(List list) {
+        return list == null || list.isEmpty();
     }
 }

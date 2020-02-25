@@ -5,9 +5,9 @@ import android.widget.TextView;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.XViewHolder;
-import com.smona.btwriter.main.bean.CommonInfo;
+import com.smona.btwriter.main.bean.ParamInfo;
 
-public class CommonInfoHolder extends XViewHolder {
+public class ParamInfoHolder extends XViewHolder {
 
     private TextView titleTv;
     private TextView speedTv;
@@ -16,7 +16,7 @@ public class CommonInfoHolder extends XViewHolder {
     private View deleteView;
     private View useView;
 
-    public CommonInfoHolder(View itemView) {
+    public ParamInfoHolder(View itemView) {
         super(itemView);
         titleTv = itemView.findViewById(R.id.title);
         speedTv = itemView.findViewById(R.id.speed);
@@ -26,10 +26,10 @@ public class CommonInfoHolder extends XViewHolder {
         useView = itemView.findViewById(R.id.use);
     }
 
-    public void bindViews(CommonInfo item) {
-        titleTv.setText(item.getTitle());
+    public void bindViews(ParamInfo item) {
+        titleTv.setText(item.getName());
         speedTv.setText(item.getSpeed() + "");
-        pressTv.setText(item.getPress() + "");
+        pressTv.setText(item.getPressure() + "");
         editView.setOnClickListener(v-> clickEdit());
         deleteView.setOnClickListener(v-> clickDelete());
         useView.setOnClickListener(v-> clickUse());

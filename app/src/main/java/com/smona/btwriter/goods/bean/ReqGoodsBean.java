@@ -1,27 +1,11 @@
-package com.smona.btwriter.purchase.bean;
+package com.smona.btwriter.goods.bean;
 
-public class ReqGoodsBean {
-    private int limit;
-    private int currPage;
+import com.smona.btwriter.common.http.bean.ReqPage;
+
+public class ReqGoodsBean extends ReqPage {
     private String name;
     private String sortField;
     private int isAsc;
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
 
     public String getName() {
         return name;

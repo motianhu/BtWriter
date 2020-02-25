@@ -1,4 +1,4 @@
-package com.smona.btwriter.purchase.holder;
+package com.smona.btwriter.goods.holder;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -8,16 +8,16 @@ import android.widget.TextView;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.XViewHolder;
-import com.smona.btwriter.purchase.bean.GoodsBean;
-import com.smona.btwriter.purchase.bean.TwoGoodsBean;
+import com.smona.btwriter.goods.bean.GoodsBean;
+import com.smona.btwriter.goods.bean.TwoGoodsBean;
 import com.smona.image.loader.ImageLoaderDelegate;
 
-public class PurchaseHolder extends XViewHolder {
+public class GoodsListHolder extends XViewHolder {
 
     private View leftItemView;
     private View rightItemView;
 
-    public PurchaseHolder(View itemView) {
+    public GoodsListHolder(View itemView) {
         super(itemView);
         leftItemView = itemView.findViewById(R.id.leftItem);
         rightItemView = itemView.findViewById(R.id.rightItem);

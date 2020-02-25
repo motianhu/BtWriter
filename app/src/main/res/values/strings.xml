@@ -118,4 +118,5 @@
 
     <string name="price_two_dot">%1$.2f</string>
     <string name="rmb_sign">¥</string>
+    <string name="num_unit">次</string>
 </resources>

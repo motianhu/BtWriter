@@ -12,7 +12,12 @@ public interface BusinessHttpService {
 
     //home
     String HOME_INFO = "/api/index/indexInfo";
+    String PARAM_INFO = "/api/setting/list";
 
     //goods
     String GOODS_LIST = "/api/goods/queryGoodsByPage";
+
+    //brand
+    String BRAND_LIST = "/api/phoneBrand/queryBrandList";
+    String MODEL_LIST = "/api/phoneBrand/queryPhoneListByBrand";
 }

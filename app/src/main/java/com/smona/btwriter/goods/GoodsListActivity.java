@@ -1,4 +1,4 @@
-package com.smona.btwriter.purchase;
+package com.smona.btwriter.goods;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
@@ -8,10 +8,10 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
-import com.smona.btwriter.purchase.adapter.PurchaseAdapter;
-import com.smona.btwriter.purchase.bean.GoodsBean;
-import com.smona.btwriter.purchase.bean.TwoGoodsBean;
-import com.smona.btwriter.purchase.presenter.PurchasePresenter;
+import com.smona.btwriter.goods.adapter.GoodsListAdapter;
+import com.smona.btwriter.goods.bean.GoodsBean;
+import com.smona.btwriter.goods.bean.TwoGoodsBean;
+import com.smona.btwriter.goods.presenter.GoodsListPresenter;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 
@@ -22,14 +22,14 @@ import java.util.List;
  * 采购
  */
 @Route(path = ARouterPath.PATH_TO_PURCHASELIST)
-public class PurchaseActivity extends BaseLoadingPresenterActivity<PurchasePresenter, PurchasePresenter.IPurchaseView> implements PurchasePresenter.IPurchaseView {
+public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPresenter, GoodsListPresenter.IPurchaseView> implements GoodsListPresenter.IPurchaseView {
 
     private XRecyclerView xRecyclerView;
-    private PurchaseAdapter adapter;
+    private GoodsListAdapter adapter;
 
     @Override
-    protected PurchasePresenter initPresenter() {
-        return new PurchasePresenter();
+    protected GoodsListPresenter initPresenter() {
+        return new GoodsListPresenter();
     }
 
     @Override
@@ -56,8 +56,21 @@ public class PurchaseActivity extends BaseLoadingPresenterActivity<PurchasePrese
         int margin = getResources().getDimensionPixelSize(R.dimen.dimen_14dp);
         CommonItemDecoration ex = new CommonItemDecoration(0, margin, 0);
         xRecyclerView.addItemDecoration(ex);
+        xRecyclerView.setLoadingMoreEnabled(true);
+        xRecyclerView.setPullRefreshEnabled(true);
+        xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                refreshGoodList();
+            }
 
-        adapter = new PurchaseAdapter(R.layout.adapter_item_purchase);
+            @Override
+            public void onLoadMore() {
+                requestGoodsList();
+            }
+        });
+
+        adapter = new GoodsListAdapter(R.layout.adapter_item_purchase);
         xRecyclerView.setAdapter(adapter);
     }
 
@@ -82,11 +95,14 @@ public class PurchaseActivity extends BaseLoadingPresenterActivity<PurchasePrese
 
     @Override
     public void onEmpty() {
-
+        xRecyclerView.loadMoreComplete();
+        xRecyclerView.refreshComplete();
     }
 
     @Override
-    public void onGoodsList(boolean hasMore, List<GoodsBean> goodsBeanList) {
+    public void onGoodsList(boolean isFirstPage, List<GoodsBean> goodsBeanList) {
+        xRecyclerView.loadMoreComplete();
+        xRecyclerView.refreshComplete();
         List<TwoGoodsBean> twoGoodsBeanList = new ArrayList<>();
         TwoGoodsBean twoGoodsBean = null;
         for (int i = 0; i < goodsBeanList.size(); i++) {
@@ -98,6 +114,15 @@ public class PurchaseActivity extends BaseLoadingPresenterActivity<PurchasePrese
                 twoGoodsBean.setRightBean(goodsBeanList.get(i));
             }
         }
-        adapter.addData(twoGoodsBeanList);
+        if(isFirstPage) {
+            adapter.setNewData(twoGoodsBeanList);
+        } else {
+            adapter.addData(twoGoodsBeanList);
+        }
+    }
+
+    @Override
+    public void onComplete() {
+        xRecyclerView.setNoMore(true);
     }
 }

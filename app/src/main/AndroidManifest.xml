@@ -62,7 +62,7 @@
             android:name=".register.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".purchase.PurchaseActivity"
+            android:name=".goods.GoodsListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".message.MessageActivity"

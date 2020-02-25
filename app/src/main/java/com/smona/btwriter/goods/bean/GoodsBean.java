@@ -1,4 +1,4 @@
-package com.smona.btwriter.purchase.bean;
+package com.smona.btwriter.goods.bean;
 
 public class GoodsBean {
     private int id;

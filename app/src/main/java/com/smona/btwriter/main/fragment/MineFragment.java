@@ -6,9 +6,11 @@ import android.widget.TextView;
 
 import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
+import com.smona.btwriter.data.AccountDataCenter;
 import com.smona.btwriter.main.presenter.MinePresenter;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
+import com.smona.btwriter.util.CommonUtil;
 
 public class MineFragment extends BasePresenterFragment<MinePresenter, MinePresenter.IMineView> implements MinePresenter.IMineView {
 
@@ -41,16 +43,26 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     }
 
     private void clickLogout() {
-
+        showLoadingDialog();
+        mPresenter.requestLogout();
     }
 
     @Override
     protected void initData() {
         super.initData();
+        userNameTv.setText(AccountDataCenter.getInstance().getAccountInfo().getEmail());
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        hideLoadingDialog();
+        CommonUtil.showToastByFilter(errCode, errInfo);
+    }
 
+    @Override
+    public void onLogout() {
+        hideLoadingDialog();
+        mActivity.finish();
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
     }
 }

@@ -46,6 +46,16 @@ public class ARouterManager {
                 .navigation();
     }
 
+    /**
+     * activity 普通跳转 携带单个int参数
+     *
+     * @param path
+     */
+    public void gotoActivityWithInt(String path, String key, int value) {
+        ARouter.getInstance().build(path)
+                .withInt(key, value)
+                .navigation();
+    }
 
     /**
      * activity 普通跳转 携带单个string参数

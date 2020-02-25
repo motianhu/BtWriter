@@ -136,6 +136,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     @Override
     public void onRegister() {
         hideLoadingDialog();
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
+        finish();
     }
 }

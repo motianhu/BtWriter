@@ -10,11 +10,10 @@ import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.CommonInfoAdapter;
-import com.smona.btwriter.main.bean.CommonInfo;
-import com.smona.btwriter.main.bean.MembraneBean;
+import com.smona.btwriter.main.bean.ParamInfo;
 import com.smona.btwriter.main.presenter.ParamPresenter;
+import com.smona.btwriter.util.CommonUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPresenter.IParamView> implements ParamPresenter.IParamView {
@@ -51,51 +50,26 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.setLoadingMoreEnabled(false);
 
-        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_14dp);
+        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
         CommonItemDecoration ex = new CommonItemDecoration(0, margin, 0);
         xRecyclerView.addItemDecoration(ex);
 
         adapter = new CommonInfoAdapter(R.layout.adapter_item_commoninfo);
-        adapter.setNewData(buildCommonList());
         xRecyclerView.setAdapter(adapter);
 
         content.findViewById(R.id.resetValue).setOnClickListener(v -> clickResetValue());
         content.findViewById(R.id.add).setOnClickListener(v -> clickAdd());
     }
 
-    private List<CommonInfo> buildCommonList() {
-        List<CommonInfo> data = new ArrayList<>();
-        CommonInfo commonInfo = new CommonInfo();
-        commonInfo.setTitle("1");
-        commonInfo.setPress(1);
-        commonInfo.setSpeed(1);
-        data.add(commonInfo);
-
-        commonInfo = new CommonInfo();
-        commonInfo.setTitle("2");
-        commonInfo.setPress(2);
-        commonInfo.setSpeed(2);
-        data.add(commonInfo);
-
-        commonInfo = new CommonInfo();
-        commonInfo.setTitle("3");
-        commonInfo.setPress(3);
-        commonInfo.setSpeed(3);
-        data.add(commonInfo);
-
-        commonInfo = new CommonInfo();
-        commonInfo.setTitle("4");
-        commonInfo.setPress(4);
-        commonInfo.setSpeed(4);
-        data.add(commonInfo);
-
-        return data;
+    @Override
+    protected void initData() {
+        super.initData();
+        mPresenter.requestParams();
     }
 
     private void clickResetValue() {
 
     }
-
 
     private void clickAdd() {
 
@@ -103,6 +77,11 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        CommonUtil.showToastByFilter(errCode, errInfo);
+    }
 
+    @Override
+    public void onParams(List<ParamInfo> paramsList) {
+        adapter.setNewData(paramsList);
     }
 }
