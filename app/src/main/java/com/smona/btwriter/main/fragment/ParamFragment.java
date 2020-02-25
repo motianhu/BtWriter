@@ -51,7 +51,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         xRecyclerView.setLoadingMoreEnabled(false);
 
         int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
-        CommonItemDecoration ex = new CommonItemDecoration(0, margin, 0);
+        CommonItemDecoration ex = new CommonItemDecoration(0, margin);
         xRecyclerView.addItemDecoration(ex);
 
         adapter = new CommonInfoAdapter(R.layout.adapter_item_commoninfo);

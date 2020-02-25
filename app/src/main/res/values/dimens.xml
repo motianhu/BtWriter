@@ -94,4 +94,5 @@
     <dimen name="dimen_240dp">240dp</dimen>
     <dimen name="dimen_300dp">300dp</dimen>
     <dimen name="dimen_340dp">340dp</dimen>
+    <dimen name="dimen_450dp">450dp</dimen>
 </resources>

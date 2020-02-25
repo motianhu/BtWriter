@@ -54,7 +54,7 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
         xRecyclerView = findViewById(R.id.purchaseList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         int margin = getResources().getDimensionPixelSize(R.dimen.dimen_14dp);
-        CommonItemDecoration ex = new CommonItemDecoration(0, margin, 0);
+        CommonItemDecoration ex = new CommonItemDecoration(0, margin);
         xRecyclerView.addItemDecoration(ex);
         xRecyclerView.setLoadingMoreEnabled(true);
         xRecyclerView.setPullRefreshEnabled(true);

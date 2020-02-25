@@ -1,7 +1,6 @@
 package com.smona.btwriter.brand;
 
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -37,6 +36,7 @@ public class BrandActivity extends BaseLoadingPresenterActivity<BrandPresenter, 
     @Override
     protected void initContentView() {
         super.initContentView();
+        initSerialize();
         initHeader();
         initViews();
     }
@@ -56,11 +56,11 @@ public class BrandActivity extends BaseLoadingPresenterActivity<BrandPresenter, 
 
     private void initViews() {
         xRecyclerView = findViewById(R.id.brandList);
-        xRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.setLoadingMoreEnabled(false);
+        xRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         int margin = getResources().getDimensionPixelSize(R.dimen.dimen_6dp);
-        CommonItemDecoration commonItemDecoration = new CommonItemDecoration(margin, margin, 0);
+        CommonItemDecoration commonItemDecoration = new CommonItemDecoration(margin, margin);
         xRecyclerView.addItemDecoration(commonItemDecoration);
         adapter = new BrandAdapter(R.layout.adapter_item_brand);
         adapter.setMembraneType(membraneType);

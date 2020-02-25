@@ -1,5 +1,7 @@
 package com.smona.btwriter.make;
 
+import android.widget.TextView;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
@@ -16,6 +18,22 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
     @Override
     protected int getLayoutId() {
         return R.layout.activity_make;
+    }
+
+    @Override
+    protected void initContentView() {
+        super.initContentView();
+        initHeader();
+        initViews();
+    }
+
+    private void initHeader() {
+        findViewById(R.id.back).setOnClickListener(view -> finish());
+        TextView titleTv = findViewById(R.id.title);
+        titleTv.setText(R.string.make);
+    }
+
+    private void initViews() {
     }
 
     @Override

@@ -12,6 +12,8 @@
     <include
         android:id="@+id/modelList"
         layout="@layout/widget_xrecycleview"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:layout_marginEnd="@dimen/dimen_10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

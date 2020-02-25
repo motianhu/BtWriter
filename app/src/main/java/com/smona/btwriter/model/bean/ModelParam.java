@@ -2,7 +2,7 @@ package com.smona.btwriter.model.bean;
 
 import java.io.Serializable;
 
-public class BrandParam implements Serializable {
+public class ModelParam implements Serializable {
     private int brandId;
     private int membraneType;
 

@@ -76,8 +76,8 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.setLoadingMoreEnabled(false);
 
-        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_14dp);
-        CommonItemDecoration ex = new CommonItemDecoration(0, margin, 0);
+        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_7dp);
+        CommonItemDecoration ex = new CommonItemDecoration(0, margin);
         xRecyclerView.addItemDecoration(ex);
 
         adapter = new MembraneTypeAdapter(R.layout.adapter_item_membranetype);

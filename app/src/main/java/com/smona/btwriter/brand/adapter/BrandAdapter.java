@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.smona.btwriter.brand.bean.BrandBean;
 import com.smona.btwriter.brand.holder.BrandHolder;
 import com.smona.btwriter.common.XBaseAdapter;
-import com.smona.btwriter.model.bean.BrandParam;
+import com.smona.btwriter.model.bean.ModelParam;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 
@@ -25,10 +25,10 @@ public class BrandAdapter extends XBaseAdapter<BrandBean, BrandHolder> {
     protected void convert(BrandHolder holder, BrandBean item, int pos) {
         holder.bindViews(item);
         Bundle bundle = new Bundle();
-        BrandParam param = new BrandParam();
+        ModelParam param = new ModelParam();
         param.setBrandId(item.getId());
         param.setMembraneType(membraneType);
-        bundle.putSerializable(BrandParam.class.getName(), param);
+        bundle.putSerializable(ModelParam.class.getName(), param);
         holder.itemView.setOnClickListener(v -> ARouterManager.getInstance().gotoActivityBundle(ARouterPath.PATH_TO_MODEL, bundle));
     }
 }
