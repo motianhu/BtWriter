@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/common_navigation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/addressList"
+        layout="@layout/widget_xrecycleview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/submit_rl"
+        android:layout_below="@id/navigation" />
+
+    <RelativeLayout
+        android:id="@+id/submit_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:background="@color/white"
+        android:paddingTop="@dimen/dimen_20dp"
+        android:paddingBottom="@dimen/dimen_20dp">
+
+        <TextView
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_45dp"
+            android:layout_marginEnd="@dimen/dimen_45dp"
+            android:background="@drawable/bg_corner_maincolor"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_15dp"
+            android:paddingBottom="@dimen/dimen_15dp"
+            android:text="@string/submit"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</RelativeLayout>

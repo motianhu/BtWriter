@@ -1,6 +1,6 @@
-package com.smona.btwriter.goods.bean;
+package com.smona.btwriter.common.http.bean;
 
-public class ReqGoodsDetailBean {
+public class ReqId {
     private int id;
 
     public int getId() {

@@ -91,7 +91,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         CommonItemDecoration ex = new CommonItemDecoration(0, margin);
         xRecyclerView.addItemDecoration(ex);
 
-        adapter = new ParamInfoAdapter(R.layout.adapter_item_commoninfo);
+        adapter = new ParamInfoAdapter(R.layout.adapter_item_param);
         adapter.setOnParamListener(new ParamInfoAdapter.OnParamListener() {
             @Override
             public void onEdit(ParamInfo item) {

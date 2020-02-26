@@ -42,10 +42,10 @@ public class GoodsListHolder extends XViewHolder {
         salesNumTv.setText(context.getString(R.string.sales_num) + "  "  + goodsBean.getSaleAmount());
 
         TextView priceTv = rootView.findViewById(R.id.price);
-        priceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice()  + "");
+        priceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice());
 
         TextView realPriceTv = rootView.findViewById(R.id.realPrice);
-        realPriceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getPrice()  + "");
+        realPriceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getPrice());
         realPriceTv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
 
         rootView.setOnClickListener(v->clickViewDetail(goodsBean.getId()));

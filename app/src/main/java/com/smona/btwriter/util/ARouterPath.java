@@ -25,6 +25,8 @@ public interface ARouterPath {
 
     String PATH_TO_BRAND = "/app/activity/brand";
     String PATH_TO_MODEL = "/app/activity/model";
+    //address
+    String PATH_TO_ADDRESSLIST = "/app/activity/addressList";
     String PATH_TO_ADDRESS = "/app/activity/address";
     String PATH_TO_MAKE = "/app/activity/make";
     String PATH_TO_PARAM = "/app/activity/param";

@@ -3,7 +3,7 @@ package com.smona.btwriter.goods.presenter;
 import com.smona.base.ui.mvp.BasePresenter;
 import com.smona.btwriter.common.IPageView;
 import com.smona.btwriter.goods.bean.GoodsBean;
-import com.smona.btwriter.goods.bean.ReqGoodsBean;
+import com.smona.btwriter.goods.bean.ReqGoodsList;
 import com.smona.btwriter.goods.bean.RespGoodsList;
 import com.smona.btwriter.goods.model.GoodsModel;
 import com.smona.btwriter.util.CommonUtil;
@@ -18,7 +18,7 @@ public class GoodsListPresenter extends BasePresenter<GoodsListPresenter.IPurcha
     private int lastPage = CommonUtil.START_PAGE;
 
     public void requestGoodsList() {
-        ReqGoodsBean reqGoodsBean = new ReqGoodsBean();
+        ReqGoodsList reqGoodsBean = new ReqGoodsList();
         reqGoodsBean.setCurrPage(lastPage);
         reqGoodsBean.setLimit(CommonUtil.SIZE);
         purchaseModel.requestGoodsList(reqGoodsBean, new OnResultListener<BaseResponse<RespGoodsList>>() {
@@ -35,7 +35,6 @@ public class GoodsListPresenter extends BasePresenter<GoodsListPresenter.IPurcha
                     if (noMore) {
                         mView.onComplete();
                     }
-
                 }
             }
 

@@ -117,7 +117,10 @@
     <string name="systemmsg">系统消息</string>
     <string name="select_brand">选择品牌</string>
     <string name="select_model">选择机型</string>
+
+    <string name="address">新增/编辑地址</string>
     <string name="addressList">我的地址</string>
+    <string name="address_add">新建地址</string>
 
     <string name="seach_tips">请输入你需要的商品名称</string>
     <string name="seach">搜索</string>
@@ -136,4 +139,18 @@
     <string name="shoppingcard">购物车</string>
     <string name="goods_introduce">商品简介</string>
     <string name="add_shopping">加入购物车</string>
+
+    <string name="shoppingcard_detail">商品明细: </string>
+    <string name="number">数量: </string>
+    <string name="submit">确定提交</string>
+    <string name="remark">备注：</string>
+
+
+    <string name="user_name">姓名</string>
+    <string name="user_phone">手机号</string>
+    <string name="user_address">详细地址</string>
+    <string name="user_address_default">设为默认地址</string>
+    <string name="user_name_hint">请输入收件人姓名</string>
+    <string name="user_phone_hint">请输入收件人手机号</string>
+    <string name="user_address_hint">请输入详细地址</string>
 </resources>
