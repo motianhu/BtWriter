@@ -113,7 +113,7 @@
             android:textSize="@dimen/font_15"
             android:textColor="@color/color_333333"
             android:layout_marginTop="@dimen/dimen_24dp"
-            android:text="@string/common_info" />
+            android:text="@string/param_info_list" />
 
         <TextView
             android:id="@+id/add"

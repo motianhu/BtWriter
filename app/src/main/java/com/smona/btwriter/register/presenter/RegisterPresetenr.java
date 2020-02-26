@@ -41,7 +41,6 @@ public class RegisterPresetenr extends BasePresenter<RegisterPresetenr.IRegister
         reqRegister.setEmail(email);
         reqRegister.setCode(code);
         reqRegister.setPassword(pwd);
-        reqRegister.setConfirmPassword(pwd);
         registerModel.requestRegister(reqRegister, new OnResultListener<BaseResponse<RespEmpty>>() {
             @Override
             public void onSuccess(BaseResponse<RespEmpty> respEmptyBaseResponse) {

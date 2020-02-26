@@ -1,0 +1,123 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/common_navigation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:layout_marginStart="@dimen/dimen_23dp"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_marginEnd="@dimen/dimen_23dp"
+        android:background="@drawable/text_border"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dimen_21dp"
+        android:paddingEnd="@dimen/dimen_21dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/font_15"
+            android:text="@string/name"
+            android:textColor="@color/color_333333" />
+
+        <EditText
+            android:id="@+id/param_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_edit_trans"
+            android:gravity="center_vertical"
+            android:hint="@string/add_name_hint"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:textColor="@color/color_9E9E9E"
+            android:textColorHint="@color/color_80E9E9E"
+            android:textSize="@dimen/font_12" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_23dp"
+        android:layout_marginEnd="@dimen/dimen_23dp"
+        android:layout_marginTop="@dimen/dimen_30dp">
+
+        <TextView
+            android:id="@+id/speedName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_15"
+            android:textColor="@color/color_333333"
+            android:text="@string/cut_speed" />
+
+        <SeekBar
+            android:id="@+id/speedBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/speedValue"
+            android:layout_toEndOf="@+id/speedName" />
+
+        <TextView
+            android:id="@+id/speedValue"
+            android:textSize="@dimen/font_15"
+            android:layout_width="wrap_content"
+            android:textColor="@color/color_A6A6A6"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/dimen_23dp"
+        android:layout_marginEnd="@dimen/dimen_23dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_30dp">
+
+        <TextView
+            android:id="@+id/pressureName"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/font_15"
+            android:textColor="@color/color_333333"
+            android:layout_height="wrap_content"
+            android:text="@string/knife_press" />
+
+        <SeekBar
+            android:id="@+id/pressureBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/pressureValue"
+            android:layout_toEndOf="@+id/pressureName" />
+
+        <TextView
+            android:id="@+id/pressureValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_15"
+            android:textColor="@color/color_A6A6A6"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/save"
+        android:background="@drawable/bg_corner_maincolor"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/dimen_45dp"
+        android:layout_marginEnd="@dimen/dimen_45dp"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/dimen_15dp"
+        android:layout_marginBottom="@dimen/dimen_15dp"
+        android:paddingBottom="@dimen/dimen_15dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
+
+</LinearLayout>

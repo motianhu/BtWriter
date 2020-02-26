@@ -1,20 +1,23 @@
 package com.smona.btwriter.main.holder;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.XViewHolder;
 import com.smona.btwriter.main.bean.ParamInfo;
+import com.smona.btwriter.util.ARouterManager;
+import com.smona.btwriter.util.ARouterPath;
 
 public class ParamInfoHolder extends XViewHolder {
 
     private TextView titleTv;
     private TextView speedTv;
     private TextView pressTv;
-    private View editView;
-    private View deleteView;
-    private View useView;
+    public View editView;
+    public View deleteView;
+    public View useView;
 
     public ParamInfoHolder(View itemView) {
         super(itemView);
@@ -30,20 +33,5 @@ public class ParamInfoHolder extends XViewHolder {
         titleTv.setText(item.getName());
         speedTv.setText(item.getSpeed() + "");
         pressTv.setText(item.getPressure() + "");
-        editView.setOnClickListener(v-> clickEdit());
-        deleteView.setOnClickListener(v-> clickDelete());
-        useView.setOnClickListener(v-> clickUse());
-    }
-
-    private void clickEdit() {
-
-    }
-
-    private void clickDelete() {
-
-    }
-
-    private void clickUse() {
-
     }
 }

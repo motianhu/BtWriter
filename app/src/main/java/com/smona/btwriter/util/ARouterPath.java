@@ -18,7 +18,11 @@ public interface ARouterPath {
     String PATH_TO_SCAN = "/app/activity/scan";
 
     String PATH_TO_MESSAGELIST = "/app/activity/message";
-    String PATH_TO_PURCHASELIST = "/app/activity/purchase";
+    //商品列表和详情
+    String PATH_TO_GOODSLIST = "/app/activity/goodsList";
+    String PATH_TO_GOODSDETAIL = "/api/goods/goodsDetail";
+    String PATH_TO_SHOPPINGCARD = "/app/activity/shoppingcard";
+
     String PATH_TO_BRAND = "/app/activity/brand";
     String PATH_TO_MODEL = "/app/activity/model";
     String PATH_TO_ADDRESS = "/app/activity/address";

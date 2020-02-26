@@ -10,6 +10,8 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.common.XViewHolder;
 import com.smona.btwriter.goods.bean.GoodsBean;
 import com.smona.btwriter.goods.bean.TwoGoodsBean;
+import com.smona.btwriter.util.ARouterManager;
+import com.smona.btwriter.util.ARouterPath;
 import com.smona.image.loader.ImageLoaderDelegate;
 
 public class GoodsListHolder extends XViewHolder {
@@ -45,5 +47,11 @@ public class GoodsListHolder extends XViewHolder {
         TextView realPriceTv = rootView.findViewById(R.id.realPrice);
         realPriceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getPrice()  + "");
         realPriceTv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
+
+        rootView.setOnClickListener(v->clickViewDetail(goodsBean.getId()));
+    }
+
+    private void clickViewDetail(int id) {
+        ARouterManager.getInstance().gotoActivityWithInt(ARouterPath.PATH_TO_GOODSDETAIL, ARouterPath.PATH_TO_GOODSDETAIL, id);
     }
 }

@@ -1,6 +1,8 @@
 package com.smona.btwriter.main.bean;
 
-public class ParamInfo {
+import java.io.Serializable;
+
+public class ParamInfo implements Serializable {
     private int id;
     private int speed;
     private int pressure;

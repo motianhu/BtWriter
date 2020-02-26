@@ -12,6 +12,7 @@ import com.smona.btwriter.goods.adapter.GoodsListAdapter;
 import com.smona.btwriter.goods.bean.GoodsBean;
 import com.smona.btwriter.goods.bean.TwoGoodsBean;
 import com.smona.btwriter.goods.presenter.GoodsListPresenter;
+import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * 采购
  */
-@Route(path = ARouterPath.PATH_TO_PURCHASELIST)
+@Route(path = ARouterPath.PATH_TO_GOODSLIST)
 public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPresenter, GoodsListPresenter.IPurchaseView> implements GoodsListPresenter.IPurchaseView {
 
     private XRecyclerView xRecyclerView;
@@ -34,7 +35,7 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_purchase;
+        return R.layout.activity_goodslist;
     }
 
     @Override
@@ -47,13 +48,13 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     private void initHeader() {
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
-        titleTv.setText(R.string.purchase);
+        titleTv.setText(R.string.goods_list);
     }
 
     private void initViews() {
         xRecyclerView = findViewById(R.id.purchaseList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_14dp);
+        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
         CommonItemDecoration ex = new CommonItemDecoration(0, margin);
         xRecyclerView.addItemDecoration(ex);
         xRecyclerView.setLoadingMoreEnabled(true);
@@ -72,6 +73,11 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
 
         adapter = new GoodsListAdapter(R.layout.adapter_item_purchase);
         xRecyclerView.setAdapter(adapter);
+        findViewById(R.id.btn_shoppingcard).setOnClickListener(v->clickShoppingCard());
+    }
+
+    private void clickShoppingCard(){
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_SHOPPINGCARD);
     }
 
     @Override

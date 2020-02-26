@@ -1,5 +1,7 @@
 package com.smona.btwriter.goods.bean;
 
+import java.util.List;
+
 public class GoodsBean {
     private int id;
     private String name;
@@ -12,6 +14,8 @@ public class GoodsBean {
     private String type;
     private int status;
     private String coverImg;
+    private List<GoodsTypeBean> typeList;
+    private List<String> imageList;
 
     public int getId() {
         return id;
@@ -99,5 +103,21 @@ public class GoodsBean {
 
     public void setCoverImg(String coverImg) {
         this.coverImg = coverImg;
+    }
+
+    public List<GoodsTypeBean> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<GoodsTypeBean> typeList) {
+        this.typeList = typeList;
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
     }
 }

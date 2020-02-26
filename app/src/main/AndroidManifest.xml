@@ -65,6 +65,16 @@
             android:name=".goods.GoodsListActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".goods.GoodsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".goods.ShoppingCardActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".param.ParamActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".message.MessageActivity"
             android:screenOrientation="portrait" />
         <activity

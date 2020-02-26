@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/common_navigation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/add_rl"
+        android:layout_below="@+id/navigation"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
+
+            <RelativeLayout
+                android:id="@+id/title_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/banner"
+                android:background="@color/white"
+                android:padding="@dimen/dimen_20dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_18" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:textColor="@color/color_F90300"
+                    android:textSize="@dimen/font_18" />
+
+                <TextView
+                    android:id="@+id/realPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_marginStart="@dimen/dimen_10dp"
+                    android:layout_marginTop="@dimen/dimen_13dp"
+                    android:layout_toEndOf="@+id/price"
+                    android:textColor="@color/color_8B8B8B"
+                    android:textSize="@dimen/font_15" />
+
+                <TextView
+                    android:id="@+id/salesNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/dimen_13dp"
+                    android:textColor="@color/color_8B8B8B"
+                    android:textSize="@dimen/font_15" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/title_rl"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:background="@color/white"
+                android:padding="@dimen/dimen_20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:text="@string/goods_introduce"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_15" />
+
+                <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_15" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/add_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_45dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:layout_marginEnd="@dimen/dimen_45dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
+            android:background="@drawable/bg_corner_maincolor"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_15dp"
+            android:paddingBottom="@dimen/dimen_15dp"
+            android:text="@string/add_shopping"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btn_shoppingcard"
+        android:layout_width="@dimen/dimen_60dp"
+        android:layout_height="@dimen/dimen_60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_8"
+        android:padding="@dimen/dimen_10dp"
+        android:layout_marginEnd="@dimen/dimen_14dp"
+        android:layout_marginBottom="@dimen/dimen_100dp"
+        android:drawableTop="@drawable/shoppingcard_on"
+        android:background="@drawable/bg_corner"
+        android:elevation="@dimen/dimen_5dp"
+        android:text="@string/shoppingcard" />
+
+</RelativeLayout>

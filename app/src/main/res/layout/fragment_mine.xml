@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:drawableEnd="@drawable/arrow_right_icon"
             android:textSize="@dimen/font_13"
-            android:text="@string/purchase" />
+            android:text="@string/goods_list" />
 
         <include layout="@layout/common_divider" />
 

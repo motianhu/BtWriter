@@ -41,7 +41,6 @@ public class ForgetPresenter extends BasePresenter<ForgetPresenter.IForgetPwdVie
         resetPwd.setEmail(email);
         resetPwd.setCode(code);
         resetPwd.setPassword(pwd);
-        resetPwd.setConfirmPassword(pwd);
         forgetPwdModel.requestResetPwd(resetPwd, new OnResultListener<BaseResponse<RespEmpty>>() {
             @Override
             public void onSuccess(BaseResponse<RespEmpty> respEmptyBaseResponse) {

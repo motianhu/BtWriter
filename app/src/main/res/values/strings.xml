@@ -89,9 +89,16 @@
     <string name="delete">删除</string>
     <string name="use">使用</string>
 
+    <string name="name">名称</string>
+    <string name="save">保存</string>
+
+    <string name="new_param">新增</string>
+    <string name="edit_param">编辑</string>
+
     <string name="reset_value">刻刀起始点位置调节</string>
-    <string name="common_info">常用信息</string>
+    <string name="param_info_list">常规设置</string>
     <string name="add">新增</string>
+    <string name="add_name_hint">请输入名称</string>
 
     <string name="current_device">正在使用的设备: </string>
     <string name="not_match">未匹配</string>
@@ -99,8 +106,11 @@
     <string name="start_match">开始匹配</string>
 
     <string name="message_list">消息列表</string>
-    <string name="purchase">采购需求</string>
+    <string name="goods_list">采购需求</string>
+    <string name="goods_detail">商品详情</string>
+    <string name="shoppingcard_list">购买清单</string>
     <string name="changepwd">修改密码</string>
+    <string name="change_pwd_success">密码修改成功</string>
 
     <string name="logout">退出登录</string>
 
@@ -123,4 +133,7 @@
     <string name="start_make">确定制作</string>
     <string name="make">制作手机膜</string>
 
+    <string name="shoppingcard">购物车</string>
+    <string name="goods_introduce">商品简介</string>
+    <string name="add_shopping">加入购物车</string>
 </resources>

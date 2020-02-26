@@ -1,12 +1,11 @@
 package com.smona.btwriter.goods.presenter;
 
 import com.smona.base.ui.mvp.BasePresenter;
-import com.smona.btwriter.common.ICommonView;
 import com.smona.btwriter.common.IPageView;
 import com.smona.btwriter.goods.bean.GoodsBean;
 import com.smona.btwriter.goods.bean.ReqGoodsBean;
 import com.smona.btwriter.goods.bean.RespGoodsList;
-import com.smona.btwriter.goods.model.GoodsListModel;
+import com.smona.btwriter.goods.model.GoodsModel;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.http.business.BaseResponse;
 import com.smona.http.wrapper.OnResultListener;
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class GoodsListPresenter extends BasePresenter<GoodsListPresenter.IPurchaseView> {
 
-    private GoodsListModel purchaseModel = new GoodsListModel();
+    private GoodsModel purchaseModel = new GoodsModel();
     private int lastPage = CommonUtil.START_PAGE;
 
     public void requestGoodsList() {
