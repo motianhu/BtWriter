@@ -58,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
         android:layout_marginTop="@dimen/dimen_10dp"
+        android:textSize="@dimen/font_11"
         android:layout_toEndOf="@+id/set_default" />
 
     <ImageView

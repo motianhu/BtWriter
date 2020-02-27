@@ -1,11 +1,14 @@
 package com.smona.btwriter.goods;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
+import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.goods.adapter.ShoppingCardListAdapter;
 import com.smona.btwriter.goods.bean.ResShoppingCardList;
 import com.smona.btwriter.goods.presenter.ShoppingCardPresenter;
@@ -13,12 +16,22 @@ import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.btwriter.util.ToastUtil;
 
 @Route(path = ARouterPath.PATH_TO_SHOPPINGCARD)
 public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingCardPresenter, ShoppingCardPresenter.IShoppingCardView> implements ShoppingCardPresenter.IShoppingCardView {
 
+    private AddressBean addressBean;
+
     private XRecyclerView xRecyclerView;
     private ShoppingCardListAdapter adapter;
+
+    private View setDefaultIv;
+    private TextView nameTv;
+    private TextView phoneTv;
+    private TextView addressTv;
+
+    private EditText remarkTv;
 
     @Override
     protected ShoppingCardPresenter initPresenter() {
@@ -49,8 +62,47 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.setLoadingMoreEnabled(false);
         adapter = new ShoppingCardListAdapter(R.layout.adapter_item_shoppingcard);
+        adapter.setListener(new ShoppingCardListAdapter.OnShoppingCardListener() {
+            @Override
+            public void onModify(int id, int count) {
+                showLoadingDialog();
+                mPresenter.requestModify(id, count);
+            }
+            @Override
+            public void onDelelte(int id) {
+                showLoadingDialog();
+                mPresenter.requestDelete(id);
+            }
+        });
         xRecyclerView.setAdapter(adapter);
         findViewById(R.id.address_rl).setOnClickListener(v -> clickAddress());
+
+        setDefaultIv = findViewById(R.id.set_default);
+        nameTv = findViewById(R.id.name);
+        phoneTv = findViewById(R.id.phone);
+        addressTv = findViewById(R.id.address);
+        remarkTv = findViewById(R.id.remark);
+
+        findViewById(R.id.submit).setOnClickListener(v-> clickSubmit());
+    }
+
+    private void clickSubmit() {
+        if(addressBean == null) {
+            ToastUtil.showShort(R.string.empty_address);
+            return;
+        }
+        if(adapter.getItemCount() ==0) {
+            ToastUtil.showShort(R.string.empty_shoppingcard);
+            return;
+        }
+        showLoadingDialog();
+        mPresenter.requestSubmit(addressBean.getId(), remarkTv.getText().toString());
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mPresenter.requestShoppingList();
     }
 
     private void clickAddress() {
@@ -69,5 +121,38 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
             return;
         }
         adapter.setNewData(shoppingCardList.getGoodsList());
+        refreshAddress(shoppingCardList.getAddress());
+    }
+
+    @Override
+    public void onModify(int id, int count) {
+        hideLoadingDialog();
+        adapter.notifiRefresh(id, count);
+    }
+
+    @Override
+    public void onDelete(int id) {
+        hideLoadingDialog();
+        adapter.notifiDelete(id);
+    }
+
+    @Override
+    public void onSubmit() {
+        hideLoadingDialog();
+        finish();
+    }
+
+    private void refreshAddress(AddressBean addressBean) {
+        if (addressBean == null) {
+            return;
+        }
+        this.addressBean = addressBean;
+        String name = getString(R.string.receiver_name) + "  " + addressBean.getUserName();
+        nameTv.setText(name);
+        String phone = getString(R.string.receiver_phone) + "  " + addressBean.getPhone();
+        phoneTv.setText(phone);
+        String address = getString(R.string.receiver_address) + "  " + addressBean.getAddress();
+        addressTv.setText(address);
+        setDefaultIv.setVisibility(addressBean.isDefault() ? View.VISIBLE:View.GONE);
     }
 }

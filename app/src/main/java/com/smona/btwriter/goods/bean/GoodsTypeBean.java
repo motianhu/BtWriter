@@ -2,7 +2,7 @@ package com.smona.btwriter.goods.bean;
 
 public class GoodsTypeBean {
      private int id;
-     private String name;
+     private String typeName;
 
     public int getId() {
         return id;
@@ -12,11 +12,11 @@ public class GoodsTypeBean {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.XViewHolder;
+import com.smona.btwriter.goods.adapter.GoodsListAdapter;
 import com.smona.btwriter.goods.bean.GoodsBean;
 import com.smona.btwriter.goods.bean.TwoGoodsBean;
 import com.smona.btwriter.util.ARouterManager;
@@ -25,14 +26,14 @@ public class GoodsListHolder extends XViewHolder {
         rightItemView = itemView.findViewById(R.id.rightItem);
     }
 
-    public void bindViews(TwoGoodsBean item) {
-        showViews(leftItemView, item.getLeftBean());
+    public void bindViews(TwoGoodsBean item, GoodsListAdapter.OnClickGoodListListerner onClickGoodListListerner) {
+        showViews(leftItemView, item.getLeftBean(), onClickGoodListListerner);
         if(item.getRightBean() != null) {
-            showViews(rightItemView, item.getRightBean());
+            showViews(rightItemView, item.getRightBean(), onClickGoodListListerner);
         }
     }
 
-    private void showViews(View rootView, GoodsBean goodsBean) {
+    private void showViews(View rootView, GoodsBean goodsBean, GoodsListAdapter.OnClickGoodListListerner onClickGoodListListerner) {
         Context context = rootView.getContext();
         ImageView icon = rootView.findViewById(R.id.icon);
         ImageLoaderDelegate.getInstance().showTopCornerImage(goodsBean.getCoverImg(), icon, context.getResources().getDimensionPixelOffset(R.dimen.dimen_5dp), 0);
@@ -49,6 +50,7 @@ public class GoodsListHolder extends XViewHolder {
         realPriceTv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
 
         rootView.setOnClickListener(v->clickViewDetail(goodsBean.getId()));
+        rootView.findViewById(R.id.shoppingcard).setOnClickListener(v-> onClickGoodListListerner.onClickAdd(goodsBean));
     }
 
     private void clickViewDetail(int id) {

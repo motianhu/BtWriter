@@ -145,12 +145,21 @@
     <string name="submit">确定提交</string>
     <string name="remark">备注：</string>
 
+    <string name="category">分类：</string>
+
 
     <string name="user_name">姓名</string>
     <string name="user_phone">手机号</string>
     <string name="user_address">详细地址</string>
+    <string name="default_address">默认</string>
     <string name="user_address_default">设为默认地址</string>
     <string name="user_name_hint">请输入收件人姓名</string>
     <string name="user_phone_hint">请输入收件人手机号</string>
     <string name="user_address_hint">请输入详细地址</string>
+
+    <string name="receiver_name">收件人: </string>
+    <string name="receiver_phone">电话: </string>
+    <string name="receiver_address">收货地址: </string>
+    <string name="empty_address">请设置收货人信息</string>
+    <string name="empty_shoppingcard">请选择商品</string>
 </resources>

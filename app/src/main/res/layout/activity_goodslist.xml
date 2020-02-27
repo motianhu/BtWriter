@@ -118,9 +118,14 @@
         android:textSize="@dimen/font_8"
         android:padding="@dimen/dimen_10dp"
         android:layout_marginEnd="@dimen/dimen_20dp"
-        android:layout_marginBottom="@dimen/dimen_80dp"
+        android:layout_marginBottom="@dimen/dimen_200dp"
         android:elevation="@dimen/dimen_5dp"
         android:drawableTop="@drawable/shoppingcard_on"
         android:background="@drawable/bg_corner"
         android:text="@string/shoppingcard" />
+
+    <FrameLayout
+        android:id="@+id/select_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

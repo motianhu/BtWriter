@@ -1,5 +1,6 @@
 package com.smona.btwriter.goods;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
 
     private XRecyclerView xRecyclerView;
     private GoodsListAdapter adapter;
+    private SelectGoodsFragment selectGoodsFragment;
 
     @Override
     protected GoodsListPresenter initPresenter() {
@@ -71,9 +73,12 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
             }
         });
 
-        adapter = new GoodsListAdapter(R.layout.adapter_item_purchase);
+        adapter = new GoodsListAdapter(R.layout.adapter_item_goodslist);
+        adapter.setOnClickGoodListListerner(this::showSelectFragment);
         xRecyclerView.setAdapter(adapter);
         findViewById(R.id.btn_shoppingcard).setOnClickListener(v->clickShoppingCard());
+
+        selectGoodsFragment = SelectGoodsFragment.buildInstance();
     }
 
     private void clickShoppingCard(){
@@ -130,5 +135,13 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     @Override
     public void onComplete() {
         xRecyclerView.setNoMore(true);
+    }
+
+    public void showSelectFragment(GoodsBean goodsBean) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.select_fragment, selectGoodsFragment);
+        fragmentTransaction.commit();
+        selectGoodsFragment.setParam(goodsBean);
+        selectGoodsFragment.showFragment();
     }
 }

@@ -23,6 +23,8 @@ public interface BusinessHttpService {
     String SHOPPINGCARD_LIST = "/api/goodsCart/viewGoodsCartDetail";
     String SHOPPINGCARD_ADD = "/api/goodsCart/addGoodsToCart";
     String SHOPPINGCARD_DELETE = "/api/goodsCart/removeGoodsFromCart";
+    String SHOPPINGCARD_MODIFY = "/api/goodsCart/modifyGoodsCartAmount";
+    String SHOPPINGCARD_SUBMIT = "/api/goodsCart/submitCart";
 
     //address
     String ADDRESS_LIST = "/api/address/queryPage";

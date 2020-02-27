@@ -5,6 +5,8 @@ import com.smona.btwriter.common.http.bean.ReqEmpty;
 import com.smona.btwriter.common.http.bean.RespEmpty;
 import com.smona.btwriter.goods.bean.ReqAddGoodsBean;
 import com.smona.btwriter.goods.bean.ReqGoods;
+import com.smona.btwriter.goods.bean.ReqGoodsCount;
+import com.smona.btwriter.goods.bean.ReqGoodsSubmit;
 import com.smona.btwriter.goods.bean.ResShoppingCardList;
 import com.smona.http.business.BaseResponse;
 import com.smona.http.business.BusinessHttpService;
@@ -26,5 +28,15 @@ public class ShoppingCardModel {
     public void deleteGoods(ReqGoods goodsBean, OnResultListener<BaseResponse<RespEmpty>> listener) {
         HttpCallbackProxy<BaseResponse<RespEmpty>> callbackProxy = new HttpCallbackProxy<BaseResponse<RespEmpty>>(listener){};
         new DynamicBuilder<RespEmpty>(DynamicBuilder.REQUEST_POST, BusinessHttpService.SHOPPINGCARD_DELETE).requestData(goodsBean, callbackProxy);
+    }
+
+    public void modifyGoods(ReqGoodsCount goodsBean, OnResultListener<BaseResponse<RespEmpty>> listener) {
+        HttpCallbackProxy<BaseResponse<RespEmpty>> callbackProxy = new HttpCallbackProxy<BaseResponse<RespEmpty>>(listener){};
+        new DynamicBuilder<RespEmpty>(DynamicBuilder.REQUEST_POST, BusinessHttpService.SHOPPINGCARD_MODIFY).requestData(goodsBean, callbackProxy);
+    }
+
+    public void requestSubmit(ReqGoodsSubmit goodsSubmit, OnResultListener<BaseResponse<RespEmpty>> listener) {
+        HttpCallbackProxy<BaseResponse<RespEmpty>> callbackProxy = new HttpCallbackProxy<BaseResponse<RespEmpty>>(listener){};
+        new DynamicBuilder<RespEmpty>(DynamicBuilder.REQUEST_POST, BusinessHttpService.SHOPPINGCARD_SUBMIT).requestData(goodsSubmit, callbackProxy);
     }
 }

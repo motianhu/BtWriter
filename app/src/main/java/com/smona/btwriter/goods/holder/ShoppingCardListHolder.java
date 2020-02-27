@@ -15,11 +15,11 @@ public class ShoppingCardListHolder extends XViewHolder {
     private ImageView iconIv;
     private TextView nameTv;
     private TextView categoryTv;
-    private TextView numTv;
+    public TextView numTv;
     private TextView priceTv;
-    private View minusView;
-    private View addView;
-    private View delView;
+    public View minusView;
+    public View addView;
+    public View delView;
 
     public ShoppingCardListHolder(View itemView) {
         super(itemView);

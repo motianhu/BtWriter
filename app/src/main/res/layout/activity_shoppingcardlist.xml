@@ -8,15 +8,92 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <include
+    <RelativeLayout
         android:id="@+id/address_rl"
-        layout="@layout/adapter_item_address"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_96dp"
-        android:layout_below="@id/navigation"
         android:layout_marginStart="@dimen/dimen_10dp"
         android:layout_marginTop="@dimen/dimen_16dp"
-        android:layout_marginEnd="@dimen/dimen_10dp" />
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:layout_below="@id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_96dp"
+        android:background="@drawable/bg_corner_10"
+        android:paddingStart="@dimen/dimen_15dp"
+        android:paddingTop="@dimen/dimen_15dp"
+        android:paddingEnd="@dimen/dimen_15dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/set_default"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@+id/name"
+            android:paddingStart="@dimen/dimen_5dp"
+            android:paddingEnd="@dimen/dimen_5dp"
+            android:background="@color/color_main"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_11"
+            android:layout_marginStart="@dimen/dimen_5dp"
+            android:text="@string/default_address"
+            android:visibility="gone"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/phone"
+            android:textColor="@color/color_BABABA"
+            android:textSize="@dimen/font_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
+
+        <RelativeLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dimen_10dp">
+
+            <include
+                layout="@layout/common_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1px"
+                android:layout_below="@+id/name"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/arrow" />
+
+            <TextView
+                android:id="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text=">" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:textColor="@color/color_BABABA"
+            android:textSize="@dimen/font_11"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/address"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginEnd="@dimen/dimen_20dp"
+            android:src="@drawable/add_icon" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/goods_desc"
