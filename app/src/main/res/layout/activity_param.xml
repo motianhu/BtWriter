@@ -38,7 +38,7 @@
             android:hint="@string/add_name_hint"
             android:paddingStart="@dimen/dimen_20dp"
             android:paddingEnd="@dimen/dimen_20dp"
-            android:textColor="@color/color_9E9E9E"
+            android:textColor="@color/color_333333"
             android:textColorHint="@color/color_80E9E9E"
             android:textSize="@dimen/font_12" />
     </LinearLayout>

@@ -74,29 +74,8 @@ public class AddressListPresenter extends BasePresenter<AddressListPresenter.IAd
         });
     }
 
-    public void requestDelete(int id) {
-        ReqId reqId = new ReqId();
-        reqId.setId(id);
-        addressModel.requestAddressDelete(reqId, new OnResultListener<BaseResponse<RespEmpty>>() {
-            @Override
-            public void onSuccess(BaseResponse<RespEmpty> respEmptyBaseResponse) {
-                if(mView != null) {
-                    mView.onDelete();
-                }
-            }
-
-            @Override
-            public void onError(String stateCode, String errorInfo) {
-                if(mView != null) {
-                    mView.onError("requestDelete", stateCode, errorInfo);
-                }
-            }
-        });
-    }
-
     public interface IAddressListView extends IPageView {
         void onAddressList(boolean isFirstPage, List<AddressBean> list);
         void onSetDefault();
-        void onDelete();
     }
 }

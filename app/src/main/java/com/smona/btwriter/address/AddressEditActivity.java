@@ -58,7 +58,15 @@ public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPr
     private void initHeader() {
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
-        titleTv.setText(R.string.address);
+        if(addressBean.getId() != 0) {
+            titleTv.setText(R.string.address_edit);
+            TextView newTv = findViewById(R.id.rightTv);
+            newTv.setText(R.string.delete);
+            newTv.setVisibility(View.VISIBLE);
+            newTv.setOnClickListener(v->clickDelete());
+        } else {
+            titleTv.setText(R.string.address_new);
+        }
     }
 
     private void initViews() {
@@ -74,6 +82,11 @@ public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPr
         }
         findViewById(R.id.set_default).setOnClickListener(v-> clickSetDefault());
         findViewById(R.id.save).setOnClickListener(v-> clickSave());
+    }
+
+    private void clickDelete() {
+        showLoadingDialog();
+        mPresenter.requestDelete(addressBean.getId());
     }
 
     private void clickSetDefault() {
@@ -112,6 +125,12 @@ public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPr
 
     @Override
     public void onAddress() {
+        hideLoadingDialog();
+        finish();
+    }
+
+    @Override
+    public void onDelete() {
         hideLoadingDialog();
         finish();
     }

@@ -1,7 +1,10 @@
 package com.smona.btwriter.main.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,11 +14,11 @@ import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.MembraneTypeAdapter;
-import com.smona.btwriter.main.bean.BannerBean;
 import com.smona.btwriter.main.bean.MembraneBean;
 import com.smona.btwriter.main.bean.MembraneType;
 import com.smona.btwriter.main.bean.RespHomeBean;
 import com.smona.btwriter.main.presenter.HomePresenter;
+import com.smona.btwriter.scan.ScanActivity;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
@@ -90,6 +93,10 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     @Override
     protected void initData() {
         super.initData();
+        requestHome();
+    }
+
+    private void requestHome() {
         mPresenter.requestHome();
     }
 
@@ -127,16 +134,40 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     private void clickScan() {
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_SCAN);
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_ADDRESSLIST);
+//        Intent intent = new Intent();
+//        intent.setClass(mActivity, ScanActivity.class);
+//        mActivity.startActivityForResult(intent, 1000);
+        //ARouterManager.getInstance().gotoActivityForResult(ARouterPath.PATH_TO_SCAN, mActivity, 1000);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1000 && resultCode == Activity.RESULT_OK) {
+           String api = data.getStringExtra("qrcode");
+           if(TextUtils.isEmpty(api)) {
+               return;
+           }
+           showLoadingDialog();
+           mPresenter.requestScan(api);
+        }
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        hideLoadingDialog();
         CommonUtil.showToastByFilter(errCode, errInfo);
     }
 
     @Override
     public void onHome(RespHomeBean homeBean) {
+        hideLoadingDialog();
         refreshViews(homeBean);
+    }
+
+    @Override
+    public void onScan() {
+        requestHome();
     }
 }

@@ -1,6 +1,8 @@
 package com.smona.btwriter.address;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -9,6 +11,7 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.address.adapter.AddressAdapter;
 import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.address.presenter.AddressListPresenter;
+import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
@@ -19,6 +22,7 @@ import java.util.List;
 @Route(path = ARouterPath.PATH_TO_ADDRESSLIST)
 public class AddressListActivity extends BaseLoadingPresenterActivity<AddressListPresenter, AddressListPresenter.IAddressListView> implements AddressListPresenter.IAddressListView {
 
+    private int selectedId = -1;
     private XRecyclerView xRecyclerView;
     private AddressAdapter adapter;
 
@@ -35,18 +39,29 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
     @Override
     protected void initContentView() {
         super.initContentView();
+        initSerializable();
         initHeader();
         initViews();
+    }
+
+    private void initSerializable() {
+        selectedId = getIntent().getIntExtra(ARouterPath.PATH_TO_ADDRESSLIST, -1);
     }
 
     private void initHeader() {
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
         titleTv.setText(R.string.addressList);
+        TextView newTv = findViewById(R.id.rightTv);
+        newTv.setText(R.string.address_new);
+        newTv.setVisibility(View.VISIBLE);
+        newTv.setOnClickListener(v->clickNewAddress());
     }
 
     private void initViews() {
         xRecyclerView = findViewById(R.id.addressList);
+        CommonItemDecoration commonItemDecoration = new CommonItemDecoration(0, getResources().getDimensionPixelSize(R.dimen.dimen_5dp));
+        xRecyclerView.addItemDecoration(commonItemDecoration);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         xRecyclerView.setLoadingMoreEnabled(true);
         xRecyclerView.setPullRefreshEnabled(false);
@@ -61,13 +76,24 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
             }
         });
         adapter = new AddressAdapter(R.layout.adapter_item_address);
+        adapter.seSelectedId(selectedId);
         xRecyclerView.setAdapter(adapter);
 
-        findViewById(R.id.submit).setOnClickListener(v -> clickNewAddress());
+        findViewById(R.id.submit).setOnClickListener(v -> clickOk());
     }
 
     private void clickNewAddress() {
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_ADDRESS);
+    }
+
+    private void clickOk() {
+        Intent intent = new Intent();
+        AddressBean addressBean = adapter.getSelectAddressBean();
+        if(addressBean != null) {
+            intent.putExtra(AddressBean.class.getName(), addressBean);
+        }
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override
@@ -99,11 +125,6 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
 
     @Override
     public void onSetDefault() {
-        hideLoadingDialog();
-    }
-
-    @Override
-    public void onDelete() {
         hideLoadingDialog();
     }
 

@@ -1,5 +1,7 @@
 package com.smona.btwriter.goods;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.EditText;
@@ -8,12 +10,13 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
+import com.smona.btwriter.address.AddressEditActivity;
+import com.smona.btwriter.address.AddressListActivity;
 import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.goods.adapter.ShoppingCardListAdapter;
 import com.smona.btwriter.goods.bean.ResShoppingCardList;
 import com.smona.btwriter.goods.presenter.ShoppingCardPresenter;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
-import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
@@ -106,7 +109,12 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
     }
 
     private void clickAddress() {
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_ADDRESSLIST);
+        Intent intent = new Intent();
+        if (addressBean != null) {
+            intent.putExtra(ARouterPath.PATH_TO_ADDRESSLIST, addressBean.getId());
+        }
+        intent.setClass(this, AddressListActivity.class);
+        startActivityForResult(intent, 10001);
     }
 
     @Override
@@ -154,5 +162,14 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
         String address = getString(R.string.receiver_address) + "  " + addressBean.getAddress();
         addressTv.setText(address);
         setDefaultIv.setVisibility(addressBean.isDefault() ? View.VISIBLE:View.GONE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10001 && resultCode == RESULT_OK) {
+            AddressBean addressBean = (AddressBean) data.getSerializableExtra(AddressBean.class.getName());
+            refreshAddress(addressBean);
+        }
     }
 }

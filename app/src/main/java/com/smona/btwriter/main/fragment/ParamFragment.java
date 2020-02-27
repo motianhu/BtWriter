@@ -62,6 +62,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
             }
         });
         speedValueTv = content.findViewById(R.id.speedValue);
+        speedValueTv.setText("0");
         pressSeekBar = content.findViewById(R.id.pressureBar);
         pressSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -81,6 +82,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
             }
         });
         pressValueTv = content.findViewById(R.id.pressureValue);
+        pressValueTv.setText("0");
 
         xRecyclerView = content.findViewById(R.id.commonInfoList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));

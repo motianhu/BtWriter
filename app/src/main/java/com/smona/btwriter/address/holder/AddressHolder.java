@@ -9,27 +9,32 @@ import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.common.XViewHolder;
 
 public class AddressHolder extends XViewHolder {
-    private View setDefaultIv;
+    private View selectView;
     private TextView nameTv;
     private TextView phoneTv;
     private TextView addressTv;
+    private View defaultTv;
+    public View editView;
 
     public AddressHolder(View itemView) {
         super(itemView);
-        setDefaultIv = itemView.findViewById(R.id.set_default);
+        selectView = itemView.findViewById(R.id.selectedView);
         nameTv = itemView.findViewById(R.id.name);
         phoneTv = itemView.findViewById(R.id.phone);
         addressTv = itemView.findViewById(R.id.address);
+        defaultTv = itemView.findViewById(R.id.set_default);
+        editView = itemView.findViewById(R.id.edit);
     }
 
     public void bindView(AddressBean addressBean) {
         Context context = itemView.getContext();
-        String name = context.getString(R.string.receiver_name) + "  " + addressBean.getUserName();
+        String name = addressBean.getUserName();
         nameTv.setText(name);
         String phone = context.getString(R.string.receiver_phone) + "  " + addressBean.getPhone();
         phoneTv.setText(phone);
         String address = context.getString(R.string.receiver_address) + "  " + addressBean.getAddress();
         addressTv.setText(address);
-        setDefaultIv.setSelected(addressBean.isDefault());
+        selectView.setSelected(addressBean.isSelected());
+        defaultTv.setVisibility(addressBean.isDefault() ? View.VISIBLE:View.GONE);
     }
 }

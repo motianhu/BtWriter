@@ -9,6 +9,7 @@ public class AddressBean implements Serializable {
     private String phone;
     private String address;
     private int isDefault; //1是 0否
+    private boolean isSelected;
 
     public int getId() {
         return id;
@@ -48,5 +49,17 @@ public class AddressBean implements Serializable {
 
     public void setIsDefault(int isDefault) {
         this.isDefault = isDefault;
+    }
+
+    public int getIsDefault() {
+        return isDefault;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }
