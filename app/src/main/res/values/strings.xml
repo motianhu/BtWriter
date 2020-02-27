@@ -165,4 +165,7 @@
     <string name="receiver_address">收货地址: </string>
     <string name="empty_address">请设置收货人信息</string>
     <string name="empty_shoppingcard">请选择商品</string>
+
+
+    <string name="empty_goods_type">请选择规格</string>
 </resources>

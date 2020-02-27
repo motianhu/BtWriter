@@ -48,7 +48,7 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     }
 
     private void initHeader() {
-        findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
+        findViewById(R.id.back).setOnClickListener(view -> finish());
         TextView titleTv = findViewById(R.id.title);
         titleTv.setText(R.string.goods_list);
     }
@@ -130,6 +130,15 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
         } else {
             adapter.addData(twoGoodsBeanList);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(selectGoodsFragment != null && selectGoodsFragment.isVisible()) {
+            selectGoodsFragment.closeFragment();
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override

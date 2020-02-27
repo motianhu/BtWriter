@@ -1,16 +1,24 @@
 package com.smona.btwriter.goods;
 
 import android.graphics.Paint;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
+import com.smona.btwriter.common.CommonItemDecoration;
+import com.smona.btwriter.goods.adapter.GoodsTypeAdapter;
 import com.smona.btwriter.goods.bean.GoodsBean;
+import com.smona.btwriter.goods.bean.GoodsTypeBean;
 import com.smona.btwriter.goods.presenter.SelectGoodsPresenter;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.PopupAnim;
+import com.smona.btwriter.util.ToastUtil;
 import com.smona.btwriter.widget.WrapperColorLinearLayout;
 import com.smona.image.loader.ImageLoaderDelegate;
 
@@ -22,7 +30,8 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
     private View contentView;
     private View maskView;
 
-    private WrapperColorLinearLayout wrapperColorLinearLayout;
+    private XRecyclerView recyclerView;
+    private GoodsTypeAdapter goodsTypeAdapter;
 
     private ImageView iconIv;
     private TextView nameTv;
@@ -51,10 +60,18 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
 
         contentView = content.findViewById(R.id.contentView);
         maskView = content.findViewById(R.id.maskView);
+        maskView.setOnClickListener(v->closeFragment());
 
         iconIv = content.findViewById(R.id.icon);
         nameTv = content.findViewById(R.id.name);
-        wrapperColorLinearLayout = content.findViewById(R.id.goods_type);
+        recyclerView = content.findViewById(R.id.goods_type);
+        recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 4));
+        CommonItemDecoration commonItemDecoration = new CommonItemDecoration(0, mActivity.getResources().getDimensionPixelSize(R.dimen.dimen_4dp));
+        recyclerView.addItemDecoration(commonItemDecoration);
+        recyclerView.setPullRefreshEnabled(false);
+        recyclerView.setLoadingMoreEnabled(false);
+        goodsTypeAdapter = new GoodsTypeAdapter(R.layout.item_goods_type);
+        recyclerView.setAdapter(goodsTypeAdapter);
         salesNumTv = content.findViewById(R.id.sales_num);
         priceTv = content.findViewById(R.id.price);
         realPriceTv = content.findViewById(R.id.real_price);
@@ -63,10 +80,13 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
     }
 
     private void clickOk() {
+        GoodsTypeBean goodsTypeBean = goodsTypeAdapter.getSelectedId();
+        if(goodsTypeBean == null) {
+            ToastUtil.showShort(R.string.empty_goods_type);
+            return;
+        }
         showLoadingDialog();
-
-        int typeId = wrapperColorLinearLayout.getSelectId();
-        mPresenter.requestAddGoods(goodsBean.getId(), typeId);
+        mPresenter.requestAddGoods(goodsBean.getId(), goodsTypeBean.getId());
     }
 
     @Override
@@ -112,7 +132,7 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
         }
         ImageLoaderDelegate.getInstance().showCornerImage(goodsBean.getCoverImg(), iconIv, mActivity.getResources().getDimensionPixelSize(R.dimen.dimen_5dp), 0);
         nameTv.setText(goodsBean.getName());
-        wrapperColorLinearLayout.updateData(goodsBean.getTypeList());
+        goodsTypeAdapter.setNewData(goodsBean.getTypeList());
         salesNumTv.setText(mActivity.getString(R.string.sales_num) + "  "  + goodsBean.getSaleAmount());
         priceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice());
         realPriceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getPrice());

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
-import com.smona.btwriter.address.AddressEditActivity;
 import com.smona.btwriter.address.AddressListActivity;
 import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.goods.adapter.ShoppingCardListAdapter;
@@ -125,9 +124,6 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
 
     @Override
     public void onList(ResShoppingCardList shoppingCardList) {
-        if (CommonUtil.isEmptyList(shoppingCardList.getGoodsList())) {
-            return;
-        }
         adapter.setNewData(shoppingCardList.getGoodsList());
         refreshAddress(shoppingCardList.getAddress());
     }
@@ -151,17 +147,19 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
     }
 
     private void refreshAddress(AddressBean addressBean) {
-        if (addressBean == null) {
-            return;
+        String name = getString(R.string.receiver_name) + "  " ;
+        String phone = getString(R.string.receiver_phone) + "  ";
+        String address = getString(R.string.receiver_address) + "  ";
+        if (addressBean != null) {
+            this.addressBean = addressBean;
+            name += addressBean.getUserName();
+            phone += addressBean.getPhone();
+            address += addressBean.getAddress();
+            setDefaultIv.setVisibility(addressBean.isDefault() ? View.VISIBLE : View.GONE);
         }
-        this.addressBean = addressBean;
-        String name = getString(R.string.receiver_name) + "  " + addressBean.getUserName();
         nameTv.setText(name);
-        String phone = getString(R.string.receiver_phone) + "  " + addressBean.getPhone();
         phoneTv.setText(phone);
-        String address = getString(R.string.receiver_address) + "  " + addressBean.getAddress();
         addressTv.setText(address);
-        setDefaultIv.setVisibility(addressBean.isDefault() ? View.VISIBLE:View.GONE);
     }
 
     @Override

@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.7"
+        android:layout_above="@+id/contentView"
         android:background="#C0BFBB" />
 
     <RelativeLayout
@@ -38,16 +39,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
             android:text="@string/category"
-            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
             android:layout_toEndOf="@+id/icon"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_12" />
 
-        <com.smona.btwriter.widget.WrapperColorLinearLayout
+        <include
+            layout="@layout/widget_xrecycleview"
             android:id="@+id/goods_type"
             android:layout_toEndOf="@+id/category"
             android:layout_below="@+id/name"
-            android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginStart="@dimen/dimen_10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -56,7 +57,7 @@
             android:id="@+id/sales_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/category"
+            android:layout_below="@id/goods_type"
             android:layout_marginTop="@dimen/dimen_8dp"
             android:layout_toEndOf="@+id/icon"
             android:textColor="@color/color_BABABA"

@@ -2,6 +2,7 @@ package com.smona.btwriter.goods;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.youth.banner.loader.ImageLoader;
 public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetailPresenter, GoodsDetailPresenter.IGoodsDetailView> implements GoodsDetailPresenter.IGoodsDetailView {
 
     private int goodsId;
+    private GoodsBean goodsBean;
 
     private Banner bannerView;
     private TextView titleTv;
@@ -31,6 +33,8 @@ public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetai
     private TextView salesNumTv;
 
     private TextView commentTv;
+
+    private SelectGoodsFragment selectGoodsFragment;
 
     @Override
     protected GoodsDetailPresenter initPresenter() {
@@ -58,7 +62,7 @@ public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetai
     }
 
     private void initHeader() {
-        findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
+        findViewById(R.id.back).setOnClickListener(view -> finish());
         TextView titleTv = findViewById(R.id.title);
         titleTv.setText(R.string.goods_detail);
     }
@@ -83,11 +87,31 @@ public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetai
         realPriceTv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
         salesNumTv = findViewById(R.id.salesNum);
         commentTv = findViewById(R.id.comment);
+        findViewById(R.id.add).setOnClickListener(v->clickAdd());
         findViewById(R.id.btn_shoppingcard).setOnClickListener(v->clickShoppingCard());
+
+        selectGoodsFragment = SelectGoodsFragment.buildInstance();
+    }
+
+    private void clickAdd() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.select_fragment, selectGoodsFragment);
+        fragmentTransaction.commit();
+        selectGoodsFragment.setParam(goodsBean);
+        selectGoodsFragment.showFragment();
     }
 
     private void clickShoppingCard(){
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_SHOPPINGCARD);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(selectGoodsFragment != null && selectGoodsFragment.isVisible()) {
+            selectGoodsFragment.closeFragment();
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override
@@ -103,6 +127,7 @@ public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetai
 
     @Override
     public void onGoodsDetail(GoodsBean goodsBean) {
+        this.goodsBean = goodsBean;
         refreshViews(goodsBean);
     }
 
