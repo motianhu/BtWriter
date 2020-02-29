@@ -62,6 +62,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     @Override
     public void onLogout() {
         hideLoadingDialog();
-        CommonUtil.sendCloseAllActivity(mActivity);
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
+        mActivity.finish();
     }
 }

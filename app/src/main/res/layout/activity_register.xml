@@ -107,7 +107,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/bg_edit_trans"
             android:gravity="center_vertical"
-            android:hint="@string/email_hint"
+            android:hint="@string/empty_code"
             android:paddingStart="@dimen/dimen_20dp"
             android:paddingEnd="@dimen/dimen_20dp"
             android:textColor="@color/color_9E9E9E"
