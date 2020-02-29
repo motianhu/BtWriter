@@ -34,6 +34,8 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     private SelectGoodsFragment selectGoodsFragment;
 
     private EditText searchTv;
+    private TextView sort_sales;
+    private TextView sort_price;
 
     private ReqGoodsList reqGoodsBean = new ReqGoodsList();
 
@@ -89,9 +91,9 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
 
         TextView zonghe = findViewById(R.id.sort_all);
         zonghe.setOnClickListener(v->clickSortAll());
-        TextView sort_sales = findViewById(R.id.sort_sales);
+        sort_sales  = findViewById(R.id.sort_sales);
         sort_sales.setOnClickListener(v->clickSales());
-        TextView sort_price = findViewById(R.id.sort_price);
+        sort_price = findViewById(R.id.sort_price);
         sort_price.setOnClickListener(v->clickPrice());
         searchTv = findViewById(R.id.searchBar);
         findViewById(R.id.search).setOnClickListener(v->clickSearch());
@@ -107,12 +109,16 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
 
     private void clickSales() {
         reqGoodsBean.setSortField("sales");
+        reqGoodsBean.setIsAsc(sort_sales.isSelected() ? 0:1);
+        sort_sales.setSelected(!sort_sales.isSelected());
         showLoadingDialog();
         refreshGoodList();
     }
 
     private void clickPrice() {
         reqGoodsBean.setSortField("price");
+        reqGoodsBean.setIsAsc(sort_price.isSelected() ? 0:1);
+        sort_price.setSelected(!sort_price.isSelected());
         showLoadingDialog();
         refreshGoodList();
     }
