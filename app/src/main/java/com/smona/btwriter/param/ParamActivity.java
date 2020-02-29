@@ -10,6 +10,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.main.bean.ParamInfo;
+import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.ParamChangeEvent;
 import com.smona.btwriter.param.presenter.ParamPresenter;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
@@ -71,12 +73,14 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
         findViewById(R.id.save).setOnClickListener(view->clickSave());
         nameEt = findViewById(R.id.param_edit);
         speedBar = findViewById(R.id.speedBar);
+        speedBar.setMax(CommonUtil.SPEED_DIFF);
         speedValueTv = findViewById(R.id.speedValue);
+        speedValueTv.setText(CommonUtil.SPEED_START + "");
         speedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                speedValueTv.setText(progress + "");
+                pressValueTv.setText((CommonUtil.SPEED_START + progress) + "");
             }
 
             @Override
@@ -90,12 +94,14 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
             }
         });
         pressBar = findViewById(R.id.pressureBar);
+        pressBar.setMax(CommonUtil.PRESS_DIFF);
         pressValueTv = findViewById(R.id.pressureValue);
+        pressValueTv.setText(CommonUtil.PRESS_START + "");
         pressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                pressValueTv.setText(progress + "");
+                pressValueTv.setText((CommonUtil.PRESS_START + progress) + "");
             }
 
             @Override
@@ -112,8 +118,8 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
         //编辑
         if(paramInfo.getId() != 0) {
             nameEt.setText(paramInfo.getName());
-            speedBar.setProgress(paramInfo.getSpeed());
-            pressBar.setProgress(paramInfo.getPressure());
+            speedBar.setProgress(paramInfo.getSpeed() - CommonUtil.SPEED_START);
+            pressBar.setProgress(paramInfo.getPressure() - CommonUtil.PRESS_START);
         }
     }
 
@@ -142,6 +148,7 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
     @Override
     public void onParamSave() {
         hideLoadingDialog();
+        NotifyCenter.getInstance().postEvent(new ParamChangeEvent());
         finish();
     }
 }

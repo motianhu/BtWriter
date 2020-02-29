@@ -18,8 +18,9 @@ import com.smona.btwriter.main.bean.MembraneBean;
 import com.smona.btwriter.main.bean.MembraneType;
 import com.smona.btwriter.main.bean.RespHomeBean;
 import com.smona.btwriter.main.presenter.HomePresenter;
+import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.CountChangeEvent;
 import com.smona.btwriter.scan.ScanActivity;
-import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.image.loader.ImageLoaderDelegate;
@@ -27,6 +28,9 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +92,14 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         xRecyclerView.setAdapter(adapter);
 
         content.findViewById(R.id.scanView).setOnClickListener(v -> clickScan());
+
+        NotifyCenter.getInstance().registerListener(this);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        NotifyCenter.getInstance().unRegisterListener(this);
     }
 
     @Override
@@ -134,10 +146,9 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     private void clickScan() {
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_ADDRESSLIST);
-//        Intent intent = new Intent();
-//        intent.setClass(mActivity, ScanActivity.class);
-//        mActivity.startActivityForResult(intent, 1000);
+        Intent intent = new Intent();
+        intent.setClass(mActivity, ScanActivity.class);
+        mActivity.startActivityForResult(intent, 1000);
         //ARouterManager.getInstance().gotoActivityForResult(ARouterPath.PATH_TO_SCAN, mActivity, 1000);
     }
 
@@ -145,7 +156,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1000 && resultCode == Activity.RESULT_OK) {
-           String api = data.getStringExtra("qrcode");
+           String api = data.getStringExtra(ARouterPath.PATH_TO_SCAN);
            if(TextUtils.isEmpty(api)) {
                return;
            }
@@ -168,6 +179,11 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
 
     @Override
     public void onScan() {
+        requestHome();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void countChange(CountChangeEvent event) {
         requestHome();
     }
 }

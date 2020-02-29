@@ -11,6 +11,8 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.address.presenter.AddressPresenter;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
+import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.AddressEvent;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
@@ -126,6 +128,7 @@ public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPr
     @Override
     public void onAddress() {
         hideLoadingDialog();
+        NotifyCenter.getInstance().postEvent(new AddressEvent());
         finish();
     }
 

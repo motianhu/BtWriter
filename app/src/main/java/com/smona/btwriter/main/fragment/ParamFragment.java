@@ -13,9 +13,14 @@ import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.ParamInfoAdapter;
 import com.smona.btwriter.main.bean.ParamInfo;
 import com.smona.btwriter.main.presenter.ParamPresenter;
+import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.ParamChangeEvent;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -44,11 +49,14 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
     protected void initView(View content) {
         super.initView(content);
         speedSeekBar = content.findViewById(R.id.speedBar);
+        speedValueTv = content.findViewById(R.id.speedValue);
+        speedValueTv.setText("" + CommonUtil.SPEED_START);
+        speedSeekBar.setMax(CommonUtil.SPEED_DIFF);
         speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                speedValueTv.setText(progress + "");
+                speedValueTv.setText((CommonUtil.SPEED_START + progress) + "");
             }
 
             @Override
@@ -61,14 +69,16 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
             }
         });
-        speedValueTv = content.findViewById(R.id.speedValue);
-        speedValueTv.setText("0");
+
         pressSeekBar = content.findViewById(R.id.pressureBar);
+        pressValueTv = content.findViewById(R.id.pressureValue);
+        pressValueTv.setText("" + CommonUtil.PRESS_START);
+        pressSeekBar.setMax(CommonUtil.PRESS_END);
         pressSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                pressValueTv.setText(progress + "");
+                pressValueTv.setText((CommonUtil.PRESS_START + progress) + "");
             }
 
             @Override
@@ -81,8 +91,6 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
             }
         });
-        pressValueTv = content.findViewById(R.id.pressureValue);
-        pressValueTv.setText("0");
 
         xRecyclerView = content.findViewById(R.id.commonInfoList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -117,11 +125,23 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
         content.findViewById(R.id.resetValue).setOnClickListener(v -> clickResetValue());
         content.findViewById(R.id.add).setOnClickListener(v -> clickAdd());
+
+        NotifyCenter.getInstance().registerListener(this);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        NotifyCenter.getInstance().unRegisterListener(this);
     }
 
     @Override
     protected void initData() {
         super.initData();
+        requestParams();
+    }
+
+    private void requestParams(){
         mPresenter.requestParams();
     }
 
@@ -134,8 +154,8 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
     }
 
     private void clickUse(ParamInfo item) {
-        speedSeekBar.setProgress(item.getSpeed());
-        pressSeekBar.setProgress(item.getPressure());
+        speedSeekBar.setProgress(item.getSpeed() - CommonUtil.SPEED_START);
+        pressSeekBar.setProgress(item.getPressure() - CommonUtil.PRESS_START);
     }
 
     @Override
@@ -150,7 +170,13 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
     }
 
     @Override
-    public void onDelParam() {
+    public void onDelParam(int id) {
         hideLoadingDialog();
+        adapter.delParam(id);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void paramChange(ParamChangeEvent event) {
+        requestParams();
     }
 }

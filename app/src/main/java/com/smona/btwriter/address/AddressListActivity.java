@@ -13,9 +13,14 @@ import com.smona.btwriter.address.bean.AddressBean;
 import com.smona.btwriter.address.presenter.AddressListPresenter;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
+import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.AddressEvent;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -42,6 +47,13 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
         initSerializable();
         initHeader();
         initViews();
+        NotifyCenter.getInstance().registerListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        NotifyCenter.getInstance().unRegisterListener(this);
     }
 
     private void initSerializable() {
@@ -106,6 +118,10 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
         mPresenter.requestAddressList();
     }
 
+    private void refreshAddressList() {
+        mPresenter.refreshAddressList();
+    }
+
     @Override
     public void onError(String api, String errCode, String errInfo) {
         hideLoadingDialog();
@@ -137,5 +153,10 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
     @Override
     public void onComplete() {
         xRecyclerView.setNoMore(true);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshAddress(AddressEvent event) {
+        refreshAddressList();
     }
 }

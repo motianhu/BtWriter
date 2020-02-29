@@ -8,6 +8,8 @@ import com.smona.base.http.HttpManager;
 import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
+import com.smona.btwriter.util.CommonUtil;
+import com.smona.btwriter.util.SPUtils;
 import com.smona.http.wrapper.FilterChains;
 import com.smona.logger.Logger;
 
@@ -29,7 +31,13 @@ public class BtWriterApplication extends Application {
         //初始化网络库
         HttpManager.init(this);
         //过滤器
-        FilterChains.getInstance().addAspectRouter("10001", () -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN));
+        FilterChains.getInstance().addAspectRouter("10001", this::processLogout);
+    }
+
+    private void processLogout() {
+        SPUtils.put(SPUtils.LOGIN_INFO, "");
+        CommonUtil.sendCloseAllActivity(this);
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
     }
 
     /**

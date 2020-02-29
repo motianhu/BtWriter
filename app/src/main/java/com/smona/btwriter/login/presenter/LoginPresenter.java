@@ -6,7 +6,9 @@ import com.smona.btwriter.data.AccountDataCenter;
 import com.smona.btwriter.login.bean.ReqLogin;
 import com.smona.btwriter.login.bean.RespLogin;
 import com.smona.btwriter.login.model.LoginModel;
+import com.smona.btwriter.util.SPUtils;
 import com.smona.http.business.BaseResponse;
+import com.smona.http.config.GsonUtil;
 import com.smona.http.wrapper.OnResultListener;
 
 public class LoginPresenter extends BasePresenter<LoginPresenter.ILoginView> {
@@ -22,6 +24,7 @@ public class LoginPresenter extends BasePresenter<LoginPresenter.ILoginView> {
             public void onSuccess(BaseResponse<RespLogin> response) {
                 if(mView!= null) {
                     AccountDataCenter.getInstance().setAccountInfo(email, response.data.getToken());
+                    SPUtils.put(SPUtils.LOGIN_INFO, GsonUtil.objToJson(AccountDataCenter.getInstance().getAccountInfo()));
                     mView.onLoginSuccess();
                 }
             }

@@ -43,67 +43,13 @@
             android:textSize="@dimen/font_12" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <include
+        layout="@layout/param_common"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_23dp"
-        android:layout_marginEnd="@dimen/dimen_23dp"
-        android:layout_marginTop="@dimen/dimen_30dp">
-
-        <TextView
-            android:id="@+id/speedName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/font_15"
-            android:textColor="@color/color_333333"
-            android:text="@string/cut_speed" />
-
-        <SeekBar
-            android:id="@+id/speedBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/speedValue"
-            android:layout_toEndOf="@+id/speedName" />
-
-        <TextView
-            android:id="@+id/speedValue"
-            android:textSize="@dimen/font_15"
-            android:layout_width="wrap_content"
-            android:textColor="@color/color_A6A6A6"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/dimen_23dp"
-        android:layout_marginEnd="@dimen/dimen_23dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_30dp">
-
-        <TextView
-            android:id="@+id/pressureName"
-            android:layout_width="wrap_content"
-            android:textSize="@dimen/font_15"
-            android:textColor="@color/color_333333"
-            android:layout_height="wrap_content"
-            android:text="@string/knife_press" />
-
-        <SeekBar
-            android:id="@+id/pressureBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/pressureValue"
-            android:layout_toEndOf="@+id/pressureName" />
-
-        <TextView
-            android:id="@+id/pressureValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/font_15"
-            android:textColor="@color/color_A6A6A6"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:layout_marginEnd="@dimen/dimen_23dp" />
 
     <TextView
         android:id="@+id/save"

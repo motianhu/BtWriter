@@ -46,7 +46,7 @@ public class ParamPresenter extends BasePresenter<ParamPresenter.IParamView> {
             @Override
             public void onSuccess(BaseResponse<RespEmpty> listBaseResponse) {
                 if(mView != null) {
-                    mView.onDelParam();
+                    mView.onDelParam(id);
                 }
             }
 
@@ -61,6 +61,6 @@ public class ParamPresenter extends BasePresenter<ParamPresenter.IParamView> {
 
     public interface  IParamView extends ICommonView {
         void onParams(List<ParamInfo> paramsList);
-        void onDelParam();
+        void onDelParam(int id);
     }
 }

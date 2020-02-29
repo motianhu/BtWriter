@@ -54,24 +54,9 @@ public class AddressListPresenter extends BasePresenter<AddressListPresenter.IAd
         });
     }
 
-    public void requestSetDefault(int id) {
-        ReqId reqId = new ReqId();
-        reqId.setId(id);
-        addressModel.requestSetDefault(reqId, new OnResultListener<BaseResponse<RespEmpty>>() {
-            @Override
-            public void onSuccess(BaseResponse<RespEmpty> respEmptyBaseResponse) {
-                if(mView != null) {
-                    mView.onSetDefault();
-                }
-            }
-
-            @Override
-            public void onError(String stateCode, String errorInfo) {
-                if(mView != null) {
-                    mView.onError("requestSetDefault", stateCode, errorInfo);
-                }
-            }
-        });
+    public void refreshAddressList() {
+        lastPage = CommonUtil.START_PAGE;
+        requestAddressList();
     }
 
     public interface IAddressListView extends IPageView {

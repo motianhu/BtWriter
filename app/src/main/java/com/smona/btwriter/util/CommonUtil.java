@@ -1,10 +1,14 @@
 package com.smona.btwriter.util;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.InputFilter;
 import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.smona.base.ui.activity.BaseActivity;
 import com.smona.btwriter.common.ActionModeCallbackInterceptor;
 
 import java.lang.reflect.Field;
@@ -17,6 +21,16 @@ public class CommonUtil {
 
     public static final int START_PAGE = 1;
     public static final int SIZE = 10;
+
+
+    public static final int SPEED_START = 100;
+    public static final int SPEED_END = 800;
+    public static final int SPEED_DIFF = SPEED_END - SPEED_START;
+
+    public static final int PRESS_START = 300;
+    public static final int PRESS_END = 1000;
+    public static final int PRESS_DIFF = PRESS_END - PRESS_START;
+
 
     /**
      * 获取启动时的系统语言，并转换为可支持的语言。
@@ -93,5 +107,15 @@ public class CommonUtil {
 
     public static boolean isEmptyList(List list) {
         return list == null || list.isEmpty();
+    }
+
+    /**
+     * 关掉所有页面
+     * @param context
+     */
+    public static void sendCloseAllActivity(Context context) {
+        Intent closeAllIntent = new Intent(BaseActivity.ACTION_BASE_ACTIVITY);
+        closeAllIntent.putExtra(BaseActivity.ACTION_BASE_ACTIVITY_EXIT_KEY, BaseActivity.ACTION_BASE_ACTIVITY_EXIT_VALUE);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(closeAllIntent);
     }
 }

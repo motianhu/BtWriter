@@ -65,14 +65,13 @@
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/arrow" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dimen_20dp"
+                android:layout_height="@dimen/dimen_20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text=">" />
+                android:src="@drawable/more" />
         </RelativeLayout>
 
         <TextView

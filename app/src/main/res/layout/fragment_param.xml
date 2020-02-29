@@ -26,61 +26,11 @@
         android:paddingEnd="@dimen/dimen_17dp"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/speed"
-            android:layout_width="match_parent"
+        <include
+            layout="@layout/param_common"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_30dp">
-
-            <TextView
-                android:id="@+id/speedName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_15"
-                android:textColor="@color/color_333333"
-                android:text="@string/cut_speed" />
-
-            <SeekBar
-                android:id="@+id/speedBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/speedValue"
-                android:layout_toEndOf="@+id/speedName" />
-
-            <TextView
-                android:id="@+id/speedValue"
-                android:layout_width="@dimen/dimen_30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/press"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_30dp">
-
-            <TextView
-                android:id="@+id/pressureName"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/font_15"
-                android:textColor="@color/color_333333"
-                android:layout_height="wrap_content"
-                android:text="@string/knife_press" />
-
-            <SeekBar
-                android:id="@+id/pressureBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/pressureValue"
-                android:layout_toEndOf="@+id/pressureName" />
-
-            <TextView
-                android:id="@+id/pressureValue"
-                android:layout_width="@dimen/dimen_30dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
+            android:layout_marginTop="@dimen/dimen_30dp" />
 
         <TextView
             android:id="@+id/resetValue"

@@ -43,6 +43,16 @@ public class ParamInfoAdapter extends XBaseAdapter<ParamInfo, ParamInfoHolder> {
         }
     }
 
+    public void delParam(int id) {
+        for(ParamInfo paramInfo: mDataList) {
+            if(paramInfo.getId() == id) {
+                mDataList.remove(paramInfo);
+                break;
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     public interface OnParamListener {
         void onEdit(ParamInfo item);
         void onDelete(ParamInfo item);
