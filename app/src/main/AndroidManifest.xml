@@ -78,6 +78,9 @@
             android:name=".message.MessageListActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".message.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".brand.BrandActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import java.io.Serializable;
+
 /**
  * 路由封装
  */
@@ -96,6 +98,22 @@ public class ARouterManager {
                 .greenChannel()
                 .navigation(activity, requestCode);
     }
+
+    /**
+     * 调用activity
+     * 接口
+     **/
+    public void sgotoActivitySble(String path, Serializable mSble) {
+        if (mSble == null) {
+            gotoActivity(path);
+        } else {
+            ARouter.getInstance().build(path)
+                    .withSerializable(path, mSble)
+                    .navigation();
+        }
+
+    }
+
 
     /**
      * 调用activity

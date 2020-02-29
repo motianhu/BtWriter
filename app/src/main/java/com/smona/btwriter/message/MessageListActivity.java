@@ -1,6 +1,7 @@
 package com.smona.btwriter.message;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -19,6 +20,8 @@ import java.util.List;
 @Route(path = ARouterPath.PATH_TO_MESSAGELIST)
 public class MessageListActivity extends BaseLoadingPresenterActivity<MessageListPreseter, MessageListPreseter.IMessageView> implements MessageListPreseter.IMessageView {
 
+    private TextView rightTv;
+
     private XRecyclerView xRecyclerView;
     private MessageAdapter adapter;
 
@@ -29,7 +32,7 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_message;
+        return R.layout.activity_message_list;
     }
 
     @Override
@@ -43,6 +46,9 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
         findViewById(R.id.back).setOnClickListener(view -> onBackPressed());
         TextView titleTv = findViewById(R.id.title);
         titleTv.setText(R.string.message_list);
+        rightTv = findViewById(R.id.rightTv);
+        rightTv.setVisibility(View.VISIBLE);
+        rightTv.setText(R.string.select);
     }
 
     private void initViews() {
@@ -57,6 +63,7 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
     @Override
     protected void initData() {
         super.initData();
+        mPresenter.requestMessageList();
     }
 
     @Override

@@ -109,6 +109,7 @@
     <string name="start_match">开始匹配</string>
 
     <string name="message_list">消息列表</string>
+    <string name="message_detail">消息详情</string>
     <string name="goods_list">采购需求</string>
     <string name="goods_detail">商品详情</string>
     <string name="shoppingcard_list">购买清单</string>
@@ -117,7 +118,7 @@
 
     <string name="logout">退出登录</string>
 
-    <string name="systemmsg">系统消息</string>
+    <string name="select">选择</string>
     <string name="select_brand">选择品牌</string>
     <string name="select_model">选择机型</string>
 

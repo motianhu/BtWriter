@@ -1,6 +1,8 @@
 package com.smona.btwriter.message.bean;
 
-public class MessageBean {
+import java.io.Serializable;
+
+public class MessageBean implements Serializable {
     private int id;
     private String title;
     private String content;
