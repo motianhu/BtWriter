@@ -6,20 +6,25 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
+import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.message.adapter.MessageAdapter;
-import com.smona.btwriter.message.presenter.MessagePreseter;
+import com.smona.btwriter.message.bean.MessageBean;
+import com.smona.btwriter.message.presenter.MessageListPreseter;
 import com.smona.btwriter.util.ARouterPath;
+import com.smona.btwriter.util.CommonUtil;
+
+import java.util.List;
 
 @Route(path = ARouterPath.PATH_TO_MESSAGELIST)
-public class MessageActivity extends BaseLoadingPresenterActivity<MessagePreseter, MessagePreseter.IMessageView> implements MessagePreseter.IMessageView {
+public class MessageListActivity extends BaseLoadingPresenterActivity<MessageListPreseter, MessageListPreseter.IMessageView> implements MessageListPreseter.IMessageView {
 
     private XRecyclerView xRecyclerView;
     private MessageAdapter adapter;
 
     @Override
-    protected MessagePreseter initPresenter() {
-        return new MessagePreseter();
+    protected MessageListPreseter initPresenter() {
+        return new MessageListPreseter();
     }
 
     @Override
@@ -43,6 +48,8 @@ public class MessageActivity extends BaseLoadingPresenterActivity<MessagePresete
     private void initViews() {
         xRecyclerView = findViewById(R.id.messageList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        CommonItemDecoration spacesItemDecoration = new CommonItemDecoration(0, this.getResources().getDimensionPixelSize(R.dimen.dimen_6dp));
+        xRecyclerView.addItemDecoration(spacesItemDecoration);
         adapter = new MessageAdapter(R.layout.adapter_item_message);
         xRecyclerView.setAdapter(adapter);
     }
@@ -54,6 +61,18 @@ public class MessageActivity extends BaseLoadingPresenterActivity<MessagePresete
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
+        hideLoadingDialog();
+        CommonUtil.showToastByFilter(errCode, errInfo);
+    }
 
+    @Override
+    public void onMessageList(List<MessageBean> list) {
+        adapter.setNewData(list);
+    }
+
+    @Override
+    public void onMessageDelete(List<String> list) {
+        hideLoadingDialog();
+        adapter.deleteMessage(list);
     }
 }

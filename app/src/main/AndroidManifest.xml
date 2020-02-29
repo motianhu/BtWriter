@@ -75,7 +75,7 @@
             android:name=".param.ParamActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".message.MessageActivity"
+            android:name=".message.MessageListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".brand.BrandActivity"
