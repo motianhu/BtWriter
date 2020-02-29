@@ -1,7 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/navigation"
@@ -40,4 +39,10 @@
             android:text="@string/action_ok"
             android:textColor="@color/white" />
     </RelativeLayout>
+
+    <include
+        android:layout_below="@+id/navigation"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/common_loading"/>
 </RelativeLayout>

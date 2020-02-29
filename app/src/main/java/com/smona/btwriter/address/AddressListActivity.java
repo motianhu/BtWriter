@@ -92,6 +92,8 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
         xRecyclerView.setAdapter(adapter);
 
         findViewById(R.id.submit).setOnClickListener(v -> clickOk());
+
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, findViewById(R.id.submit_rl));
     }
 
     private void clickNewAddress() {
@@ -130,6 +132,7 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
 
     @Override
     public void onAddressList(boolean isFirstPage, List<AddressBean> list) {
+        doSuccess();
         xRecyclerView.loadMoreComplete();
         xRecyclerView.refreshComplete();
         if(isFirstPage) {
@@ -148,10 +151,12 @@ public class AddressListActivity extends BaseLoadingPresenterActivity<AddressLis
     public void onEmpty() {
         xRecyclerView.loadMoreComplete();
         xRecyclerView.refreshComplete();
+        doEmpty(getString(R.string.empty_address_list), R.drawable.empty_address);
     }
 
     @Override
     public void onComplete() {
+        doSuccess();
         xRecyclerView.setNoMore(true);
     }
 

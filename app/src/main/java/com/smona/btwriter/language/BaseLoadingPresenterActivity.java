@@ -26,6 +26,10 @@ public abstract class BaseLoadingPresenterActivity<P extends BasePresenter<V>, V
         initExceptionProcess.doEmpty();
     }
 
+    protected void doEmpty(String hint, int iconId) {
+        initExceptionProcess.doEmpty(hint, iconId);
+    }
+
     protected void doSuccess() {
         initExceptionProcess.doSuccess();
     }
