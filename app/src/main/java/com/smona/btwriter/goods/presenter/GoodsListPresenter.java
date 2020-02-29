@@ -17,8 +17,7 @@ public class GoodsListPresenter extends BasePresenter<GoodsListPresenter.IPurcha
     private GoodsModel purchaseModel = new GoodsModel();
     private int lastPage = CommonUtil.START_PAGE;
 
-    public void requestGoodsList() {
-        ReqGoodsList reqGoodsBean = new ReqGoodsList();
+    public void requestGoodsList(ReqGoodsList reqGoodsBean) {
         reqGoodsBean.setCurrPage(lastPage);
         reqGoodsBean.setLimit(CommonUtil.SIZE);
         purchaseModel.requestGoodsList(reqGoodsBean, new OnResultListener<BaseResponse<RespGoodsList>>() {
@@ -42,7 +41,7 @@ public class GoodsListPresenter extends BasePresenter<GoodsListPresenter.IPurcha
             public void onError(String stateCode, String errorInfo) {
                 if(mView != null) {
                     if (lastPage == CommonUtil.START_PAGE) {
-                        mView.onError("requestGoodsList", stateCode, errorInfo);
+                        mView.onError("", stateCode, errorInfo);
                     } else {
                         mView.onError("requestGoodsList", stateCode, errorInfo);
                     }
@@ -51,8 +50,9 @@ public class GoodsListPresenter extends BasePresenter<GoodsListPresenter.IPurcha
         });
     }
 
-    public void refreshGoodList() {
-        requestGoodsList();;
+    public void refreshGoodList(ReqGoodsList reqGoodsBean) {
+        lastPage = CommonUtil.START_PAGE;
+        requestGoodsList(reqGoodsBean);;
     }
 
     public interface IPurchaseView extends IPageView {

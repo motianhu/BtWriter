@@ -15,12 +15,12 @@ import com.smona.btwriter.util.ToastUtil;
  */
 public class FinishExceptionFilter extends AbsExceptionFilter {
     @Override
-    boolean isFilter(String api, int errCode, String errMsg) {
+    boolean isFilter(String api, String errCode, String errMsg) {
         return true;
     }
 
     @Override
-    void exeFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
+    void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
         if (TextUtils.isEmpty(api) || api.endsWith("_first")) {
             mProcess.getErrorView().setNoContent(mProcess.getErrorView().getContext().getString(R.string.no_content), R.drawable.nodata);
         }

@@ -17,12 +17,12 @@ import com.smona.btwriter.util.ToastUtil;
 public class NetExceptionFilter extends AbsExceptionFilter {
 
     @Override
-    boolean isFilter(String api, int errCode, String errMsg) {
-        return errCode >= 1000 && errCode <= 1006;
+    boolean isFilter(String api, String errCode, String errMsg) {
+        return "1000".equals(errCode) || "1001".equals(errCode) || "1002".equals(errCode)|| "1003".equals(errCode)|| "1004".equals(errCode)|| "1005".equals(errCode)|| "1006".equals(errCode);
     }
 
     @Override
-    void exeFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
+    void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
         ToastUtil.showShort(R.string.network_error);
         if (TextUtils.isEmpty(api) || api.endsWith("_first")) { //控制显示的请求;非控制类接口不处理(可能有问题)
             mProcess.getErrorView().setNoNetwork(listener);

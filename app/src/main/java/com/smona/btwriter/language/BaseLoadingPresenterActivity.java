@@ -34,8 +34,8 @@ public abstract class BaseLoadingPresenterActivity<P extends BasePresenter<V>, V
         initExceptionProcess.doSuccess();
     }
 
-    public void onError(String api, int errCode, ErrorInfo errorInfo, InitExceptionProcess.OnReloadListener listener) {
-        initExceptionProcess.doError(api, errCode, errorInfo.getMessage(), listener);
+    public void onError(String api, String errCode, String errorInfo, InitExceptionProcess.OnReloadListener listener) {
+        initExceptionProcess.doError(api, errCode, errorInfo, listener);
     }
 
 }

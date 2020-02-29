@@ -21,7 +21,7 @@ public abstract class AbsExceptionFilter implements IExceptionFilter {
     }
 
     @Override
-    public void doFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
+    public void doFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
         if (isFilter(api, errCode, errMsg)) {
             exeFilter(api, errCode, errMsg, listener);
         } else if (mNextFilter != null) {
@@ -29,7 +29,7 @@ public abstract class AbsExceptionFilter implements IExceptionFilter {
         }
     }
 
-    abstract boolean isFilter(String api, int errCode, String errMsg);
+    abstract boolean isFilter(String api, String errCode, String errMsg);
 
-    abstract void exeFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener);
+    abstract void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener);
 }

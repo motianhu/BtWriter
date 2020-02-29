@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_F5F4F9"
-    android:orientation="vertical">
+    android:background="@color/color_F5F4F9">
 
     <RelativeLayout
         android:id="@+id/header_rl"
@@ -24,7 +23,7 @@
             android:layout_below="@+id/navigation"
             android:layout_marginTop="@dimen/dimen_20dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/searchBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,10 +34,9 @@
                 android:background="@drawable/bg_corner"
                 android:drawableStart="@drawable/search"
                 android:drawablePadding="@dimen/dimen_20dp"
-                android:gravity="center_vertical"
                 android:padding="@dimen/dimen_10dp"
                 android:singleLine="true"
-                android:text="@string/seach_tips"
+                android:hint="@string/seach_tips"
                 android:textColor="@color/color_A4A9AF"
                 android:textSize="@dimen/font_12" />
 
@@ -99,7 +97,7 @@
     </RelativeLayout>
 
     <include
-        android:id="@+id/purchaseList"
+        android:id="@+id/goodsList"
         layout="@layout/widget_xrecycleview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,6 +121,11 @@
         android:drawableTop="@drawable/shoppingcard_on"
         android:background="@drawable/bg_corner"
         android:text="@string/shoppingcard" />
+
+    <include layout="@layout/common_loading"
+        android:layout_below="@+id/header_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <FrameLayout
         android:id="@+id/select_fragment"

@@ -31,7 +31,7 @@ class ExpceptionFilterExecutor {
         finishExceptionFilter.addNextFilter(process, null);
     }
 
-    void executeFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
+    void executeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
         startExceptionFilter.doFilter(api, errCode, errMsg, listener);
     }
 }

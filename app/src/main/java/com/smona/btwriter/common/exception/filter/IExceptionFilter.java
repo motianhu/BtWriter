@@ -11,6 +11,6 @@ import com.smona.btwriter.common.exception.InitExceptionProcess;
  * created on: 7/24/19 9:16 AM
  */
 public interface IExceptionFilter {
-    void doFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener);
+    void doFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener);
     void addNextFilter(IExceptionProcess process, IExceptionFilter filter);
 }

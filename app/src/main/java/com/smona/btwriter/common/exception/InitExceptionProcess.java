@@ -41,7 +41,7 @@ public class InitExceptionProcess implements IExceptionProcess {
         }
     }
 
-    public void doError(String api, int errCode, String errMsg, OnReloadListener listener) {
+    public void doError(String api, String errCode, String errMsg, OnReloadListener listener) {
         Log.e("InitExceptionProcess", "api: " + api + ", errCode: " + errCode + ", errMsg: " + errMsg);
         //第一批必须以_first展示
         mStartFilter.executeFilter(api, errCode, errMsg, listener);

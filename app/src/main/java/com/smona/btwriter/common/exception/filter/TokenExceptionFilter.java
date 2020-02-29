@@ -14,12 +14,12 @@ import com.smona.btwriter.common.exception.InitExceptionProcess;
  */
 public class TokenExceptionFilter extends AbsExceptionFilter {
     @Override
-    boolean isFilter(String api, int errCode, String errMsg) {
-        return errCode == 403;
+    boolean isFilter(String api, String errCode, String errMsg) {
+        return "10001".equals(errCode);
     }
 
     @Override
-    void exeFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
+    void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
         if (TextUtils.isEmpty(api) || api.endsWith("_first")) { //控制显示的请求;非控制类接口不处理(可能有问题)
             mProcess.getErrorView().setNoNetwork(listener);
             for (View view : mProcess.getContentViews()) {

@@ -12,12 +12,12 @@ import com.smona.btwriter.common.exception.InitExceptionProcess;
 public class StartExceptionFilter extends AbsExceptionFilter {
 
     @Override
-    boolean isFilter(String api, int errCode, String errMsg) {
+    boolean isFilter(String api, String errCode, String errMsg) {
         return false;
     }
 
     @Override
-    void exeFilter(String api, int errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
+    void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
 
     }
 

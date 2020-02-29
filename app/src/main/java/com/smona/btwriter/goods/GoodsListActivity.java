@@ -2,12 +2,15 @@ package com.smona.btwriter.goods;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
+import com.smona.btwriter.common.exception.InitExceptionProcess;
+import com.smona.btwriter.goods.bean.ReqGoodsList;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.goods.adapter.GoodsListAdapter;
 import com.smona.btwriter.goods.bean.GoodsBean;
@@ -29,6 +32,10 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     private XRecyclerView xRecyclerView;
     private GoodsListAdapter adapter;
     private SelectGoodsFragment selectGoodsFragment;
+
+    private EditText searchTv;
+
+    private ReqGoodsList reqGoodsBean = new ReqGoodsList();
 
     @Override
     protected GoodsListPresenter initPresenter() {
@@ -54,7 +61,7 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     }
 
     private void initViews() {
-        xRecyclerView = findViewById(R.id.purchaseList);
+        xRecyclerView = findViewById(R.id.goodsList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
         CommonItemDecoration ex = new CommonItemDecoration(0, margin);
@@ -79,6 +86,41 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
         findViewById(R.id.btn_shoppingcard).setOnClickListener(v->clickShoppingCard());
 
         selectGoodsFragment = SelectGoodsFragment.buildInstance();
+
+        TextView zonghe = findViewById(R.id.sort_all);
+        zonghe.setOnClickListener(v->clickSortAll());
+        TextView sort_sales = findViewById(R.id.sort_sales);
+        sort_sales.setOnClickListener(v->clickSales());
+        TextView sort_price = findViewById(R.id.sort_price);
+        sort_price.setOnClickListener(v->clickPrice());
+        searchTv = findViewById(R.id.searchBar);
+        findViewById(R.id.search).setOnClickListener(v->clickSearch());
+
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, findViewById(R.id.btn_shoppingcard));
+    }
+
+    private void clickSortAll() {
+        reqGoodsBean.setSortField("sortAll");
+        showLoadingDialog();
+        refreshGoodList();
+    }
+
+    private void clickSales() {
+        reqGoodsBean.setSortField("sales");
+        showLoadingDialog();
+        refreshGoodList();
+    }
+
+    private void clickPrice() {
+        reqGoodsBean.setSortField("price");
+        showLoadingDialog();
+        refreshGoodList();
+    }
+
+    private void clickSearch() {
+        reqGoodsBean.setName(searchTv.getText().toString());
+        showLoadingDialog();
+        refreshGoodList();
     }
 
     private void clickShoppingCard(){
@@ -92,26 +134,31 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     }
 
     private void requestGoodsList() {
-        mPresenter.requestGoodsList();
+        mPresenter.requestGoodsList(reqGoodsBean);
     }
 
     private void refreshGoodList() {
-        mPresenter.refreshGoodList();
+        mPresenter.refreshGoodList(reqGoodsBean);
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        hideLoadingDialog();
+        onError(api, errCode, errInfo, this::requestGoodsList);
     }
 
     @Override
     public void onEmpty() {
+        hideLoadingDialog();
         xRecyclerView.loadMoreComplete();
         xRecyclerView.refreshComplete();
+        doEmpty();
     }
 
     @Override
     public void onGoodsList(boolean isFirstPage, List<GoodsBean> goodsBeanList) {
+        hideLoadingDialog();
+        doSuccess();
         xRecyclerView.loadMoreComplete();
         xRecyclerView.refreshComplete();
         List<TwoGoodsBean> twoGoodsBeanList = new ArrayList<>();
@@ -143,6 +190,8 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
 
     @Override
     public void onComplete() {
+        hideLoadingDialog();
+        doSuccess();
         xRecyclerView.setNoMore(true);
     }
 
