@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
+import com.smona.btwriter.common.exception.InitExceptionProcess;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.model.adapter.ModelAdapter;
 import com.smona.btwriter.model.bean.ModelParam;
@@ -72,21 +73,33 @@ public class ModelActivity extends BaseLoadingPresenterActivity<ModePresenter,Mo
         xRecyclerView.addItemDecoration(commonItemDecoration);
         adapter = new ModelAdapter(R.layout.adapter_item_model);
         xRecyclerView.setAdapter(adapter);
+
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView);
     }
 
     @Override
     protected void initData() {
         super.initData();
+        requestModelList();
+    }
+
+    private void requestModelList() {
         mPresenter.requestPhoneModelList(brandParam.getBrandId(), brandParam.getMembraneType());
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        onError(api, errCode, errInfo, this::requestModelList);
+
     }
 
     @Override
     public void onModelList(List<ModelBean> modelBeanList) {
-        adapter.setNewData(modelBeanList);
+        if(CommonUtil.isEmptyList(modelBeanList)) {
+            doEmpty();
+        } else {
+            doSuccess();
+            adapter.setNewData(modelBeanList);
+        }
     }
 }

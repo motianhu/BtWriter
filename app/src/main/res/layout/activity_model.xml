@@ -16,4 +16,10 @@
         android:layout_marginEnd="@dimen/dimen_10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <include
+        android:layout_below="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/common_loading"/>
 </LinearLayout>
