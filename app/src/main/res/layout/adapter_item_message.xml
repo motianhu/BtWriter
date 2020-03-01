@@ -3,16 +3,26 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_corner_10"
     android:padding="@dimen/dimen_16dp">
+    <ImageView
+        android:id="@+id/selected"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/confirm_icon_pitch"
+        />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_toEndOf="@+id/selected"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:paddingEnd="@dimen/dimen_18dp"
+        android:layout_toStartOf="@+id/time"
+        android:layout_marginEnd="@dimen/dimen_10dp"
         android:textColor="@color/color_222A37"
-        android:layout_marginEnd="@dimen/dimen_100dp"
         android:textSize="@dimen/font_16" />
 
     <TextView
@@ -29,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_marginTop="@dimen/dimen_4dp"
+        android:layout_toEndOf="@+id/selected"
         android:ellipsize="end"
         android:maxLines="3"
         android:textColor="@color/color_A4A9AF"

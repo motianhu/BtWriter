@@ -110,6 +110,10 @@
 
     <string name="message_list">消息列表</string>
     <string name="message_detail">消息详情</string>
+    <string name="empty_message">请选择消息</string>
+    <string name="message_delete">删除消息</string>
+    <string name="finish">完成</string>
+
     <string name="goods_list">采购需求</string>
     <string name="goods_detail">商品详情</string>
     <string name="shoppingcard_list">购买清单</string>

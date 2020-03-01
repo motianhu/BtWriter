@@ -1,6 +1,7 @@
 package com.smona.btwriter.common.exception.filter;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.exception.InitExceptionProcess;
@@ -23,6 +24,9 @@ public class FinishExceptionFilter extends AbsExceptionFilter {
     void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
         if (TextUtils.isEmpty(api) || api.endsWith("_first")) {
             mProcess.getErrorView().setNoContent(mProcess.getErrorView().getContext().getString(R.string.no_content), R.drawable.nodata);
+            for (View view : mProcess.getContentViews()) {
+                view.setVisibility(View.GONE);
+            }
         }
         if (TextUtils.isEmpty(errMsg)) {
             ToastUtil.showShort(R.string.network_error);

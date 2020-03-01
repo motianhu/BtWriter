@@ -8,6 +8,8 @@ public class MessageBean implements Serializable {
     private String content;
     private int isRead;
     private String createTime;
+    //内存使用
+    private boolean isSelected;
 
     public int getId() {
         return id;
@@ -47,5 +49,13 @@ public class MessageBean implements Serializable {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

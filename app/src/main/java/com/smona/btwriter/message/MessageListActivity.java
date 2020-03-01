@@ -14,6 +14,7 @@ import com.smona.btwriter.message.bean.MessageBean;
 import com.smona.btwriter.message.presenter.MessageListPreseter;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.btwriter.util.ToastUtil;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
 
     private XRecyclerView xRecyclerView;
     private MessageAdapter adapter;
+
+    private View delRl;
 
     @Override
     protected MessageListPreseter initPresenter() {
@@ -48,7 +51,8 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
         titleTv.setText(R.string.message_list);
         rightTv = findViewById(R.id.rightTv);
         rightTv.setVisibility(View.VISIBLE);
-        rightTv.setText(R.string.select);
+        rightTv.setText(R.string.edit);
+        rightTv.setOnClickListener(v->clickEdit());
     }
 
     private void initViews() {
@@ -58,6 +62,25 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
         xRecyclerView.addItemDecoration(spacesItemDecoration);
         adapter = new MessageAdapter(R.layout.adapter_item_message);
         xRecyclerView.setAdapter(adapter);
+
+        delRl = findViewById(R.id.del_rl);
+        findViewById(R.id.delete).setOnClickListener(v->clickDelete());
+    }
+
+    private void clickEdit() {
+        adapter.editMessage();
+        rightTv.setText(adapter.isEditStatus()? R.string.finish:R.string.edit);
+        delRl.setVisibility(adapter.isEditStatus()?View.VISIBLE:View.GONE);
+    }
+
+    private void clickDelete() {
+        List<Integer> ids = adapter.getSelectedMessage();
+        if(CommonUtil.isEmptyList(ids)) {
+            ToastUtil.showShort(R.string.empty_message);
+            return;
+        }
+        showLoadingDialog();
+        mPresenter.requestDelMessage(ids);
     }
 
     @Override
@@ -78,8 +101,8 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
     }
 
     @Override
-    public void onMessageDelete(List<String> list) {
+    public void onMessageDelete() {
         hideLoadingDialog();
-        adapter.deleteMessage(list);
+        adapter.deleteMessage();
     }
 }

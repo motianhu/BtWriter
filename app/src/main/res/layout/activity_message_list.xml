@@ -1,7 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/navigation"
@@ -11,9 +10,36 @@
 
     <include
         android:id="@+id/messageList"
+        android:layout_below="@+id/navigation"
         layout="@layout/widget_xrecycleview"
+        android:layout_above="@+id/del_rl"
         android:paddingStart="@dimen/dimen_16dp"
         android:paddingEnd="@dimen/dimen_16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/del_rl"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_45dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:layout_marginEnd="@dimen/dimen_45dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
+            android:background="@drawable/bg_corner_maincolor"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_15dp"
+            android:paddingBottom="@dimen/dimen_15dp"
+            android:text="@string/message_delete"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>

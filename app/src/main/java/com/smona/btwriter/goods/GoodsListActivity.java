@@ -102,22 +102,28 @@ public class GoodsListActivity extends BaseLoadingPresenterActivity<GoodsListPre
     }
 
     private void clickSortAll() {
-        reqGoodsBean.setSortField("sortAll");
+        reqGoodsBean.setSortField("");
         showLoadingDialog();
         refreshGoodList();
     }
 
     private void clickSales() {
-        reqGoodsBean.setSortField("sales");
-        reqGoodsBean.setIsAsc(sort_sales.isSelected() ? 0:1);
+        //第一次点击不进行排序
+        if(!"saleAmount".equalsIgnoreCase(reqGoodsBean.getName())) {
+            reqGoodsBean.setIsAsc(sort_sales.isSelected() ? 0:1);
+        }
+        reqGoodsBean.setSortField("saleAmount");
         sort_sales.setSelected(!sort_sales.isSelected());
         showLoadingDialog();
         refreshGoodList();
     }
 
     private void clickPrice() {
-        reqGoodsBean.setSortField("price");
-        reqGoodsBean.setIsAsc(sort_price.isSelected() ? 0:1);
+        //第一次点击不进行排序
+        if(!"disAccount".equalsIgnoreCase(reqGoodsBean.getName())) {
+            reqGoodsBean.setIsAsc(sort_price.isSelected() ? 0:1);
+        }
+        reqGoodsBean.setSortField("disAccount");
         sort_price.setSelected(!sort_price.isSelected());
         showLoadingDialog();
         refreshGoodList();
