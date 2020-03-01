@@ -15,16 +15,15 @@
         android:layout_marginEnd="@dimen/dimen_10dp"
         android:layout_below="@id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_96dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_corner_10"
-        android:paddingStart="@dimen/dimen_15dp"
-        android:paddingTop="@dimen/dimen_15dp"
-        android:paddingEnd="@dimen/dimen_15dp">
+        android:paddingTop="@dimen/dimen_15dp">
 
         <TextView
             android:id="@+id/name"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_11"
+            android:layout_marginStart="@dimen/dimen_10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -46,6 +45,7 @@
             android:id="@+id/phone"
             android:textColor="@color/color_BABABA"
             android:textSize="@dimen/font_11"
+            android:layout_marginEnd="@dimen/dimen_10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true" />
@@ -54,6 +54,8 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginEnd="@dimen/dimen_10dp"
             android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/dimen_10dp">
 
@@ -79,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/divider"
+            android:layout_marginStart="@dimen/dimen_10dp"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:textColor="@color/color_BABABA"
             android:textSize="@dimen/font_11"/>
@@ -87,11 +90,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/address"
-            android:visibility="gone"
-            android:layout_marginStart="@dimen/dimen_20dp"
             android:layout_marginTop="@dimen/dimen_20dp"
-            android:layout_marginEnd="@dimen/dimen_20dp"
-            android:src="@drawable/add_icon" />
+            android:scaleType="fitXY"
+            android:src="@drawable/email_divider" />
     </RelativeLayout>
 
     <TextView
@@ -109,6 +110,8 @@
         android:layout_marginTop="@dimen/dimen_5dp"
         android:id="@+id/shoppingcardlist"
         layout="@layout/widget_xrecycleview"
+        android:layout_marginStart="@dimen/dimen_20dp"
+        android:layout_marginEnd="@dimen/dimen_20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

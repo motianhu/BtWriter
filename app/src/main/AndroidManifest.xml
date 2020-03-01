@@ -101,6 +101,9 @@
         <activity
             android:name=".address.AddressEditActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".bluetooth.BlueToothListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

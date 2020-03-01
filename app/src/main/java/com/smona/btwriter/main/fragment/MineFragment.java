@@ -35,11 +35,16 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
         userNameTv = content.findViewById(R.id.email);
 
         matchStatusTv = content.findViewById(R.id.bluetoothStatus);
+        matchStatusTv.setOnClickListener(v->clickConnect());
 
         content.findViewById(R.id.messages).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MESSAGELIST));
         content.findViewById(R.id.purchase).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_GOODSLIST));
         content.findViewById(R.id.changepwd).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_CHANGEPWD));
         content.findViewById(R.id.logout).setOnClickListener(v -> clickLogout());
+    }
+
+    private void clickConnect() {
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_BLUETOOTH_LIST);
     }
 
     private void clickLogout() {

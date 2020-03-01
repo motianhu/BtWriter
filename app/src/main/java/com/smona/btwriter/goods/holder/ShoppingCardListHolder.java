@@ -35,9 +35,9 @@ public class ShoppingCardListHolder extends XViewHolder {
 
     public void bindViews(ShoppingCardBean goodsBean) {
         Context context = itemView.getContext();
-        ImageLoaderDelegate.getInstance().showImage(goodsBean.getCoverImg(), iconIv, 0);
+        ImageLoaderDelegate.getInstance().showCornerImage(goodsBean.getCoverImg(), iconIv, context.getResources().getDimensionPixelSize(R.dimen.dimen_10dp), 0);
         nameTv.setText(goodsBean.getName());
-        categoryTv.setText(goodsBean.getGoodsTypeName());
+        categoryTv.setText(context.getResources().getString(R.string.category) + goodsBean.getGoodsTypeName());
         priceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getTotalPrice());
         numTv.setText(goodsBean.getAmount() + "");
     }
