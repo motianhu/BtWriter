@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
+import com.smona.btwriter.common.exception.InitExceptionProcess;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.message.adapter.MessageAdapter;
 import com.smona.btwriter.message.bean.MessageBean;
@@ -65,6 +66,8 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
 
         delRl = findViewById(R.id.del_rl);
         findViewById(R.id.delete).setOnClickListener(v->clickDelete());
+
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, delRl);
     }
 
     private void clickEdit() {
@@ -76,7 +79,7 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
     private void clickDelete() {
         List<Integer> ids = adapter.getSelectedMessage();
         if(CommonUtil.isEmptyList(ids)) {
-            ToastUtil.showShort(R.string.empty_message);
+            ToastUtil.showShort(R.string.empty_select_message);
             return;
         }
         showLoadingDialog();
@@ -86,18 +89,27 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
     @Override
     protected void initData() {
         super.initData();
+        requestMessageList();
+    }
+
+    private void requestMessageList() {
         mPresenter.requestMessageList();
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
         hideLoadingDialog();
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        onError(api, errCode, errInfo, this::requestMessageList);
     }
 
     @Override
     public void onMessageList(List<MessageBean> list) {
-        adapter.setNewData(list);
+        if(CommonUtil.isEmptyList(list)) {
+            doEmpty(getString(R.string.empty_message), R.drawable.empty_message);
+        } else {
+            doSuccess();
+            adapter.setNewData(list);
+        }
     }
 
     @Override

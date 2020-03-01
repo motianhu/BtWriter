@@ -32,6 +32,8 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
     private SeekBar pressSeekBar;
     private TextView pressValueTv;
 
+    private View setParamView;
+
     private XRecyclerView xRecyclerView;
     private ParamInfoAdapter adapter;
 
@@ -50,7 +52,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         super.initView(content);
         speedSeekBar = content.findViewById(R.id.speedBar);
         speedValueTv = content.findViewById(R.id.speedValue);
-        speedValueTv.setText("" + CommonUtil.SPEED_START);
+        speedValueTv.setText("0");
         speedSeekBar.setMax(CommonUtil.SPEED_DIFF);
         speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -72,7 +74,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
         pressSeekBar = content.findViewById(R.id.pressureBar);
         pressValueTv = content.findViewById(R.id.pressureValue);
-        pressValueTv.setText("" + CommonUtil.PRESS_START);
+        pressValueTv.setText("0");
         pressSeekBar.setMax(CommonUtil.PRESS_END);
         pressSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -123,7 +125,8 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         });
         xRecyclerView.setAdapter(adapter);
 
-        content.findViewById(R.id.resetValue).setOnClickListener(v -> clickResetValue());
+        setParamView = content.findViewById(R.id.set_param_bluetooth);
+        setParamView.setOnClickListener(v -> clickSetParam());
         content.findViewById(R.id.add).setOnClickListener(v -> clickAdd());
 
         NotifyCenter.getInstance().registerListener(this);
@@ -145,7 +148,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         mPresenter.requestParams();
     }
 
-    private void clickResetValue() {
+    private void clickSetParam() {
 
     }
 
@@ -156,6 +159,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
     private void clickUse(ParamInfo item) {
         speedSeekBar.setProgress(item.getSpeed() - CommonUtil.SPEED_START);
         pressSeekBar.setProgress(item.getPressure() - CommonUtil.PRESS_START);
+        setParamView.setEnabled(true);
     }
 
     @Override

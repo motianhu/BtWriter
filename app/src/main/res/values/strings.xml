@@ -110,7 +110,8 @@
 
     <string name="message_list">消息列表</string>
     <string name="message_detail">消息详情</string>
-    <string name="empty_message">请选择消息</string>
+    <string name="empty_select_message">请选择消息</string>
+    <string name="empty_message">暂无任何消息</string>
     <string name="message_delete">删除消息</string>
     <string name="finish">完成</string>
 

@@ -135,6 +135,7 @@ public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPr
     @Override
     public void onDelete() {
         hideLoadingDialog();
+        NotifyCenter.getInstance().postEvent(new AddressEvent());
         finish();
     }
 }

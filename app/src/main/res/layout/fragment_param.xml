@@ -33,8 +33,9 @@
             android:layout_marginTop="@dimen/dimen_30dp" />
 
         <TextView
-            android:id="@+id/resetValue"
-            android:background="@drawable/bg_corner_maincolor"
+            android:id="@+id/set_param_bluetooth"
+            android:background="@drawable/bg_select_btn"
+            android:enabled="false"
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_marginTop="@dimen/dimen_30dp"
