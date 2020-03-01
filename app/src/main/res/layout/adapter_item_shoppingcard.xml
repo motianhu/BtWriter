@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_corner_f5f4f9_10"
+    android:background="@drawable/bg_corner_10"
     android:padding="@dimen/dimen_21dp">
 
     <ImageView
@@ -33,7 +33,7 @@
         android:id="@+id/number"
         android:layout_below="@id/category"
         android:layout_toEndOf="@+id/icon"
-        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
         android:layout_width="wrap_content"
         android:text="@string/number"
         android:layout_height="wrap_content"
@@ -45,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_below="@id/category"
         android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginStart="@dimen/dimen_10dp"
         android:layout_toEndOf="@+id/number"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_6dp"
@@ -80,7 +81,7 @@
         android:layout_marginTop="@dimen/dimen_8dp"
         android:layout_toEndOf="@id/icon"
         android:layout_below="@+id/number"
-        android:textColor="@color/color_333333"
+        android:textColor="@color/color_F90300"
         android:textSize="@dimen/font_12" />
 
     <ImageView
@@ -91,7 +92,5 @@
         android:layout_alignParentEnd="true"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_5dp" />
-
-
 
 </RelativeLayout>

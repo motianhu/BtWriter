@@ -109,6 +109,8 @@
         android:layout_marginTop="@dimen/dimen_5dp"
         android:id="@+id/shoppingcardlist"
         layout="@layout/widget_xrecycleview"
+        android:layout_marginStart="@dimen/dimen_20dp"
+        android:layout_marginEnd="@dimen/dimen_20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
