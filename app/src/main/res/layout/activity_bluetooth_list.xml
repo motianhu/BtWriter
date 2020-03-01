@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/color_F5F4F9"
     android:layout_height="match_parent" >
 
     <include
@@ -9,31 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:text="@string/match_bluetooth"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="@dimen/dimen_20dp"
-        android:layout_height="wrap_content"/>
-
     <include
-        android:id="@+id/matchBluetoothList"
+        android:id="@+id/bluetoothList"
         layout="@layout/widget_xrecycleview"
         android:layout_marginTop="@dimen/dimen_10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:text="@string/not_match_bluetooth"
-        android:layout_marginStart="@dimen/dimen_20dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <include
-        android:id="@+id/findBluetoothList"
-        layout="@layout/widget_xrecycleview"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

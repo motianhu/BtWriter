@@ -1,9 +1,11 @@
 package com.smona.btwriter;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +43,12 @@ public class MainActivity extends BaseLanguageActivity {
         initViews();
         initData();
         refreshragments();
+        initPermissions();
+    }
+
+    private void initPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                1000);
     }
 
     @Override

@@ -78,7 +78,10 @@
     <string name="qr_code_auto_scan_notification">将二维码放入框内，即可自动扫描</string>
 
     <string name="bluetooth_match_status">匹配状态:</string>
-    <string name="bluetooth_not_match">蓝牙未匹配</string>
+
+    <string name="current_bluetooth">正在使用的设备:</string>：
+    <string name="bluetooth_not_match">尚未配对</string>
+    <string name="start_mathc">开始配对</string>
     <string name="total_cut_times">总切割次数</string>
     <string name="remain_cut_times">剩余切割次数</string>
     <string name="num_cut_times">%次</string>
@@ -107,6 +110,7 @@
     <string name="not_match">未匹配</string>
     <string name="connecting">连接中...</string>
     <string name="start_match">开始匹配</string>
+    <string name="scan_blue">重新扫描</string>
 
     <string name="message_list">消息列表</string>
     <string name="message_detail">消息详情</string>

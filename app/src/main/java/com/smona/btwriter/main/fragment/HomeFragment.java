@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
+import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.MembraneTypeAdapter;
 import com.smona.btwriter.main.bean.MembraneBean;
@@ -19,8 +20,10 @@ import com.smona.btwriter.main.bean.MembraneType;
 import com.smona.btwriter.main.bean.RespHomeBean;
 import com.smona.btwriter.main.presenter.HomePresenter;
 import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.BluetoothChangeEvent;
 import com.smona.btwriter.notify.event.CountChangeEvent;
 import com.smona.btwriter.scan.ScanActivity;
+import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.image.loader.ImageLoaderDelegate;
@@ -61,6 +64,8 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     protected void initView(View content) {
         super.initView(content);
         matchBluetoothStatusTv = content.findViewById(R.id.bluetoothStatus);
+        matchBluetoothStatusTv.setOnClickListener(v-> clickMatch());
+        refreshBluetoothStatus();
 
         bannerView = content.findViewById(R.id.banner);
         bannerView.setDelayTime(3000).isAutoPlay(true).setOnBannerListener(new OnBannerListener() {
@@ -83,7 +88,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.setLoadingMoreEnabled(false);
 
-        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_7dp);
+        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
         CommonItemDecoration ex = new CommonItemDecoration(0, margin);
         xRecyclerView.addItemDecoration(ex);
 
@@ -94,6 +99,10 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         content.findViewById(R.id.scanView).setOnClickListener(v -> clickScan());
 
         NotifyCenter.getInstance().registerListener(this);
+    }
+
+    private void clickMatch() {
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_BLUETOOTH_LIST);
     }
 
     @Override
@@ -185,5 +194,14 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void countChange(CountChangeEvent event) {
         requestHome();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void blueConnectChange(BluetoothChangeEvent event) {
+        refreshBluetoothStatus();
+    }
+
+    private void refreshBluetoothStatus() {
+        matchBluetoothStatusTv.setText(BluetoothDataCenter.getInstance().getCurrentDeviceName());
     }
 }
