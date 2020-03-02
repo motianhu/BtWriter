@@ -132,6 +132,9 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
         }
         ImageLoaderDelegate.getInstance().showCornerImage(goodsBean.getCoverImg(), iconIv, mActivity.getResources().getDimensionPixelSize(R.dimen.dimen_5dp), 0);
         nameTv.setText(goodsBean.getName());
+        if(!CommonUtil.isEmptyList(goodsBean.getTypeList()) && goodsBean.getTypeList().size() == 1) {
+            goodsBean.getTypeList().get(0).setSelected(true);
+        }
         goodsTypeAdapter.setNewData(goodsBean.getTypeList());
         salesNumTv.setText(mActivity.getString(R.string.sales_num) + "  "  + goodsBean.getSaleAmount());
         priceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice());

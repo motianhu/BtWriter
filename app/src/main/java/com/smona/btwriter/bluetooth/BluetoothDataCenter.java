@@ -71,6 +71,14 @@ public class BluetoothDataCenter {
         }
     }
 
+    public String getCurrentDeviceAddress() {
+        if(currentBluetoothDevice == null) {
+            return "";
+        } else {
+            return currentBluetoothDevice.getAddress();
+        }
+    }
+
     /**
      * 注册广播
      */

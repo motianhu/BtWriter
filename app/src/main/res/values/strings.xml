@@ -183,4 +183,8 @@
     <string name="select_bluetooth">选择蓝牙</string>
     <string name="match_bluetooth">已匹配过的蓝牙</string>
     <string name="not_match_bluetooth">未匹配过的蓝牙</string>
+    <string name="bluetooth_bonded">已绑定</string>
+    <string name="bluetooth_not_bond">未绑定</string>
+    <string name="bluetooth_bonding">绑定中</string>
+    <string name="bluetooth_useing">正在使用</string>
 </resources>

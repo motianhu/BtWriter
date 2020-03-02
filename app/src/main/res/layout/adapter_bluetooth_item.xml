@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/tv_status"
-        android:textColor="@color/selected_text" />
+        android:textColor="@color/bluetooth_selected_text" />
 
     <TextView
         android:id="@+id/tv_status"
@@ -20,7 +20,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dimen_20dp"
         android:singleLine="true"
-        android:textColor="@color/selected_text" />
+        android:textColor="@color/bluetooth_selected_text" />
 
     <TextView
         android:id="@+id/tv_address"
@@ -28,5 +28,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name"
         android:layout_marginTop="@dimen/dimen_10dp"
-        android:textColor="@color/selected_text" />
+        android:textColor="@color/bluetooth_selected_text" />
 </RelativeLayout>
