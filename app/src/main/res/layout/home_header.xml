@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_f5f4f9"
+        android:gravity="center"
+        android:paddingTop="@dimen/dimen_5dp"
+        android:paddingBottom="@dimen/dimen_5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bluetooth_match_status" />
+
+        <TextView
+            android:id="@+id/bluetoothStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:text="@string/bluetooth_not_match"
+            android:textColor="@color/color_F56C5E" />
+    </LinearLayout>
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="@dimen/dimen_20dp" />
+
+    <RelativeLayout
+        android:id="@+id/func"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dimen_14dp"
+        android:background="@drawable/bg_corner_10"
+        android:paddingStart="@dimen/dimen_26dp"
+        android:paddingEnd="@dimen/dimen_26dp"
+        android:paddingTop="@dimen/dimen_20dp"
+        android:paddingBottom="@dimen/dimen_20dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/totalView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/total_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_00A3FF"
+                android:textSize="@dimen/font_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dimen_7dp"
+                android:textSize="@dimen/font_12"
+                android:layout_height="wrap_content"
+                android:text="@string/total_cut_times" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/remindView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/remind_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_00A3FF"
+                android:textSize="@dimen/font_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dimen_7dp"
+                android:textSize="@dimen/font_12"
+                android:layout_height="wrap_content"
+                android:text="@string/remain_cut_times" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scanView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/scan_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dimen_7dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

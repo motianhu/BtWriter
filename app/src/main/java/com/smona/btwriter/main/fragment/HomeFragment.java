@@ -61,13 +61,27 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     @Override
-    protected void initView(View content) {
-        super.initView(content);
-        matchBluetoothStatusTv = content.findViewById(R.id.bluetoothStatus);
+    protected void initView(View root) {
+        super.initView(root);
+        View header = View.inflate(getContext(), R.layout.home_header, null);
+
+        xRecyclerView = root.findViewById(R.id.membraneType);
+        xRecyclerView.addHeaderView(header);
+        xRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        xRecyclerView.setPullRefreshEnabled(false);
+        xRecyclerView.setLoadingMoreEnabled(false);
+        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
+        CommonItemDecoration ex = new CommonItemDecoration(0, margin);
+        xRecyclerView.addItemDecoration(ex);
+        adapter = new MembraneTypeAdapter(R.layout.adapter_item_membranetype);
+        adapter.setNewData(buildMembraneList());
+        xRecyclerView.setAdapter(adapter);
+
+        matchBluetoothStatusTv = header.findViewById(R.id.bluetoothStatus);
         matchBluetoothStatusTv.setOnClickListener(v-> clickMatch());
         refreshBluetoothStatus();
 
-        bannerView = content.findViewById(R.id.banner);
+        bannerView = header.findViewById(R.id.banner);
         bannerView.setDelayTime(3000).isAutoPlay(true).setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
@@ -80,23 +94,10 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
             }
         }).setIndicatorGravity(BannerConfig.CENTER);
 
-        totalCutTimesTv = content.findViewById(R.id.total_times);
-        remainCutTimesTv = content.findViewById(R.id.remind_times);
+        totalCutTimesTv = header.findViewById(R.id.total_times);
+        remainCutTimesTv = header.findViewById(R.id.remind_times);
 
-        xRecyclerView = content.findViewById(R.id.membraneType);
-        xRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        xRecyclerView.setPullRefreshEnabled(false);
-        xRecyclerView.setLoadingMoreEnabled(false);
-
-        int margin = getResources().getDimensionPixelSize(R.dimen.dimen_5dp);
-        CommonItemDecoration ex = new CommonItemDecoration(0, margin);
-        xRecyclerView.addItemDecoration(ex);
-
-        adapter = new MembraneTypeAdapter(R.layout.adapter_item_membranetype);
-        adapter.setNewData(buildMembraneList());
-        xRecyclerView.setAdapter(adapter);
-
-        content.findViewById(R.id.scanView).setOnClickListener(v -> clickScan());
+        header.findViewById(R.id.scanView).setOnClickListener(v -> clickScan());
 
         NotifyCenter.getInstance().registerListener(this);
     }
