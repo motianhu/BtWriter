@@ -60,6 +60,8 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
         xRecyclerView = findViewById(R.id.messageList);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         CommonItemDecoration spacesItemDecoration = new CommonItemDecoration(0, this.getResources().getDimensionPixelSize(R.dimen.dimen_6dp));
+        xRecyclerView.setLoadingMoreEnabled(false);
+        xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.addItemDecoration(spacesItemDecoration);
         adapter = new MessageAdapter(R.layout.adapter_item_message);
         xRecyclerView.setAdapter(adapter);

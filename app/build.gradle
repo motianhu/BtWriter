@@ -19,12 +19,24 @@ android {
         versionName APP_VERSION_NAME as String
         multiDexEnabled true
 
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
         //ARouter
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: APP_PACKAGE_NAME as String,
+                JPUSH_APPKEY : "86678fd9f03c28ee5b9a094b",
+                JPUSH_CHANNEL: "developer-default",
+        ]
     }
 
     buildTypes {
@@ -91,6 +103,8 @@ dependencies {
     implementation EVENTBUS
 
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'cn.jiguang.sdk:jpush:3.4.0'  // 此处以JPush 3.4.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.2.2' // 此处以JCore 2.2.2 版本为例。
 
     implementation project(':httpwrapper')
     implementation project(':BleKitLibrary')

@@ -2,10 +2,12 @@ package com.smona.btwriter.login.presenter;
 
 import com.smona.base.ui.mvp.BasePresenter;
 import com.smona.btwriter.common.ICommonView;
+import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.data.AccountDataCenter;
 import com.smona.btwriter.login.bean.ReqLogin;
 import com.smona.btwriter.login.bean.RespLogin;
 import com.smona.btwriter.login.model.LoginModel;
+import com.smona.btwriter.push.PushApiManager;
 import com.smona.btwriter.util.SPUtils;
 import com.smona.http.business.BaseResponse;
 import com.smona.http.config.GsonUtil;
@@ -25,6 +27,7 @@ public class LoginPresenter extends BasePresenter<LoginPresenter.ILoginView> {
                 if(mView!= null) {
                     AccountDataCenter.getInstance().setAccountInfo(email, response.data.getToken());
                     SPUtils.put(SPUtils.LOGIN_INFO, GsonUtil.objToJson(AccountDataCenter.getInstance().getAccountInfo()));
+                    PushApiManager.getInstance().addTag(AppContext.getAppContext(), email);
                     mView.onLoginSuccess();
                 }
             }

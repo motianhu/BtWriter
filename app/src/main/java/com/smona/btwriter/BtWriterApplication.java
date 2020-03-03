@@ -7,6 +7,7 @@ import android.content.Context;
 import com.smona.base.http.HttpManager;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.common.exception.AppContext;
+import com.smona.btwriter.push.PushApiManager;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
@@ -35,6 +36,8 @@ public class BtWriterApplication extends Application {
         FilterChains.getInstance().addAspectRouter("10001", this::processLogout);
         //注册监听蓝牙数据变化
         BluetoothDataCenter.getInstance().initBlueDataCenter(this);
+        //初始化Push
+        PushApiManager.getInstance().init(this);
     }
 
     private void processLogout() {

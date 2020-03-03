@@ -16,6 +16,8 @@ import java.util.UUID;
 
 public class BluetoothConnectService {
 
+    private OnServiceListener onServiceListener;
+
     private BluetoothSocket bluetoothSocket;
     private BluetoothDevice bluetoothDevice;
     private InputStream mInStream;
@@ -46,7 +48,7 @@ public class BluetoothConnectService {
                 bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
                 //连接
                 bluetoothSocket.connect();
-                ToastUtil.showShort("连接成功");
+                onServiceListener.onConnectListener(true);
                 startRead();
             } catch (IOException e) {
                 ToastUtil.showShort("连接异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
@@ -64,6 +66,7 @@ public class BluetoothConnectService {
             int bytes;
             try {
                 mInStream = bluetoothSocket.getInputStream();
+                onServiceListener.onReadListener(true);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -97,4 +100,8 @@ public class BluetoothConnectService {
         }
     }
 
+    public interface OnServiceListener {
+        void onConnectListener(boolean success);
+        void onReadListener(boolean success);
+    }
 }
