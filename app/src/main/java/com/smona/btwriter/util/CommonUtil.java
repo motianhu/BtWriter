@@ -11,7 +11,11 @@ import android.widget.TextView;
 import com.smona.base.ui.activity.BaseActivity;
 import com.smona.btwriter.common.ActionModeCallbackInterceptor;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.lang.reflect.Field;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -30,6 +34,8 @@ public class CommonUtil {
     public static final int PRESS_START = 300;
     public static final int PRESS_END = 1000;
     public static final int PRESS_DIFF = PRESS_END - PRESS_START;
+
+    public static final String CURRENT_USE_PLT = "current_plt_file.plt";
 
 
     /**
@@ -117,5 +123,31 @@ public class CommonUtil {
         Intent closeAllIntent = new Intent(BaseActivity.ACTION_BASE_ACTIVITY);
         closeAllIntent.putExtra(BaseActivity.ACTION_BASE_ACTIVITY_EXIT_KEY, BaseActivity.ACTION_BASE_ACTIVITY_EXIT_VALUE);
         LocalBroadcastManager.getInstance(context).sendBroadcast(closeAllIntent);
+    }
+
+    /**
+     * 获取文件的MD5值
+     */
+    public static String getFileMD5(File file) {
+        if (!file.isFile()) {
+            return null;
+        }
+        MessageDigest digest = null;
+        FileInputStream in = null;
+        byte buffer[] = new byte[1024];
+        int len;
+        try {
+            digest = MessageDigest.getInstance("MD5");
+            in = new FileInputStream(file);
+            while ((len = in.read(buffer, 0, 1024)) != -1) {
+                digest.update(buffer, 0, len);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        BigInteger bigInt = new BigInteger(1, digest.digest());
+        return bigInt.toString(16);
     }
 }

@@ -12,6 +12,7 @@ public class ModelBean implements Serializable {
     private int height;
     private String pltUrl;
     private String md5;
+    private String originName;
 
     public int getId() {
         return id;
@@ -83,5 +84,13 @@ public class ModelBean implements Serializable {
 
     public void setMd5(String md5) {
         this.md5 = md5;
+    }
+
+    public String getOriginName() {
+        return originName;
+    }
+
+    public void setOriginName(String originName) {
+        this.originName = originName;
     }
 }
