@@ -35,6 +35,8 @@ public interface ARouterPath {
     //bluetooth
     String PATH_TO_BLUETOOTH_LIST = "/app/activity/bluetooth";
 
+    //
+    String PATH_TO_SPP = "/app/activity/spp";
     //request code
     int REQUEST_DEVICE_DETAIL = 1;
     int REQUEST_DEVICE_DETAIL_MODIFY_PIC = 2;

@@ -1,6 +1,8 @@
 package com.smona.btwriter.model.bean;
 
-public class ModelBean {
+import java.io.Serializable;
+
+public class ModelBean implements Serializable {
     private int id;
     private int brandId;
     private String phoneImage;

@@ -79,6 +79,10 @@ public class BluetoothDataCenter {
         }
     }
 
+    public BluetoothDevice getCurrentBluetoothDevice() {
+        return currentBluetoothDevice;
+    }
+
     /**
      * 注册广播
      */

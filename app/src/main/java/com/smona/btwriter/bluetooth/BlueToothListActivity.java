@@ -13,6 +13,8 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.activity.BaseUiActivity;
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetooth.adapter.BluetoothListAdapter;
+import com.smona.btwriter.bluetooth.transport.ConnectService;
+import com.smona.btwriter.bluetooth.transport.OnConnectListener;
 import com.smona.btwriter.bluetoothspp2.SPPOperationActivity;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.util.ARouterPath;
@@ -66,12 +68,7 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
         xRecyclerView.setLoadingMoreEnabled(false);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new BluetoothListAdapter(R.layout.adapter_bluetooth_item);
-        adapter.setOnClickBluetoothListener(new BluetoothListAdapter.OnClickBluetoothListener() {
-            @Override
-            public void onClickDevice(BluetoothDevice device) {
-                bondBT(device);
-            }
-        });
+        adapter.setOnClickBluetoothListener(this::bondBT);
         xRecyclerView.setAdapter(adapter);
     }
 
@@ -105,8 +102,6 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
     }
 
     private void bondBT(BluetoothDevice device) {
-        ToastUtil.showShort("配对蓝牙开始");
-        //showLoadingDialog();
         // 搜索蓝牙设备的过程占用资源比较多，一旦找到需要连接的设备后需要及时关闭搜索
         // 获取蓝牙设备的连接状态
         int connectState = device.getBondState();
@@ -126,9 +121,26 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
             // 已配对
             case BluetoothDevice.BOND_BONDED:
                 //进入连接界面
-                BluetoothDataCenter.getInstance().setCurrentBluetoothDevice(device);
+                connectBluetooth(device);
                 break;
         }
+    }
 
+    private void connectBluetooth(BluetoothDevice device) {
+        showLoadingDialog();
+        ConnectService.getInstance().setOnServiceListener(new OnConnectListener() {
+            @Override
+            public void onConnect(boolean success) {
+                hideLoadingDialog();
+                if(success) {
+                    BluetoothDataCenter.getInstance().setCurrentBluetoothDevice(device);
+                    ToastUtil.showShort("连接成功！");
+                    finish();
+                } else {
+                    ToastUtil.showShort("连接失败,请重新扫描设备再选择！");
+                }
+            }
+        });
+        ConnectService.getInstance().setBluetoothDevice(device);
     }
 }

@@ -15,6 +15,6 @@ public class ModelAdapter extends XBaseAdapter<ModelBean, ModelHolder> {
     @Override
     protected void convert(ModelHolder holder, ModelBean item, int pos) {
         holder.bindViews(item);
-        holder.itemView.setOnClickListener(v-> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAKE));
+        holder.itemView.setOnClickListener(v-> ARouterManager.getInstance().sgotoActivitySble(ARouterPath.PATH_TO_MAKE, item));
     }
 }

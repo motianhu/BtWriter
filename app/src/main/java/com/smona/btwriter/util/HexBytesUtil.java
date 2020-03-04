@@ -6,7 +6,7 @@ public class HexBytesUtil {
     private final static String mHexStr = "0123456789ABCDEF";//检查16进制字符串是否有效
 
     public static boolean checkHexStr(String sHex) {
-        String sTmp = sHex.toString().trim().replace(" ", "").toUpperCase(Locale.US);
+        String sTmp = sHex.trim().replace(" ", "").toUpperCase(Locale.US);
         int iLen = sTmp.length();
 
         if (iLen > 1 && iLen % 2 == 0) {

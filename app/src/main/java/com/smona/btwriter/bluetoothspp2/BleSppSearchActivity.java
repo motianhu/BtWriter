@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.inuker.bluetooth.library.search.SearchRequest;
 import com.inuker.bluetooth.library.search.SearchResult;
 import com.inuker.bluetooth.library.search.response.SearchResponse;
@@ -26,6 +27,7 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.ble.BleAdapter;
 import com.smona.btwriter.ble.BleDetailActivity;
 import com.smona.btwriter.ble.BleTool;
+import com.smona.btwriter.util.ARouterPath;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ import java.util.Set;
 /***
  * 搜索蓝牙
  */
+@Route(path = ARouterPath.PATH_TO_SPP)
 public class BleSppSearchActivity extends BleBaseActivity {
 
     private ListView mLvBle;

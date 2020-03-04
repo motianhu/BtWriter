@@ -103,7 +103,8 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     private void clickMatch() {
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_BLUETOOTH_LIST);
+        //ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_BLUETOOTH_LIST);
+        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_SPP);
     }
 
     @Override

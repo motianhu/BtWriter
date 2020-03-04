@@ -19,7 +19,9 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
+import com.smona.btwriter.util.ARouterPath;
 
 import java.io.IOException;
 import java.io.InputStream;

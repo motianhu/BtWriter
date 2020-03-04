@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
+import com.smona.btwriter.bluetooth.BluetoothDataCenter;
+import com.smona.btwriter.bluetooth.transport.ParamTransportService;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.ParamInfoAdapter;
 import com.smona.btwriter.main.bean.ParamInfo;
@@ -18,6 +20,7 @@ import com.smona.btwriter.notify.event.ParamChangeEvent;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.btwriter.util.ToastUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -36,6 +39,8 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
     private XRecyclerView xRecyclerView;
     private ParamInfoAdapter adapter;
+
+    private ParamTransportService transportService;
 
     @Override
     protected ParamPresenter initPresenter() {
@@ -129,7 +134,25 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         setParamView.setOnClickListener(v -> clickSetParam());
         content.findViewById(R.id.add).setOnClickListener(v -> clickAdd());
 
+        transportService = ParamTransportService.buildService(success -> {
+            hideDialog();
+            if(success) {
+                transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()), Integer.valueOf(pressValueTv.getText().toString()));
+            } else {
+                ToastUtil.showShort("发送失败!");
+            }
+        });
+
         NotifyCenter.getInstance().registerListener(this);
+    }
+
+    private void hideDialog() {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                hideLoadingDialog();
+            }
+        });
     }
 
     @Override
@@ -149,7 +172,11 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
     }
 
     private void clickSetParam() {
-
+        if(BluetoothDataCenter.getInstance().getCurrentBluetoothDevice() == null) {
+            return;
+        }
+        showLoadingDialog();
+        transportService.connectBluetooth();
     }
 
     private void clickAdd() {
@@ -160,6 +187,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         speedSeekBar.setProgress(item.getSpeed() - CommonUtil.SPEED_START);
         pressSeekBar.setProgress(item.getPressure() - CommonUtil.PRESS_START);
         setParamView.setEnabled(true);
+        clickSetParam();
     }
 
     @Override

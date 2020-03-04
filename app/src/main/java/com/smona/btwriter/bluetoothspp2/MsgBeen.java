@@ -36,6 +36,16 @@ public class MsgBeen {
         this.hexMsg = sb.toString();
     }
 
+    public int getLastByte() {
+        if(msg == null) {
+            return -1;
+        }
+        if(msg.length ==0) {
+            return -1;
+        }
+        return msg[msg.length - 1];
+    }
+
     public String getStrMsg() {
         return strMsg;
     }
