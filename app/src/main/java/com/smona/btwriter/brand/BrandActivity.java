@@ -10,6 +10,7 @@ import com.smona.btwriter.brand.adapter.BrandAdapter;
 import com.smona.btwriter.brand.bean.BrandBean;
 import com.smona.btwriter.brand.presenter.BrandPresenter;
 import com.smona.btwriter.common.CommonItemDecoration;
+import com.smona.btwriter.common.exception.InitExceptionProcess;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
@@ -65,21 +66,32 @@ public class BrandActivity extends BaseLoadingPresenterActivity<BrandPresenter, 
         adapter = new BrandAdapter(R.layout.adapter_item_brand);
         adapter.setMembraneType(membraneType);
         xRecyclerView.setAdapter(adapter);
+
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView);
     }
 
     @Override
     protected void initData() {
         super.initData();
+        requestBrandList();
+    }
+
+    private void requestBrandList() {
         mPresenter.requestBrandList(membraneType);
     }
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        onError(api, errCode, errInfo, this::requestBrandList);
     }
 
     @Override
     public void onBrandList(List<BrandBean> brandBeanList) {
-        adapter.setNewData(brandBeanList);
+        if(CommonUtil.isEmptyList(brandBeanList)) {
+            doEmpty();
+        } else {
+            doSuccess();
+            adapter.setNewData(brandBeanList);
+        }
     }
 }

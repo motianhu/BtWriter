@@ -1,55 +1,39 @@
 package com.smona.btwriter.bluetooth.transport;
 
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
-
 import com.smona.btwriter.bluetoothspp2.MsgBeen;
-import com.smona.btwriter.util.HexBytesUtil;
 import com.smona.btwriter.util.ToastUtil;
+import com.smona.logger.Logger;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BluetoothConnectService {
 
-    private OnServiceListener onServiceListener;
+    private OnReadListener onReadListener;
 
-    private BluetoothSocket bluetoothSocket;
-    private BluetoothDevice bluetoothDevice;
     private InputStream mInStream;
     private OutputStream mOutStream;
 
-    private int mTotalSize;
-    private int mTotalSendSize = 0;//发送字节统计
+    private final Object mLock = new Object();
+    private final AtomicBoolean pauseFlag = new AtomicBoolean(false);
 
-    public void connectBluetooth(BluetoothDevice bluetoothDevice) {
-        this.bluetoothDevice = bluetoothDevice;
-        ConnectionThread connectionThread = new ConnectionThread();
-        connectionThread.start();
+    public static BluetoothConnectService buildService(OnReadListener onReadListener) {
+        return new BluetoothConnectService(onReadListener);
     }
 
-    /**
-     * 开启客户端
-     */
-    private class ConnectionThread extends Thread {
-        public void run() {
-            try {
-                //创建一个Socket连接：只需要服务器在注册时的UUID号
-                bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
-                //连接
-                bluetoothSocket.connect();
-                onServiceListener.onConnect(true);
-                startRead();
-            } catch (IOException e) {
-                ToastUtil.showShort("连接异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
-                e.printStackTrace();
-                onServiceListener.onConnect(false);
-            }
+    private BluetoothConnectService(OnReadListener onReadListener) {
+        this.onReadListener = onReadListener;
+    }
+
+    public void connectBluetooth() {
+        if(ConnectService.getInstance().isConnecting()) {
+            startRead();
+        } else {
+            ToastUtil.showShort("未连接蓝牙,请先连接!");
         }
     }
 
@@ -62,133 +46,127 @@ public class BluetoothConnectService {
      * 读取数据
      */
     private class ReadThread extends Thread {
+
         public void run() {
             byte[] buffer = new byte[1024];
-            int bytes;
+            int bytes = -1;
             try {
-                mInStream = bluetoothSocket.getInputStream();
-                onServiceListener.onReadListener(true);
+                mInStream = ConnectService.getInstance().getBluetoothSocket().getInputStream();
+                onReadListener.onCreateChannel(true);
             } catch (IOException e1) {
                 e1.printStackTrace();
-                onServiceListener.onReadListener(false);
+                onReadListener.onCreateChannel(false);
             }
-            while (bluetoothSocket.isConnected()) {
+            while (ConnectService.getInstance().getBluetoothSocket().isConnected()) {
                 try {
                     if ((bytes = mInStream.read(buffer)) > 0) {
                         byte[] nPacket = new byte[bytes];
                         System.arraycopy(buffer, 0, nPacket, 0, bytes);
                         //取得接收数据
                         MsgBeen msgBeen = new MsgBeen(nPacket, bytes);
+                        processReceiveMsg(msgBeen);
                         Thread.sleep(100);
                     } else {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    ToastUtil.showShort("读取异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
+                    ToastUtil.showShort("读取异常!");
                     try {
-                        if (mInStream != null)
+                        if (mInStream != null) {
                             mInStream.close();
+                        }
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
                     break;
                 } catch (InterruptedException e) {
-                    ToastUtil.showShort("线程异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
+                    ToastUtil.showShort("线程异常!");
                     e.printStackTrace();
                 }
             }
         }
     }
 
-
+    private int count = 0;
     private void processReceiveMsg(MsgBeen msgBeen) {
-
-    }
-
-    /**
-     * 发送数据
-     */
-    public void sendParam(String param) {
-        if (TextUtils.isEmpty(param)) {
-            return;
-        }
-        if (bluetoothSocket == null) {
-            ToastUtil.showShort("设配未连接");
-            return;
-        }
-        try {
-            byte[] data = null;
-            if (HexBytesUtil.checkHexStr(param)) {
-                data = HexBytesUtil.hexStringToBytes(param);
-            } else {
-                ToastUtil.showShort("输入的Hex字符有误");
-                return;
+        int zhiling = msgBeen.getLastByte();
+        Logger.d("motianhu", "processReceiveMsg " + msgBeen.getHexMsg() + ", getLastByte: " + zhiling);
+        if(BluetoothConnectService.INSTRUCTIONS_CONTINUE == zhiling) {
+            synchronized (mLock) {
+                pauseFlag.set(false);
+                mLock.notify();
             }
-            mOutStream = bluetoothSocket.getOutputStream();
-            mOutStream.write(data);
-            mOutStream.flush();
-            mTotalSendSize = mTotalSendSize + data.length;
-        } catch (Exception e) {
-            ToastUtil.showShort("发送失败！");
-            e.printStackTrace();
+        } else if(BluetoothConnectService.INSTRUCTIONS_PAUSE == zhiling) {
+            pauseFlag.set(true);
         }
     }
 
     /**
      * 发送数据
      */
-    public void sendMessage(boolean signal, String msg) {
-        if (TextUtils.isEmpty(msg)) {
+    public void sendFile(String filePath) {
+        File file = new File(filePath);
+        if(!(file.isFile() && file.exists())){
             return;
         }
-        if (bluetoothSocket == null) {
+        if (!ConnectService.getInstance().isConnecting()) {
             ToastUtil.showShort("设配未连接");
             return;
         }
-        try {
-            byte[] data = null;
-            if(signal){
-                if (HexBytesUtil.checkHexStr(msg)) {
-                    data = HexBytesUtil.hexStringToBytes(msg);
-                } else {
-                    ToastUtil.showShort("输入的Hex字符有误");
-                    return;
+        WriteThread writeThread = new WriteThread(filePath);
+        writeThread.start();
+    }
+
+    /**
+     * 读取数据
+     */
+    private class WriteThread extends Thread {
+
+        private String filePath;
+
+        private WriteThread(String filePath) {
+            this.filePath = filePath;
+        }
+
+        public void run() {
+            File file = new File(filePath);
+            byte[] buffer = new byte[200];
+            FileInputStream fis = null;
+            try {
+                int index = -1;
+                fis = new FileInputStream(file);
+                mOutStream = ConnectService.getInstance().getBluetoothSocket().getOutputStream();
+                while ((index = fis.read(buffer)) != -1) {
+                    mOutStream.write(buffer);
+                    mOutStream.flush();
+                    if(pauseFlag.get()) {
+                        Logger.d("motianhu", "write  wait========================== ");
+                        synchronized (mLock) {
+                            mLock.wait();
+                        }
+                    }
+                    Logger.d("motianhu", "write index= " + index);
                 }
-            } else {
-                data = msg.getBytes();
+            } catch (Exception e) {
+                ToastUtil.showShort("发送失败！");
+                e.printStackTrace();
+
+                Logger.d("motianhu", "wrate Exception  " + e);
+            } finally {
+
+                Logger.d("motianhu", "wrate finally  ");
+                if (fis != null) {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            mOutStream = bluetoothSocket.getOutputStream();
-            mOutStream.write(data);
-            mOutStream.flush();
-            mTotalSendSize = mTotalSendSize + data.length;
-        } catch (Exception e) {
-            ToastUtil.showShort("发送失败！");
-            e.printStackTrace();
         }
     }
 
-    /***
-     * 定时发送
-     */
-    private Handler mHandlerTimer = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 0:
-                    mHandlerTimer.sendEmptyMessageDelayed(0, 100);
-                    break;
-            }
-        }
-    };
-
-    public interface OnServiceListener {
-        void onConnect(boolean success);
-        void onReadListener(boolean success);
-        void onReadStatus(boolean success);
-    }
 
     public static final byte INSTRUCTIONS_PAUSE = 0x13;//暂停发送
     public static final byte INSTRUCTIONS_CONTINUE = 0x11;//继续发送。终止靠自己计算累计发送字节总数。
-    public static String INSTRUCTIONS_PARAM = "#F%s;#S%s;";//同时发送压力和速度值
 }

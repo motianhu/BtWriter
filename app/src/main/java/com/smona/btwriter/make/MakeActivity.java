@@ -1,11 +1,14 @@
 package com.smona.btwriter.make;
 
+import android.os.Environment;
 import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
+import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.bluetooth.transport.BluetoothConnectService;
+import com.smona.btwriter.bluetooth.transport.OnReadListener;
 import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.make.presenter.MakePresenter;
@@ -15,7 +18,6 @@ import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
 
 import java.io.File;
-import java.io.FileInputStream;
 
 @Route(path = ARouterPath.PATH_TO_MAKE)
 public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, MakePresenter.IMakeView> implements MakePresenter.IMakeView {
@@ -56,6 +58,13 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
 
     private void initViews() {
         findViewById(R.id.make).setOnClickListener(v->clickMake());
+        bluetoothConnectService = BluetoothConnectService.buildService(new OnReadListener() {
+            @Override
+            public void onCreateChannel(boolean success) {
+
+            }
+        });
+        bluetoothConnectService.connectBluetooth();
     }
 
     private void clickMake() {
@@ -95,5 +104,7 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
 
     private void transportToBluetooth() {
         hideLoadingDialog();
+        String filePath = this.getExternalCacheDir() + File.separator + CommonUtil.CURRENT_USE_PLT;
+        bluetoothConnectService.sendFile(filePath);
     }
 }
