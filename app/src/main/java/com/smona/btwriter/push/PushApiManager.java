@@ -33,9 +33,10 @@ public class PushApiManager {
         set.add(tagBean);
 
         TagAliasBean tagAliasBean = new TagAliasBean();
-        tagAliasBean.action = TagAliasOperatorHelper.ACTION_ADD;
+        tagAliasBean.action = TagAliasOperatorHelper.ACTION_SET;
         TagAliasOperatorHelper.sequence++;
         tagAliasBean.tags = set;
+        tagAliasBean.alias = tagBean;
         tagAliasBean.isAliasAction = true;
         TagAliasOperatorHelper.getInstance().handleAction(appContext.getApplicationContext(),TagAliasOperatorHelper.sequence,tagAliasBean);
     }
@@ -48,6 +49,7 @@ public class PushApiManager {
         tagAliasBean.action = TagAliasOperatorHelper.ACTION_DELETE;
         TagAliasOperatorHelper.sequence++;
         tagAliasBean.tags = set;
+        tagAliasBean.alias = tagBean;
         tagAliasBean.isAliasAction = true;
         TagAliasOperatorHelper.getInstance().handleAction(appContext.getApplicationContext(),TagAliasOperatorHelper.sequence,tagAliasBean);
     }
