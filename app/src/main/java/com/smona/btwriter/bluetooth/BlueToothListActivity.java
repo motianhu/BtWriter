@@ -96,7 +96,6 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
 
     @Override
     public void onStatusChange(int status) {
-        ToastUtil.showShort("status: " + status);
         Logger.d("motianhu", "onStatusChange : " + status);
         adapter.notifyDataSetChanged();
     }
