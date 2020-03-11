@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.data.AccountDataCenter;
 import com.smona.btwriter.data.AccountInfo;
+import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.btwriter.language.BaseLanguageActivity;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
@@ -28,6 +29,7 @@ public class SplashActivity extends BaseLanguageActivity {
 
     private void gotoMain() {
         mHandler.postDelayed(() -> {
+            LanuageDataCenter.getInstance().loadLanuage();
             //读取持久化登录信息
             String loginInfo = (String) SPUtils.get(SPUtils.LOGIN_INFO, "");
             String path = ARouterPath.PATH_TO_LOGIN;

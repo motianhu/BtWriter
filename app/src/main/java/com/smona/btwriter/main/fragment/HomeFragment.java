@@ -15,6 +15,7 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.MembraneTypeAdapter;
+import com.smona.btwriter.main.bean.AdBean;
 import com.smona.btwriter.main.bean.MembraneBean;
 import com.smona.btwriter.main.bean.MembraneType;
 import com.smona.btwriter.main.bean.RespHomeBean;
@@ -48,7 +49,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     private XRecyclerView xRecyclerView;
     private MembraneTypeAdapter adapter;
 
-    private List<String> bannerImageList = new ArrayList<>();
+    private List<AdBean> bannerImageList = new ArrayList<>();
 
     @Override
     protected HomePresenter initPresenter() {
@@ -85,12 +86,12 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         bannerView.setDelayTime(3000).isAutoPlay(true).setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-
+                ARouterManager.getInstance().gotoActivityWithString(ARouterPath.PATH_TO_WEBVIEW, ARouterPath.PATH_TO_WEBVIEW, bannerImageList.get(position).getAdUrl());
             }
         }).setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
-                ImageLoaderDelegate.getInstance().showCornerImage((String)path, imageView, getResources().getDimensionPixelOffset(R.dimen.dimen_10dp), 0);
+                ImageLoaderDelegate.getInstance().showCornerImage(((AdBean)path).getAdImageUrl(), imageView, getResources().getDimensionPixelOffset(R.dimen.dimen_10dp), 0);
             }
         }).setIndicatorGravity(BannerConfig.CENTER);
 
@@ -159,7 +160,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     private void clickScan() {
         Intent intent = new Intent();
         intent.setClass(mActivity, ScanActivity.class);
-        mActivity.startActivityForResult(intent, 1000);
+        startActivityForResult(intent, 1000);
         //ARouterManager.getInstance().gotoActivityForResult(ARouterPath.PATH_TO_SCAN, mActivity, 1000);
     }
 

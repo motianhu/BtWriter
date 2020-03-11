@@ -63,6 +63,20 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
             public void onCreateChannel(boolean success) {
 
             }
+
+            @Override
+            public void executeFinish(boolean success) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String msg = "传输失败,请重新传输！";
+                        if(success) {
+                            msg = "传输成功";
+                        }
+                        ToastUtil.showShort(msg);
+                    }
+                });
+            }
         });
         bluetoothConnectService.connectBluetooth();
     }

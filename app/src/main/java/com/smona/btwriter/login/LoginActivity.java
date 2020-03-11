@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
+import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.login.presenter.LoginPresenter;
 import com.smona.btwriter.util.ARouterManager;
@@ -75,9 +76,11 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
 
         popContentView.findViewById(R.id.chinese).setOnClickListener(v -> {
             popupWindow.dismiss();
+            LanuageDataCenter.getInstance().saveLanuage(LanuageDataCenter.ZH_CN);
         });
         popContentView.findViewById(R.id.english).setOnClickListener(v -> {
             popupWindow.dismiss();
+            LanuageDataCenter.getInstance().saveLanuage(LanuageDataCenter.EN_US);
         });
     }
 

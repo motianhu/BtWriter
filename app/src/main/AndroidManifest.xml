@@ -104,6 +104,9 @@
         <activity
             android:name=".bluetooth.BlueToothListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".webview.WebViewActivity"
+            android:screenOrientation="portrait" />
 
 
         <!-- Since JCore2.0.0 Required SDK核心功能-->

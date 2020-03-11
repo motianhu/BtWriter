@@ -13,6 +13,7 @@ public class SPUtils {
     public static final String SP_FILE_NAME = "cutting";
 
     public static final String LOGIN_INFO = "login_info";
+    public static final String CONFIG_INFO = "config_info";
 
     /**
      * 保存数据

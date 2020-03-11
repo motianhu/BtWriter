@@ -3,16 +3,16 @@ package com.smona.btwriter.main.bean;
 import java.util.List;
 
 public class RespHomeBean {
-    private List<String> adList;
+    private List<AdBean> adList;
     private int accountType; //用户设备类型 1设备不限切割次数  2设备有限切割次数
     private int useAmount;
     private int unUseAmount;
 
-    public List<String> getAdList() {
+    public List<AdBean> getAdList() {
         return adList;
     }
 
-    public void setAdList(List<String> adList) {
+    public void setAdList(List<AdBean> adList) {
         this.adList = adList;
     }
 

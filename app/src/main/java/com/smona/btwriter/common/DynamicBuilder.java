@@ -1,6 +1,7 @@
 package com.smona.btwriter.common;
 
 import com.smona.btwriter.data.AccountDataCenter;
+import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.http.business.BtBuilder;
 
 /**
@@ -14,5 +15,6 @@ public class DynamicBuilder<R> extends BtBuilder<R> {
     public DynamicBuilder(int type, String path) {
         super(type, path);
         addHeader("token", AccountDataCenter.getInstance().getAccountInfo().getToken());
+        addHeader("language", LanuageDataCenter.getInstance().getLanuage());
     }
 }

@@ -87,7 +87,6 @@ public class BluetoothConnectService {
         }
     }
 
-    private int count = 0;
     private void processReceiveMsg(MsgBeen msgBeen) {
         int zhiling = msgBeen.getLastByte();
         Logger.d("motianhu", "processReceiveMsg " + msgBeen.getHexMsg() + ", getLastByte: " + zhiling);
@@ -147,10 +146,11 @@ public class BluetoothConnectService {
                     }
                     Logger.d("motianhu", "write index= " + index);
                 }
+                onReadListener.executeFinish(true);
             } catch (Exception e) {
                 ToastUtil.showShort("发送失败！");
                 e.printStackTrace();
-
+                onReadListener.executeFinish(false);
                 Logger.d("motianhu", "wrate Exception  " + e);
             } finally {
 

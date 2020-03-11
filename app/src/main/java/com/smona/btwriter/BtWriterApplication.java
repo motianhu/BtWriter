@@ -7,6 +7,7 @@ import android.content.Context;
 import com.smona.base.http.HttpManager;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.common.exception.AppContext;
+import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.btwriter.push.PushApiManager;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
@@ -38,6 +39,8 @@ public class BtWriterApplication extends Application {
         BluetoothDataCenter.getInstance().initBlueDataCenter(this);
         //初始化Push
         PushApiManager.getInstance().init(this);
+        //初始化语言
+        LanuageDataCenter.getInstance().loadLanuage();
     }
 
     private void processLogout() {

@@ -10,6 +10,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
+import com.smona.btwriter.bluetooth.transport.OnReadListener;
 import com.smona.btwriter.bluetooth.transport.ParamTransportService;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.main.adapter.ParamInfoAdapter;
@@ -134,12 +135,20 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         setParamView.setOnClickListener(v -> clickSetParam());
         content.findViewById(R.id.add).setOnClickListener(v -> clickAdd());
 
-        transportService = ParamTransportService.buildService(success -> {
-            hideDialog();
-            if(success) {
-                transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()), Integer.valueOf(pressValueTv.getText().toString()));
-            } else {
-                ToastUtil.showShort("发送失败!");
+        transportService = ParamTransportService.buildService(new OnReadListener() {
+            @Override
+            public void onCreateChannel(boolean success) {
+                hideDialog();
+                if(success) {
+                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()), Integer.valueOf(pressValueTv.getText().toString()));
+                } else {
+                    ToastUtil.showShort("发送失败!");
+                }
+            }
+
+            @Override
+            public void executeFinish(boolean success) {
+
             }
         });
 
