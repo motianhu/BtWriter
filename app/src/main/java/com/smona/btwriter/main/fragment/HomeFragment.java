@@ -161,7 +161,6 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         Intent intent = new Intent();
         intent.setClass(mActivity, ScanActivity.class);
         startActivityForResult(intent, 1000);
-        //ARouterManager.getInstance().gotoActivityForResult(ARouterPath.PATH_TO_SCAN, mActivity, 1000);
     }
 
     @Override

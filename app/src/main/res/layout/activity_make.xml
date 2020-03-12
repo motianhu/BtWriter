@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/color_F5F4F9"
-    android:orientation="vertical"
-    android:layout_height="match_parent" >
+    android:orientation="vertical">
 
     <include
         android:id="@+id/navigation"
@@ -10,35 +10,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/dimen_30dp"
-        android:layout_marginEnd="@dimen/dimen_30dp"
-        android:layout_marginTop="@dimen/dimen_30dp"
-        android:background="@drawable/bg_corner_10"
-        android:layout_height="@dimen/dimen_450dp">
-
-        <ImageView
-            android:id="@+id/phone_icon"
-            android:layout_centerInParent="true"
-            android:layout_width="185dp"
-            android:src="@drawable/phone_sample"
-            android:layout_height="384dp"/>
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/make"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/start_make"
-        android:layout_marginTop="@dimen/dimen_32dp"
-        android:layout_marginStart="@dimen/dimen_52dp"
-        android:layout_marginEnd="@dimen/dimen_52dp"
-        android:padding="@dimen/dimen_14dp"
-        android:gravity="center"
-        android:textSize="@dimen/font_17"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_corner_maincolor"
-        />
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_450dp"
+                android:layout_marginStart="@dimen/dimen_30dp"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_marginEnd="@dimen/dimen_30dp"
+                android:background="@drawable/bg_corner_10">
+
+                <ImageView
+                    android:id="@+id/phone_icon"
+                    android:layout_width="185dp"
+                    android:layout_height="384dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/phone_sample" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/make"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_52dp"
+                android:layout_marginTop="@dimen/dimen_32dp"
+                android:layout_marginEnd="@dimen/dimen_52dp"
+                android:background="@drawable/bg_select_btn"
+                android:gravity="center"
+                android:padding="@dimen/dimen_14dp"
+                android:text="@string/start_make"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_17" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

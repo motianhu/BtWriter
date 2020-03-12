@@ -2,8 +2,6 @@ package com.smona.btwriter.goods;
 
 import android.graphics.Paint;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +17,6 @@ import com.smona.btwriter.goods.presenter.SelectGoodsPresenter;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.PopupAnim;
 import com.smona.btwriter.util.ToastUtil;
-import com.smona.btwriter.widget.WrapperColorLinearLayout;
 import com.smona.image.loader.ImageLoaderDelegate;
 
 public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresenter, SelectGoodsPresenter.ISelectGoodsView> implements SelectGoodsPresenter.ISelectGoodsView {
@@ -108,6 +105,7 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
     public void onAddGoods() {
         hideLoadingDialog();
         closeFragment();
+        CommonUtil.showCustomToast(getString(R.string.add_shoppingcard_success));
     }
 
     @Override

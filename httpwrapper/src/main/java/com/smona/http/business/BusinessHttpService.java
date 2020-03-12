@@ -39,4 +39,8 @@ public interface BusinessHttpService {
     //message
     String MESSAGE_LIST = "/api/message/queryMsgList";
     String MESSAGE_DELETE = "/api/message/deleteMsg";
+
+    //make
+    String MAKE_SUCCESS = "/api/account/successNotify";
+    String MAKE_CHECK = "/api/account/checkUserCutTimes";
 }

@@ -143,6 +143,7 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
     @Override
     public void onSubmit() {
         hideLoadingDialog();
+        CommonUtil.showCustomToast(getString(R.string.shopping_submit_success));
         finish();
     }
 

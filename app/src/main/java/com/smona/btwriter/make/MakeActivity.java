@@ -1,18 +1,19 @@
 package com.smona.btwriter.make;
 
-import android.os.Environment;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
-import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.bluetooth.transport.BluetoothConnectService;
 import com.smona.btwriter.bluetooth.transport.OnReadListener;
 import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.make.presenter.MakePresenter;
 import com.smona.btwriter.model.bean.ModelBean;
+import com.smona.btwriter.notify.NotifyCenter;
+import com.smona.btwriter.notify.event.CountChangeEvent;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
@@ -24,6 +25,7 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
 
     private ModelBean modelBean;
     private BluetoothConnectService bluetoothConnectService;
+    private View makeView;
 
     @Override
     protected MakePresenter initPresenter() {
@@ -45,7 +47,7 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
 
     private void initSerialized() {
         modelBean = (ModelBean) getIntent().getSerializableExtra(ARouterPath.PATH_TO_MAKE);
-        if(modelBean == null) {
+        if (modelBean == null) {
             finish();
         }
     }
@@ -57,68 +59,91 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
     }
 
     private void initViews() {
-        findViewById(R.id.make).setOnClickListener(v->clickMake());
+        makeView = findViewById(R.id.make);
+        makeView.setEnabled(false);
+        makeView.setOnClickListener(v -> clickMake());
         bluetoothConnectService = BluetoothConnectService.buildService(new OnReadListener() {
             @Override
             public void onCreateChannel(boolean success) {
-
+                makeView.setEnabled(success && makeView.isEnabled());
             }
 
             @Override
             public void executeFinish(boolean success) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String msg = "传输失败,请重新传输！";
-                        if(success) {
-                            msg = "传输成功";
-                        }
-                        ToastUtil.showShort(msg);
-                    }
-                });
+                runOnUiThread(() -> deviceMake(success));
             }
         });
         bluetoothConnectService.connectBluetooth();
     }
 
+    @Override
+    protected void initData() {
+        super.initData();
+        mPresenter.requestCheckMake();
+    }
+
     private void clickMake() {
-        if(modelBean == null) {
+        if (modelBean == null) {
             return;
         }
-        if(TextUtils.isEmpty(modelBean.getMd5())) {
+        if (TextUtils.isEmpty(modelBean.getMd5())) {
             return;
         }
-        if(TextUtils.isEmpty(modelBean.getPltUrl())) {
+        if (TextUtils.isEmpty(modelBean.getPltUrl())) {
             return;
         }
-        if(TextUtils.isEmpty(modelBean.getOriginName())) {
+        if (TextUtils.isEmpty(modelBean.getOriginName())) {
             return;
         }
+
         showLoadingDialog();
-        String filePath = AppContext.getAppContext().getExternalCacheDir() + File.separator+ CommonUtil.CURRENT_USE_PLT;
+        String filePath = AppContext.getAppContext().getExternalCacheDir() + File.separator + CommonUtil.CURRENT_USE_PLT;
         String fileMd5 = CommonUtil.getFileMD5(new File(filePath));
-        if(modelBean.getMd5().equalsIgnoreCase(fileMd5)) {
+        if (modelBean.getMd5().equalsIgnoreCase(fileMd5)) {
             transportToBluetooth();
             return;
         }
         mPresenter.downloadPlt(modelBean.getOriginName(), modelBean.getPltUrl(), modelBean.getMd5());
     }
 
+    private void deviceMake(boolean success) {
+        int msgResId = R.string.plt_transport_failed;
+        if (success) {
+            msgResId = R.string.plt_transport_success;
+            if (mPresenter != null) {
+                mPresenter.requestMakeSuccess();
+            }
+        }
+        ToastUtil.showShort(msgResId);
+    }
+
     @Override
-    public void onSuccess() {
-        ToastUtil.showShort("onSuccess");
+    public void onDownload() {
         transportToBluetooth();
     }
 
     @Override
-    public void onFailed() {
-        hideLoadingDialog();
-        ToastUtil.showShort("onFailed");
+    public void onMakeSuccess() {
+        NotifyCenter.getInstance().postEvent(new CountChangeEvent());
+        mPresenter.requestCheckMake();
+    }
+
+    @Override
+    public void onCheck(boolean avaliable) {
+        makeView.setEnabled(avaliable);
     }
 
     private void transportToBluetooth() {
         hideLoadingDialog();
         String filePath = this.getExternalCacheDir() + File.separator + CommonUtil.CURRENT_USE_PLT;
         bluetoothConnectService.sendFile(filePath);
+    }
+
+    @Override
+    public void onError(String api, String errCode, String errInfo) {
+        hideLoadingDialog();
+        if ("downloadPlt".equals(api)) {
+            ToastUtil.showShort(R.string.plt_download_failed);
+        }
     }
 }

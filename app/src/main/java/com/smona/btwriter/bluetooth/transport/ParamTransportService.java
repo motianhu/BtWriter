@@ -1,5 +1,6 @@
 package com.smona.btwriter.bluetooth.transport;
 
+import com.smona.btwriter.R;
 import com.smona.btwriter.bluetoothspp2.MsgBeen;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
@@ -30,7 +31,8 @@ public class ParamTransportService {
         if(ConnectService.getInstance().isConnecting()) {
             startRead();
         } else {
-           ToastUtil.showShort("未连接蓝牙,请先连接!");
+            onReadListener.onCreateChannel(false);
+           ToastUtil.showShort(R.string.blue_not_connection);
         }
     }
 
@@ -67,7 +69,7 @@ public class ParamTransportService {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    ToastUtil.showShort("读取异常!");
+                    ToastUtil.showShort(R.string.read_exception);
                     try {
                         if (mInStream != null) {
                             mInStream.close();
@@ -77,7 +79,7 @@ public class ParamTransportService {
                     }
                     break;
                 } catch (InterruptedException e) {
-                    ToastUtil.showShort("线程异常!");
+                    ToastUtil.showShort(R.string.thread_exception);
                     e.printStackTrace();
                 }
             }
@@ -88,7 +90,7 @@ public class ParamTransportService {
     private void processReceiveMsg(MsgBeen msgBeen) {
         Logger.d("motianhu", "processReceiveMsg: " + msgBeen.getStrMsg() + "," + msgBeen.getHexMsg() + ", getLastByte: " + msgBeen.getLastByte());
         if(BluetoothConnectService.INSTRUCTIONS_CONTINUE == msgBeen.getLastByte()) {
-            ToastUtil.showShort("发送结束！");
+            ToastUtil.showShort(R.string.send_finish);
         }
     }
 
@@ -105,7 +107,7 @@ public class ParamTransportService {
         String param = String.format(INSTRUCTIONS_PARAM, speed, press);
         Logger.d("motianhu", "sendParam: " + param);
         if (!ConnectService.getInstance().isConnecting()) {
-            ToastUtil.showShort("设配未连接");
+            ToastUtil.showShort(R.string.device_not_connect);
             return;
         }
         try {
@@ -114,7 +116,7 @@ public class ParamTransportService {
             mOutStream.write(data);
             mOutStream.flush();
         } catch (Exception e) {
-            ToastUtil.showShort("发送失败！");
+            ToastUtil.showShort(R.string.send_failed);
             e.printStackTrace();
         }
     }

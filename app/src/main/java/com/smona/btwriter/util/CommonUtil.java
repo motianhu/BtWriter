@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.InputFilter;
+import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smona.base.ui.activity.BaseActivity;
+import com.smona.btwriter.R;
 import com.smona.btwriter.common.ActionModeCallbackInterceptor;
+import com.smona.btwriter.common.exception.AppContext;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -149,5 +154,16 @@ public class CommonUtil {
         }
         BigInteger bigInt = new BigInteger(1, digest.digest());
         return bigInt.toString(16);
+    }
+
+    public static void showCustomToast(String content) {
+        View layout = View.inflate(AppContext.getAppContext(), R.layout.custom_toast, null);
+        TextView textView = layout.findViewById(R.id.tv_content);
+        textView.setText(content);
+        Toast toast=new Toast(AppContext.getAppContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setView(layout);
+        toast.show();
     }
 }

@@ -187,4 +187,16 @@
     <string name="bluetooth_not_bond">未绑定</string>
     <string name="bluetooth_bonding">绑定中</string>
     <string name="bluetooth_useing">正在使用</string>
+
+    <string name="shopping_submit_success">提交成功</string>
+    <string name="device_not_connect">设配未连接</string>
+    <string name="thread_exception">线程异常!</string>
+    <string name="read_exception">读取异常!</string>
+    <string name="blue_not_connection">未连接蓝牙,请先连接!</string>
+    <string name="send_finish">发送结束！</string>
+    <string name="send_failed">发送失败！</string>
+    <string name="plt_download_failed">文件下載失敗</string>
+    <string name="plt_transport_failed">传输失败,请重新传输！</string>
+    <string name="plt_transport_success">传输成功</string>
+    <string name="add_shoppingcard_success">已加入购物车</string>
 </resources>
