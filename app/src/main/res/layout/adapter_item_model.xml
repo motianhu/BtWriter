@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_corner_10"
+    android:background="@drawable/bg_corner_5"
     android:paddingStart="@dimen/dimen_36dp"
     android:paddingTop="@dimen/dimen_28dp"
     android:paddingEnd="@dimen/dimen_36dp"

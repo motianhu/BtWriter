@@ -38,7 +38,7 @@
         android:id="@+id/func"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dimen_14dp"
-        android:background="@drawable/bg_corner_10"
+        android:background="@drawable/bg_corner_5"
         android:paddingStart="@dimen/dimen_26dp"
         android:paddingEnd="@dimen/dimen_26dp"
         android:paddingTop="@dimen/dimen_20dp"

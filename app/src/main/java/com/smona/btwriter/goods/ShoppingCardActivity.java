@@ -19,6 +19,7 @@ import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.widget.CommonOkDialog;
 
 @Route(path = ARouterPath.PATH_TO_SHOPPINGCARD)
 public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingCardPresenter, ShoppingCardPresenter.IShoppingCardView> implements ShoppingCardPresenter.IShoppingCardView {
@@ -72,8 +73,7 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
             }
             @Override
             public void onDelelte(int id) {
-                showLoadingDialog();
-                mPresenter.requestDelete(id);
+                clickDelete(id);
             }
         });
         xRecyclerView.setAdapter(adapter);
@@ -86,6 +86,22 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
         remarkTv = findViewById(R.id.remark);
 
         findViewById(R.id.submit).setOnClickListener(v-> clickSubmit());
+    }
+
+    private void clickDelete(int id) {
+        CommonOkDialog commonOkDialog = new CommonOkDialog(this);
+        commonOkDialog.setTitle(getString(R.string.action_hint));
+        commonOkDialog.setContent(getString(R.string.action_delete_content));
+        commonOkDialog.setPositiveButton(getString(R.string.action_ok));
+        commonOkDialog.setCancel(getString(R.string.action_cancel));
+        commonOkDialog.setCommitListener((dialog, confirm) -> {
+            dialog.dismiss();
+            if(confirm) {
+                showLoadingDialog();
+                mPresenter.requestDelete(id);
+            }
+        });
+        commonOkDialog.show();
     }
 
     private void clickSubmit() {

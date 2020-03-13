@@ -42,6 +42,9 @@
     <string name="english">英文</string>
 
     <string name="action_ok">确定</string>
+    <string name="action_hint">提示</string>
+    <string name="action_delete_content">确定删除？</string>
+    <string name="action_cancel">取消</string>
 
     <string name="register">用戶注册</string>
     <string name="register_account">注册账号</string>
@@ -199,4 +202,5 @@
     <string name="plt_transport_failed">传输失败,请重新传输！</string>
     <string name="plt_transport_success">传输成功</string>
     <string name="add_shoppingcard_success">已加入购物车</string>
+    <string name="email_send_success">邮件发送成功</string>
 </resources>

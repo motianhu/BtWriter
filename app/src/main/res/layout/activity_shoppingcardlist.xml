@@ -16,7 +16,7 @@
         android:layout_below="@id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_corner_10"
+        android:background="@drawable/bg_corner_5"
         android:paddingTop="@dimen/dimen_15dp">
 
         <TextView

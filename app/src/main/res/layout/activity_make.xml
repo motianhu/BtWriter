@@ -27,7 +27,7 @@
                 android:layout_marginStart="@dimen/dimen_30dp"
                 android:layout_marginTop="@dimen/dimen_30dp"
                 android:layout_marginEnd="@dimen/dimen_30dp"
-                android:background="@drawable/bg_corner_10">
+                android:background="@drawable/bg_corner_5">
 
                 <ImageView
                     android:id="@+id/phone_icon"

@@ -1,5 +1,6 @@
 package com.smona.btwriter.main.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.widget.CommonOkDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -120,8 +122,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
 
             @Override
             public void onDelete(ParamInfo item) {
-                showLoadingDialog();
-                mPresenter.requestDelParam(item.getId());
+                clickDelete(item);
             }
 
             @Override
@@ -153,6 +154,22 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         });
 
         NotifyCenter.getInstance().registerListener(this);
+    }
+
+    private void clickDelete(ParamInfo item) {
+        CommonOkDialog commonOkDialog = new CommonOkDialog(getContext());
+        commonOkDialog.setTitle(getString(R.string.action_hint));
+        commonOkDialog.setContent(getString(R.string.action_delete_content));
+        commonOkDialog.setPositiveButton(getString(R.string.action_ok));
+        commonOkDialog.setCancel(getString(R.string.action_cancel));
+        commonOkDialog.setCommitListener((dialog, confirm) -> {
+            dialog.dismiss();
+            if(confirm) {
+                showLoadingDialog();
+                mPresenter.requestDelParam(item.getId());
+            }
+        });
+        commonOkDialog.show();
     }
 
     private void hideDialog() {

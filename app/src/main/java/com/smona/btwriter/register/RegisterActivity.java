@@ -131,6 +131,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     @Override
     public void onEmailCode() {
         hideLoadingDialog();
+        ToastUtil.showShort(R.string.email_send_success);
     }
 
     @Override

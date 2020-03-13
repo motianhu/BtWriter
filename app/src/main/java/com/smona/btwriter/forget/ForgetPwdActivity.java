@@ -117,6 +117,7 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     @Override
     public void onEmailCode() {
         hideLoadingDialog();
+        ToastUtil.showShort(R.string.email_send_success);
     }
 
     @Override

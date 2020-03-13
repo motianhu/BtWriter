@@ -8,7 +8,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.CommonItemDecoration;
-import com.smona.btwriter.common.exception.InitExceptionProcess;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.message.adapter.MessageAdapter;
 import com.smona.btwriter.message.bean.MessageBean;
@@ -16,6 +15,7 @@ import com.smona.btwriter.message.presenter.MessageListPreseter;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.widget.CommonOkDialog;
 
 import java.util.List;
 
@@ -51,9 +51,8 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
         TextView titleTv = findViewById(R.id.title);
         titleTv.setText(R.string.message_list);
         rightTv = findViewById(R.id.rightTv);
-        rightTv.setVisibility(View.VISIBLE);
         rightTv.setText(R.string.edit);
-        rightTv.setOnClickListener(v->clickEdit());
+        rightTv.setOnClickListener(v -> clickEdit());
     }
 
     private void initViews() {
@@ -67,25 +66,41 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
         xRecyclerView.setAdapter(adapter);
 
         delRl = findViewById(R.id.del_rl);
-        findViewById(R.id.delete).setOnClickListener(v->clickDelete());
+        delRl.setVisibility(View.GONE);
+        findViewById(R.id.delete).setOnClickListener(v -> clickDelete());
 
-        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, delRl);
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView);
     }
 
     private void clickEdit() {
         adapter.editMessage();
-        rightTv.setText(adapter.isEditStatus()? R.string.finish:R.string.edit);
-        delRl.setVisibility(adapter.isEditStatus()?View.VISIBLE:View.GONE);
+        rightTv.setText(adapter.isEditStatus() ? R.string.finish : R.string.edit);
+        delRl.setVisibility(adapter.isEditStatus() ? View.VISIBLE : View.GONE);
     }
 
     private void clickDelete() {
         List<Integer> ids = adapter.getSelectedMessage();
-        if(CommonUtil.isEmptyList(ids)) {
+        if (CommonUtil.isEmptyList(ids)) {
             ToastUtil.showShort(R.string.empty_select_message);
             return;
         }
-        showLoadingDialog();
-        mPresenter.requestDelMessage(ids);
+        clickDelete(ids);
+    }
+
+    private void clickDelete(List<Integer> ids) {
+        CommonOkDialog commonOkDialog = new CommonOkDialog(this);
+        commonOkDialog.setTitle(getString(R.string.action_hint));
+        commonOkDialog.setContent(getString(R.string.action_delete_content));
+        commonOkDialog.setPositiveButton(getString(R.string.action_ok));
+        commonOkDialog.setCancel(getString(R.string.action_cancel));
+        commonOkDialog.setCommitListener((dialog, confirm) -> {
+            dialog.dismiss();
+            if (confirm) {
+                showLoadingDialog();
+                mPresenter.requestDelMessage(ids);
+            }
+        });
+        commonOkDialog.show();
     }
 
     @Override
@@ -106,10 +121,11 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
 
     @Override
     public void onMessageList(List<MessageBean> list) {
-        if(CommonUtil.isEmptyList(list)) {
+        if (CommonUtil.isEmptyList(list)) {
             doEmpty(getString(R.string.empty_message), R.drawable.empty_message);
         } else {
             doSuccess();
+            rightTv.setVisibility(View.VISIBLE);
             adapter.setNewData(list);
         }
     }
@@ -118,5 +134,10 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
     public void onMessageDelete() {
         hideLoadingDialog();
         adapter.deleteMessage();
+        if(adapter.getItemCount() == 0) {
+            doEmpty(getString(R.string.empty_message), R.drawable.empty_message);
+            delRl.setVisibility(View.GONE);
+            rightTv.setVisibility(View.GONE);
+        }
     }
 }
