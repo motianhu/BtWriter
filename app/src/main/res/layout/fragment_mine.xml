@@ -134,6 +134,20 @@
                 <include layout="@layout/common_divider" />
 
                 <TextView
+                    android:id="@+id/orderlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_48dp"
+                    android:drawableEnd="@drawable/more"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dimen_10dp"
+                    android:paddingEnd="@dimen/dimen_10dp"
+                    android:text="@string/order_list"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_13" />
+
+                <include layout="@layout/common_divider" />
+
+                <TextView
                     android:id="@+id/purchase"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_48dp"

@@ -107,6 +107,12 @@
         <activity
             android:name=".webview.WebViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".order.OrderListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".order.OrderDetailActivity"
+            android:screenOrientation="portrait" />
 
 
         <!-- Since JCore2.0.0 Required SDK核心功能-->

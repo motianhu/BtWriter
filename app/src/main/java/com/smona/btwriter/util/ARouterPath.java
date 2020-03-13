@@ -35,6 +35,9 @@ public interface ARouterPath {
     //bluetooth
     String PATH_TO_BLUETOOTH_LIST = "/app/activity/bluetooth";
 
+    String PATH_TO_ORDERLIST = "/app/activity/orderList";
+    String PATH_TO_ORDERDETAIL = "/app/activity/orderDetail";
+    //
     String PATH_TO_WEBVIEW = "/app/activity/webview";
     //
     String PATH_TO_SPP = "/app/activity/spp";

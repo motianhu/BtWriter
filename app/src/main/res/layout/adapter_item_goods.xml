@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_corner_5"
+    android:padding="@dimen/dimen_16dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="102dp"
+        android:layout_height="102dp"
+        android:layout_marginEnd="@dimen/dimen_20dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_toEndOf="@+id/icon"
+        android:textColor="@color/color_A4A9AF"
+        android:textSize="@dimen/font_15" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_toEndOf="@+id/icon"
+        android:textColor="@color/color_A4A9AF"
+        android:textSize="@dimen/font_12" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:layout_toEndOf="@+id/icon"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_12" />
+
+</RelativeLayout>

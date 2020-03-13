@@ -123,6 +123,8 @@
     <string name="finish">完成</string>
 
     <string name="goods_list">采购需求</string>
+    <string name="order_list">采购记录</string>
+    <string name="order_detail">采购详情</string>
     <string name="goods_detail">商品详情</string>
     <string name="shoppingcard_list">购买清单</string>
     <string name="changepwd">修改密码</string>
@@ -203,4 +205,10 @@
     <string name="plt_transport_success">传输成功</string>
     <string name="add_shoppingcard_success">已加入购物车</string>
     <string name="email_send_success">邮件发送成功</string>
+
+    <string name="order_no">购物编号: </string>
+    <string name="order_time">采购时间</string>
+    <string name="order_status_wait">待确认</string>
+    <string name="order_status_ok">已确认</string>
+    <string name="order_status_refuse">已拒绝</string>
 </resources>
