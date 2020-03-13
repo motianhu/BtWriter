@@ -116,6 +116,10 @@ public class CommonUtil {
         ToastUtil.showShort(msg);
     }
 
+    public static void showLongToastByFilter(String stateCode, String msg) {
+        ToastUtil.showLong(msg);
+    }
+
     public static boolean isEmptyList(List list) {
         return list == null || list.isEmpty();
     }

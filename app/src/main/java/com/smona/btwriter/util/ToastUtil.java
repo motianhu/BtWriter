@@ -44,6 +44,17 @@ public class ToastUtil {
         show(resId, Toast.LENGTH_SHORT);
     }
 
+
+    ///
+    public static void showLong(@StringRes final int resId) {
+        show(resId, Toast.LENGTH_LONG);
+    }
+
+    public static void showLong(@NonNull final CharSequence text) {
+        show(text, Toast.LENGTH_LONG);
+    }
+
+
     /**
      * 安全地显示短时吐司
      *

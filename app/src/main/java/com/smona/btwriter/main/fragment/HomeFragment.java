@@ -179,7 +179,11 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     @Override
     public void onError(String api, String errCode, String errInfo) {
         hideLoadingDialog();
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        if("requestScan".equalsIgnoreCase(api)) {
+            CommonUtil.showLongToastByFilter(errCode, errInfo);
+        } else {
+            CommonUtil.showToastByFilter(errCode, errInfo);
+        }
     }
 
     @Override
