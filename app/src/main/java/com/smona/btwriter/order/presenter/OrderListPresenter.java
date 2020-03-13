@@ -21,10 +21,10 @@ public class OrderListPresenter extends BasePresenter<OrderListPresenter.IOrderL
         ReqPage reqPage = new ReqPage();
         reqPage.setCurrPage(lastPage);
         reqPage.setLimit(CommonUtil.SIZE);
-        orderModel.requestOrderList(null, new OnResultListener<BaseResponse<RespOrderList>>() {
+        orderModel.requestOrderList(reqPage, new OnResultListener<BaseResponse<RespOrderList>>() {
             @Override
             public void onSuccess(BaseResponse<RespOrderList> response) {
-                if(mView!= null) {
+                if (mView != null) {
                     if (lastPage == CommonUtil.START_PAGE && CommonUtil.isEmptyList(response.data.getList())) {
                         mView.onEmpty();
                         return;
@@ -40,7 +40,7 @@ public class OrderListPresenter extends BasePresenter<OrderListPresenter.IOrderL
 
             @Override
             public void onError(String stateCode, String errorInfo) {
-                if(mView!= null) {
+                if (mView != null) {
                     if (lastPage == CommonUtil.START_PAGE) {
                         mView.onError("", stateCode, errorInfo);
                     } else {
@@ -53,7 +53,9 @@ public class OrderListPresenter extends BasePresenter<OrderListPresenter.IOrderL
 
     public interface IOrderListView extends ICommonView {
         void onEmpty();
+
         void onOrderList(boolean isFirtPage, List<OrderBean> list);
+
         void onComplete();
     }
 }

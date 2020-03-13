@@ -48,11 +48,22 @@ public class OrderListActivity extends BaseLoadingPresenterActivity<OrderListPre
         xRecyclerView = findViewById(R.id.order_list);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         CommonItemDecoration spacesItemDecoration = new CommonItemDecoration(0, this.getResources().getDimensionPixelSize(R.dimen.dimen_6dp));
-        xRecyclerView.setLoadingMoreEnabled(false);
+        xRecyclerView.setLoadingMoreEnabled(true);
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.addItemDecoration(spacesItemDecoration);
         adapter = new OrderListAdapter(R.layout.adapter_item_order);
         xRecyclerView.setAdapter(adapter);
+        xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                mPresenter.requestOrderList();
+            }
+        });
 
         initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView);
     }

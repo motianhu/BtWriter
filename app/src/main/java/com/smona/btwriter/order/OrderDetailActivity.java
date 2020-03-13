@@ -18,6 +18,8 @@ import java.util.ArrayList;
 @Route(path = ARouterPath.PATH_TO_ORDERDETAIL)
 public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPresenter, OrderPresenter.IOrderView> implements OrderPresenter.IOrderView {
 
+    private String mOrderNo;
+
     private TextView orderNoTv;
     private TextView timeTv;
     private TextView priceTv;
@@ -43,8 +45,13 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
     @Override
     protected void initContentView() {
         super.initContentView();
+        initSerilized();
         initHeader();
         initViews();
+    }
+
+    private void initSerilized() {
+        mOrderNo = getIntent().getStringExtra(ARouterPath.PATH_TO_ORDERDETAIL);
     }
 
     private void initHeader() {
@@ -72,13 +79,13 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
         adapter = new OrderDetailAdapter(R.layout.adapter_item_goods);
         xRecyclerView.setAdapter(adapter);
 
-        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView);
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, orderNoTv, timeTv, priceTv, statusTv, remarkTv, contactTv, phoneTv, addressTv);
     }
 
     private void refreshView(OrderDetailBean item) {
-        String orderNo = getString(R.string.order_no) + item.getName();
+        String orderNo = getString(R.string.order_no) + item.getOrderNo();
         orderNoTv.setText(orderNo);
-        String time = getString(R.string.order_time) + item.getName();
+        String time = getString(R.string.order_time) + item.getCreateTime();
         timeTv.setText(time);
         String status = getString(R.string.order_status_wait);
         int resId = R.drawable.bg_corner_ffcd63_10;
@@ -92,7 +99,21 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
         statusTv.setText(status);
         statusTv.setBackgroundResource(resId);
 
-        adapter.setNewData(new ArrayList<>());
+        String price = getString(R.string.order_price) + getString(R.string.rmb_sign) + item.getTotalPrice();
+        priceTv.setText(price);
+
+        remarkTv.setText(item.getRemark());
+
+        String receiver_name = getString(R.string.receiver_name) + item.getUserName();
+        contactTv.setText(receiver_name);
+
+        String receiver_phone = getString(R.string.receiver_phone) + item.getPhone();
+        phoneTv.setText(receiver_phone);
+
+        String receiver_address = getString(R.string.receiver_address) + item.getAddress();
+        addressTv.setText(receiver_address);
+
+        adapter.setNewData(item.getGoodsList());
     }
 
     @Override
@@ -102,11 +123,16 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
     }
 
     private void requestOrderDetail() {
-        mPresenter.requestOrderDetail();
+        mPresenter.requestOrderDetail(mOrderNo);
     }
 
     @Override
     public void onOrder(OrderDetailBean orderDetailBean) {
+        if (orderDetailBean == null) {
+            doEmpty();
+            return;
+        }
+        doSuccess();
         refreshView(orderDetailBean);
     }
 

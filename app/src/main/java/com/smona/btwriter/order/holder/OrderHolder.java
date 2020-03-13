@@ -23,9 +23,9 @@ public class OrderHolder extends XViewHolder {
 
     public void bindViews(OrderBean item) {
         Context context = itemView.getContext();
-        String orderNo = context.getString(R.string.order_no) + item.getName();
+        String orderNo = context.getString(R.string.order_no) + item.getOrderNo();
         orderNoTv.setText(orderNo);
-        String time = context.getString(R.string.order_time) + item.getName();
+        String time = context.getString(R.string.order_time) + item.getCreateTime();
         timeTv.setText(time);
         String status = context.getString(R.string.order_status_wait);
         int resId = R.drawable.bg_corner_ffcd63_10;

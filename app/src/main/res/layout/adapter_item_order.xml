@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/orderNo"
-        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
         android:textColor="@color/color_A4A9AF"
         android:textSize="@dimen/font_12" />
 
@@ -27,8 +27,13 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
+        android:layout_below="@id/orderNo"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:paddingStart="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_5dp"
+        android:paddingEnd="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_5dp"
         android:textColor="@color/white"
         android:textSize="@dimen/font_12" />
 

@@ -25,8 +25,8 @@ public interface BusinessHttpService {
     String SHOPPINGCARD_DELETE = "/api/goodsCart/removeGoodsFromCart";
     String SHOPPINGCARD_MODIFY = "/api/goodsCart/modifyGoodsCartAmount";
     String SHOPPINGCARD_SUBMIT = "/api/goodsCart/submitCart";
-    String ORDER_LIST = "/api/goods/queryGoodsByPage";
-    String ORDER_DETAIL = "/api/goodsCart/viewGoodsCartDetail";
+    String ORDER_LIST = "/api/purchaseOrder/queryOrderByPage";
+    String ORDER_DETAIL = "/api/purchaseOrder/queryOrderDetail";
 
 
     //address

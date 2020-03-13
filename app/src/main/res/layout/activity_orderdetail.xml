@@ -38,11 +38,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/order_no"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dimen_10dp"
         android:layout_marginEnd="@dimen/dimen_20dp"
-        android:layout_marginTop="@dimen/dimen_10dp" />
+        android:paddingStart="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_5dp"
+        android:paddingEnd="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_5dp"
+        android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/remark"
+        android:id="@+id/contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/order_price"
@@ -50,18 +55,11 @@
         android:layout_marginTop="@dimen/dimen_10dp" />
 
     <TextView
-        android:id="@+id/contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/remark"
-        android:layout_marginStart="@dimen/dimen_20dp"
-        android:layout_marginTop="@dimen/dimen_10dp" />
-
-    <TextView
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/remark"
+        android:layout_below="@+id/order_price"
+        android:layout_marginEnd="@dimen/dimen_20dp"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/dimen_20dp"
         android:layout_marginTop="@dimen/dimen_10dp" />
@@ -74,14 +72,40 @@
         android:layout_marginStart="@dimen/dimen_20dp"
         android:layout_marginTop="@dimen/dimen_10dp" />
 
+    <TextView
+        android:id="@+id/remark_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address"
+        android:layout_marginStart="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:text="@string/remark"
+        android:textColor="@color/color_222A37" />
+
+    <TextView
+        android:id="@+id/remark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_toEndOf="@+id/remark_hint" />
+
+
     <include
         android:id="@+id/goods_list"
         layout="@layout/widget_xrecycleview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/address"
+        android:layout_below="@+id/remark_hint"
         android:layout_marginStart="@dimen/dimen_20dp"
         android:layout_marginTop="@dimen/dimen_5dp"
         android:layout_marginEnd="@dimen/dimen_20dp" />
+
+    <include
+        layout="@layout/common_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/navigation" />
 
 </RelativeLayout>
