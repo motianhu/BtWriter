@@ -3,6 +3,7 @@ package com.smona.btwriter.webview;
 import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
 import android.webkit.WebHistoryItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ public class WebViewActivity extends BaseUiActivity {
         titleTv = findViewById(R.id.title);
         findViewById(R.id.back).setOnClickListener(v -> finish());
         webView = findViewById(R.id.webview);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
