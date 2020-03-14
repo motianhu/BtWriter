@@ -8,6 +8,7 @@ public class ShoppingCardBean {
     private int amount;
     private String coverImg;
     private int goodsType;
+    private int goodsId;
     private String goodsTypeName;
 
     private int tmpCount;
@@ -82,5 +83,13 @@ public class ShoppingCardBean {
 
     public void setTmpCount(int tmpCount) {
         this.tmpCount = tmpCount;
+    }
+
+    public int getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
     }
 }

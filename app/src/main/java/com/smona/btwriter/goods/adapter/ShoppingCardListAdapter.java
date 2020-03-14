@@ -55,7 +55,7 @@ public class ShoppingCardListAdapter extends XBaseAdapter<ShoppingCardBean, Shop
         GoodsNum goodsNum;
         for (int i = 0; i < mDataList.size(); i++) {
             goodsNum = new GoodsNum();
-            goodsNum.setGoodsId(mDataList.get(i).getId());
+            goodsNum.setGoodsId(mDataList.get(i).getGoodsId());
             goodsNum.setAmount(mDataList.get(i).getTmpCount());
             list.add(goodsNum);
         }
