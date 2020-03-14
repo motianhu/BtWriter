@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:paddingBottom="@dimen/dimen_10dp"
@@ -39,4 +39,14 @@
         android:textColor="@color/color_333333"
         android:textSize="@dimen/font_15" />
 
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:layout_marginEnd="@dimen/dimen_20dp"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_15" />
 </RelativeLayout>

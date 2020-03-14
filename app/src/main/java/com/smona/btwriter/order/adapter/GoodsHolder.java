@@ -16,6 +16,7 @@ public class GoodsHolder extends XViewHolder {
     private TextView nameTv;
     private TextView categoryTv;
     private TextView priceTv;
+    private TextView amountTv;
 
     public GoodsHolder(View itemView) {
         super(itemView);
@@ -23,6 +24,7 @@ public class GoodsHolder extends XViewHolder {
         nameTv = itemView.findViewById(R.id.name);
         categoryTv = itemView.findViewById(R.id.category);
         priceTv = itemView.findViewById(R.id.price);
+        amountTv = itemView.findViewById(R.id.amount);
     }
 
     public void bindViews(ShoppingCardBean goodsBean) {
@@ -31,5 +33,6 @@ public class GoodsHolder extends XViewHolder {
         nameTv.setText(goodsBean.getName());
         categoryTv.setText(context.getResources().getString(R.string.category) + goodsBean.getGoodsTypeName());
         priceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getTotalPrice());
+        amountTv.setText(context.getString(R.string.number) + goodsBean.getAmount());
     }
 }

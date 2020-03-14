@@ -10,6 +10,8 @@ public class ShoppingCardBean {
     private int goodsType;
     private String goodsTypeName;
 
+    private int tmpCount;
+
     public int getId() {
         return id;
     }
@@ -72,5 +74,13 @@ public class ShoppingCardBean {
 
     public void setGoodsTypeName(String goodsTypeName) {
         this.goodsTypeName = goodsTypeName;
+    }
+
+    public int getTmpCount() {
+        return tmpCount;
+    }
+
+    public void setTmpCount(int tmpCount) {
+        this.tmpCount = tmpCount;
     }
 }

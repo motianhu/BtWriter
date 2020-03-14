@@ -79,7 +79,7 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
         adapter = new OrderDetailAdapter(R.layout.adapter_item_goods);
         xRecyclerView.setAdapter(adapter);
 
-        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, orderNoTv, timeTv, priceTv, statusTv, remarkTv, contactTv, phoneTv, addressTv);
+        initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView, orderNoTv, timeTv, priceTv, statusTv, remarkTv, contactTv, phoneTv, addressTv, findViewById(R.id.remark_hint));
     }
 
     private void refreshView(OrderDetailBean item) {

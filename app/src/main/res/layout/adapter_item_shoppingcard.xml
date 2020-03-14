@@ -57,13 +57,17 @@
             android:layout_height="@dimen/dimen_22dp"
             android:src="@drawable/minus" />
 
-        <TextView
+        <EditText
             android:id="@+id/num"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_22dp"
             android:layout_marginStart="@dimen/dimen_11dp"
+            android:background="@drawable/bg_corner_ebebeb_2"
+            android:paddingStart="@dimen/dimen_10dp"
+            android:paddingEnd="@dimen/dimen_10dp"
             android:layout_marginEnd="@dimen/dimen_11dp"
             android:gravity="center"
+            android:inputType="number"
             android:textColor="@color/color_222A37"
             android:textSize="@dimen/font_14" />
 
@@ -86,7 +90,7 @@
 
     <ImageView
         android:id="@+id/delete"
-        android:layout_below="@id/category"
+        android:layout_below="@id/number_control"
         android:layout_width="wrap_content"
         android:src="@drawable/delete"
         android:layout_alignParentEnd="true"

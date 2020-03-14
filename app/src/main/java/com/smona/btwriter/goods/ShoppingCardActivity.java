@@ -12,7 +12,9 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.btwriter.R;
 import com.smona.btwriter.address.AddressListActivity;
 import com.smona.btwriter.address.bean.AddressBean;
+import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.goods.adapter.ShoppingCardListAdapter;
+import com.smona.btwriter.goods.bean.GoodsNum;
 import com.smona.btwriter.goods.bean.ResShoppingCardList;
 import com.smona.btwriter.goods.presenter.ShoppingCardPresenter;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
@@ -20,6 +22,8 @@ import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
 import com.smona.btwriter.widget.CommonOkDialog;
+
+import java.util.List;
 
 @Route(path = ARouterPath.PATH_TO_SHOPPINGCARD)
 public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingCardPresenter, ShoppingCardPresenter.IShoppingCardView> implements ShoppingCardPresenter.IShoppingCardView {
@@ -62,20 +66,12 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
     private void initViews() {
         xRecyclerView = findViewById(R.id.shoppingcardlist);
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        CommonItemDecoration spacesItemDecoration = new CommonItemDecoration(0, this.getResources().getDimensionPixelSize(R.dimen.dimen_6dp));
+        xRecyclerView.addItemDecoration(spacesItemDecoration);
         xRecyclerView.setPullRefreshEnabled(false);
         xRecyclerView.setLoadingMoreEnabled(false);
         adapter = new ShoppingCardListAdapter(R.layout.adapter_item_shoppingcard);
-        adapter.setListener(new ShoppingCardListAdapter.OnShoppingCardListener() {
-            @Override
-            public void onModify(int id, int count) {
-                showLoadingDialog();
-                mPresenter.requestModify(id, count);
-            }
-            @Override
-            public void onDelelte(int id) {
-                clickDelete(id);
-            }
-        });
+        adapter.setListener(this::clickDelete);
         xRecyclerView.setAdapter(adapter);
         findViewById(R.id.address_rl).setOnClickListener(v -> clickAddress());
 
@@ -113,8 +109,9 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
             ToastUtil.showShort(R.string.empty_shoppingcard);
             return;
         }
+        List<GoodsNum> list = adapter.getGoodsListNum();
         showLoadingDialog();
-        mPresenter.requestSubmit(addressBean.getId(), remarkTv.getText().toString());
+        mPresenter.requestSubmit(addressBean.getId(), remarkTv.getText().toString(), list);
     }
 
     @Override
