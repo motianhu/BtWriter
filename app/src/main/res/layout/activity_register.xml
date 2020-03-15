@@ -1,7 +1,11 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <include
         android:id="@+id/navigation"
@@ -196,6 +200,31 @@
             android:textSize="@dimen/font_12" />
     </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/agree_protocol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/agree_protocol" />
+
+            <TextView
+                android:id="@+id/user_protocol"
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_FFB450"
+                android:layout_height="wrap_content"
+                android:text="@string/user_protocol" />
+        </LinearLayout>
+
     <TextView
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
@@ -213,3 +242,4 @@
         android:textSize="@dimen/font_18" />
 
 </LinearLayout>
+</ScrollView>

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
+import com.smona.btwriter.common.CountTimer;
 import com.smona.btwriter.forget.presenter.ForgetPresenter;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.util.ARouterManager;
@@ -20,6 +21,9 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     private EditText codeEt;
     private EditText resetPwdEt;
     private EditText resetCpwdEt;
+
+    private TextView getCodeTv;
+    private CountTimer countTimer;
 
     @Override
     protected ForgetPresenter initPresenter() {
@@ -45,12 +49,16 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     }
 
     private void initViews() {
-        findViewById(R.id.getCode).setOnClickListener(view -> clickSendCode());
+        getCodeTv = findViewById(R.id.getCode);
+        getCodeTv.setOnClickListener(view -> clickSendCode());
         findViewById(R.id.submitTv).setOnClickListener(view->clickSubmit());
         emailEt = findViewById(R.id.user_email);
         codeEt = findViewById(R.id.email_code);
         resetPwdEt = findViewById(R.id.user_password);
         resetCpwdEt = findViewById(R.id.confirm_password);
+
+        countTimer = new CountTimer();
+        countTimer.setParam(getCodeTv, () -> getCodeTv.setText(R.string.getvercode));
     }
 
     private void clickSubmit() {
@@ -117,6 +125,7 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     @Override
     public void onEmailCode() {
         hideLoadingDialog();
+        countTimer.start();
         ToastUtil.showShort(R.string.email_send_success);
     }
 
@@ -124,5 +133,11 @@ public class ForgetPwdActivity extends BaseLanguagePresenterActivity<ForgetPrese
     public void onResetPwd() {
         hideLoadingDialog();
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countTimer.cancelTimer();
     }
 }

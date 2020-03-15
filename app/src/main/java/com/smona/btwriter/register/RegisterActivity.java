@@ -1,11 +1,13 @@
 package com.smona.btwriter.register;
 
 import android.text.TextUtils;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
+import com.smona.btwriter.common.CountTimer;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.register.presenter.RegisterPresetenr;
 import com.smona.btwriter.util.ARouterManager;
@@ -21,6 +23,11 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     private EditText codeEt;
     private EditText userPwdEt;
     private EditText userConfirmPwdEt;
+
+    private CheckBox userAgreeCb;
+
+    private TextView getCodeTv;
+    private CountTimer countTimer;
 
     @Override
     protected RegisterPresetenr initPresenter() {
@@ -58,8 +65,15 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
         CommonUtil.disableEditTextCopy(userConfirmPwdEt);
         CommonUtil.setMaxLenght(userConfirmPwdEt, CommonUtil.MAX_PWD_LENGHT);
 
-        findViewById(R.id.getCode).setOnClickListener(v -> clickGetCode());
+        getCodeTv = findViewById(R.id.getCode);
+        getCodeTv.setOnClickListener(v -> clickGetCode());
         findViewById(R.id.btn_register).setOnClickListener(view -> clickRegister());
+        findViewById(R.id.user_protocol).setOnClickListener(view -> clickUserAgree());
+
+        userAgreeCb = findViewById(R.id.agree_protocol);
+
+        countTimer = new CountTimer();
+        countTimer.setParam(getCodeTv, () -> getCodeTv.setText(R.string.getvercode));
     }
 
     private void clickGetCode() {
@@ -118,8 +132,17 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
             ToastUtil.showShort(R.string.not_pwd_common);
             return;
         }
+
+        if(!userAgreeCb.isChecked()) {
+            ToastUtil.showShort(R.string.not_select_agree_protocol);
+            return;
+        }
         showLoadingDialog();
         mPresenter.requestRegister(userName, email, code, pwd);
+    }
+
+    private void clickUserAgree() {
+        ARouterManager.getInstance().gotoActivityWithString(ARouterPath.PATH_TO_WEBVIEW, ARouterPath.PATH_TO_WEBVIEW, "http://www.baidu.com");
     }
 
     @Override
@@ -131,6 +154,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     @Override
     public void onEmailCode() {
         hideLoadingDialog();
+        countTimer.start();
         ToastUtil.showShort(R.string.email_send_success);
     }
 
@@ -139,5 +163,11 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
         hideLoadingDialog();
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countTimer.cancelTimer();
     }
 }
