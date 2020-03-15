@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.fragment.BasePresenterFragment;
+import com.smona.btwriter.MainActivity;
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.common.CommonItemDecoration;
@@ -104,8 +105,9 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     private void clickMatch() {
-        ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_BLUETOOTH_LIST);
+        //ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_BLUETOOTH_LIST);
         //ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_SPP);
+        ((MainActivity)mActivity).switchSettingFragment();
     }
 
     @Override

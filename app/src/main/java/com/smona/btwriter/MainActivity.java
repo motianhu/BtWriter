@@ -127,6 +127,10 @@ public class MainActivity extends BaseLanguageActivity {
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
     }
 
+    public void switchSettingFragment() {
+        viewpager.setCurrentItem(2);
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
