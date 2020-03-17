@@ -63,9 +63,9 @@ public class BluetoothDataCenter {
         NotifyCenter.getInstance().postEvent(new BluetoothChangeEvent());
     }
 
-    public String getCurrentDeviceName() {
+    public String getCurrentDeviceName(Context context) {
         if(currentBluetoothDevice == null) {
-            return AppContext.getAppContext().getResources().getString(R.string.bluetooth_not_match);
+            return context.getString(R.string.bluetooth_not_match);
         } else {
             return TextUtils.isEmpty(currentBluetoothDevice.getName()) ? currentBluetoothDevice.getAddress():currentBluetoothDevice.getName();
         }

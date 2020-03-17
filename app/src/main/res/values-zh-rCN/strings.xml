@@ -62,10 +62,10 @@
     <string name="empty_pwd">请输入密码</string>
     <string name="not_pwd_common">密码与确认密码不一致</string>
     <string name="invalid_email">邮箱格式不正确</string>
-    <string name="no_than_pwd">密码必需6至60位</string>
-    <string name="no_than_n_pwd">新密码必需6至60位</string>
-    <string name="no_than_s_pwd">当前密码必需6至60位</string>
-    <string name="no_than_c_pwd">确认密码必需6至60位</string>
+    <string name="no_than_pwd">密码必需6至20位</string>
+    <string name="no_than_n_pwd">新密码必需6至20位</string>
+    <string name="no_than_s_pwd">当前密码必需6至20位</string>
+    <string name="no_than_c_pwd">确认密码必需6至20位</string>
     <string name="empty_cpwd">请输入确认密码</string>
 
     <string name="forget_pwd">忘记密码</string>

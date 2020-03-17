@@ -94,6 +94,6 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     }
 
     private void refreshBluetoothStatus() {
-        matchStatusTv.setText(BluetoothDataCenter.getInstance().getCurrentDeviceName());
+        matchStatusTv.setText(BluetoothDataCenter.getInstance().getCurrentDeviceName(getContext()));
     }
 }

@@ -210,6 +210,6 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     private void refreshBluetoothStatus() {
-        matchBluetoothStatusTv.setText(BluetoothDataCenter.getInstance().getCurrentDeviceName());
+        matchBluetoothStatusTv.setText(BluetoothDataCenter.getInstance().getCurrentDeviceName(getContext()));
     }
 }
