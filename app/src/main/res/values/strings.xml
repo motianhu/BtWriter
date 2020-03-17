@@ -22,7 +22,7 @@
     <string name="password">Password</string>
 
     <string name="vercodeinput">Verification code:</string>
-    <string name="getvercode">Get verification code</string>
+    <string name="getvercode">Get</string>
 
     <string name="password_input">Password:</string>
     <string name="password_hint">Set a login password</string>
@@ -87,11 +87,11 @@
     <string name="remain_cut_times">Remaining cuts</string>
     <string name="num_cut_times">% times</string>
 
-    <string name="cut_speed">cut speed</string>
+    <string name="cut_speed">Cutting  speed</string>
     <string name="knife_press">Knife pressure</string>
 
     <string name="cut_speed1">Cutting speed:</string>
-    <string name="knife_press1">Down pressure:</string>
+    <string name="knife_press1">Knife pressure:</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="use">Use</string>

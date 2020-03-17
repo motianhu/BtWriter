@@ -182,9 +182,9 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     public void onError(String api, String errCode, String errInfo) {
         hideLoadingDialog();
         if("requestScan".equalsIgnoreCase(api)) {
-            CommonUtil.showLongToastByFilter(errCode, errInfo);
+            CommonUtil.showLongToastByFilter(getContext(), errCode, errInfo);
         } else {
-            CommonUtil.showToastByFilter(errCode, errInfo);
+            CommonUtil.showToastByFilter(getContext(), errCode, errInfo);
         }
     }
 

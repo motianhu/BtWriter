@@ -122,7 +122,7 @@ public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetai
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        CommonUtil.showToastByFilter(this, errCode, errInfo);
     }
 
     @Override

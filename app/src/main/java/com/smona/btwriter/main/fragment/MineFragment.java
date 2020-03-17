@@ -78,7 +78,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     @Override
     public void onError(String api, String errCode, String errInfo) {
         hideLoadingDialog();
-        CommonUtil.showToastByFilter(errCode, errInfo);
+        CommonUtil.showToastByFilter(getContext(), errCode, errInfo);
     }
 
     @Override

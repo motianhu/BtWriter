@@ -112,12 +112,12 @@ public class CommonUtil {
         }
     }
 
-    public static void showToastByFilter(String stateCode, String msg) {
-        ToastUtil.showShort(msg);
+    public static void showToastByFilter(Context context, String stateCode, String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
-    public static void showLongToastByFilter(String stateCode, String msg) {
-        ToastUtil.showLong(msg);
+    public static void showLongToastByFilter(Context context, String stateCode, String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
     public static boolean isEmptyList(List list) {
