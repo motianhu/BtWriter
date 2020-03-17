@@ -21,7 +21,7 @@
     <string name="email_hint">Enter your email</string>
     <string name="password">Password</string>
 
-    <string name="vercodeinput">Verification code:</string>
+    <string name="vercodeinput">Verify code:</string>
     <string name="getvercode">Get</string>
 
     <string name="password_input">Password:</string>
@@ -58,7 +58,7 @@
 
     <string name="confirm">OK</string>
 
-    <string name="empty_code">Verification code</string>
+    <string name="empty_code">Verify code</string>
     <string name="empty_pwd">Password</string>
     <string name="not_pwd_common">Inconsistent passwords twice</string>
     <string name="invalid_email">The email is malformed</string>
