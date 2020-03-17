@@ -15,7 +15,6 @@ import com.smona.btwriter.notify.NotifyCenter;
 import com.smona.btwriter.notify.event.AddressEvent;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 
 @Route(path = ARouterPath.PATH_TO_ADDRESS)
 public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPresenter, AddressPresenter.IAddressView> implements AddressPresenter.IAddressView {
@@ -98,17 +97,17 @@ public class AddressEditActivity extends BaseLanguagePresenterActivity<AddressPr
     private void clickSave() {
         String userName = nameEt.getText().toString();
         if(TextUtils.isEmpty(userName)) {
-            ToastUtil.showShort(R.string.user_name_hint);
+            CommonUtil.showShort(this, R.string.user_name_hint);
             return;
         }
         String phone = phoneEt.getText().toString();
         if(TextUtils.isEmpty(userName)) {
-            ToastUtil.showShort(R.string.user_phone_hint);
+            CommonUtil.showShort(this, R.string.user_phone_hint);
             return;
         }
         String address = addressEt.getText().toString();
         if(TextUtils.isEmpty(userName)) {
-            ToastUtil.showShort(R.string.user_address_hint);
+            CommonUtil.showShort(this, R.string.user_address_hint);
             return;
         }
         addressBean.setUserName(userName);

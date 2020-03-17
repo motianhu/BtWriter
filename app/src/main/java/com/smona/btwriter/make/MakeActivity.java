@@ -16,7 +16,6 @@ import com.smona.btwriter.notify.NotifyCenter;
 import com.smona.btwriter.notify.event.CountChangeEvent;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 
 import java.io.File;
 
@@ -73,7 +72,7 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
                 runOnUiThread(() -> deviceMake(success));
             }
         });
-        bluetoothConnectService.connectBluetooth();
+        bluetoothConnectService.connectBluetooth(this);
     }
 
     @Override
@@ -114,7 +113,7 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
                 mPresenter.requestMakeSuccess();
             }
         }
-        ToastUtil.showShort(msgResId);
+        CommonUtil.showShort(this, msgResId);
     }
 
     @Override
@@ -143,7 +142,7 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
     public void onError(String api, String errCode, String errInfo) {
         hideLoadingDialog();
         if ("downloadPlt".equals(api)) {
-            ToastUtil.showShort(R.string.plt_download_failed);
+            CommonUtil.showShort(this, R.string.plt_download_failed);
         }
     }
 }

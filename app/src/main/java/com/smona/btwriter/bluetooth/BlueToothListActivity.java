@@ -2,7 +2,6 @@ package com.smona.btwriter.bluetooth;
 
 import android.Manifest;
 import android.bluetooth.BluetoothDevice;
-import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -15,10 +14,9 @@ import com.smona.btwriter.R;
 import com.smona.btwriter.bluetooth.adapter.BluetoothListAdapter;
 import com.smona.btwriter.bluetooth.transport.ConnectService;
 import com.smona.btwriter.bluetooth.transport.OnConnectListener;
-import com.smona.btwriter.bluetoothspp2.SPPOperationActivity;
 import com.smona.btwriter.common.CommonItemDecoration;
 import com.smona.btwriter.util.ARouterPath;
-import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.util.CommonUtil;
 import com.smona.logger.Logger;
 
 import java.lang.reflect.Method;
@@ -107,12 +105,12 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
         switch (connectState) {
             // 未配对
             case BluetoothDevice.BOND_NONE:
-                ToastUtil.showShort("开始配对");
+                CommonUtil.showShort(this, "开始配对");
                 try {
                     Method createBondMethod = BluetoothDevice.class.getMethod("createBond");
                     createBondMethod.invoke(device);
                 } catch (Exception e) {
-                    ToastUtil.showShort("配对失败！");
+                    CommonUtil.showShort(this, "配对失败！");
                     hideLoadingDialog();
                     e.printStackTrace();
                 }
@@ -133,10 +131,10 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
                 hideLoadingDialog();
                 if(success) {
                     BluetoothDataCenter.getInstance().setCurrentBluetoothDevice(device);
-                    ToastUtil.showShort("连接成功！");
+                    CommonUtil.showShort(BlueToothListActivity.this, "连接成功！");
                     finish();
                 } else {
-                    ToastUtil.showShort("连接失败,请重新扫描设备再选择！");
+                    CommonUtil.showShort(BlueToothListActivity.this, "连接失败,请重新扫描设备再选择！");
                 }
             }
         });

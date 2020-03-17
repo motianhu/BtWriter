@@ -20,7 +20,7 @@ import com.smona.btwriter.main.fragment.HomeFragment;
 import com.smona.btwriter.main.fragment.MineFragment;
 import com.smona.btwriter.main.fragment.ParamFragment;
 import com.smona.btwriter.util.ARouterPath;
-import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -149,7 +149,7 @@ public class MainActivity extends BaseLanguageActivity {
 
     public void exit() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            ToastUtil.showShort(getString(R.string.app_exit_tip));
+            CommonUtil.showShort(this, getString(R.string.app_exit_tip));
             mExitTime = System.currentTimeMillis();
         } else {
             finish();

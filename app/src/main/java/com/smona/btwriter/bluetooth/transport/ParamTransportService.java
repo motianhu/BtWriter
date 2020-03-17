@@ -1,9 +1,11 @@
 package com.smona.btwriter.bluetooth.transport;
 
+import android.content.Context;
+
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetoothspp2.MsgBeen;
+import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 import com.smona.logger.Logger;
 
 import java.io.IOException;
@@ -27,12 +29,12 @@ public class ParamTransportService {
         this.onReadListener = onReadListener;
     }
 
-    public void connectBluetooth() {
+    public void connectBluetooth(Context context) {
         if(ConnectService.getInstance().isConnecting()) {
             startRead();
         } else {
             onReadListener.onCreateChannel(false);
-           ToastUtil.showShort(R.string.blue_not_connection);
+            CommonUtil.showShort(context, R.string.blue_not_connection);
         }
     }
 
@@ -69,7 +71,7 @@ public class ParamTransportService {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    ToastUtil.showShort(R.string.read_exception);
+                    CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
                     try {
                         if (mInStream != null) {
                             mInStream.close();
@@ -79,7 +81,7 @@ public class ParamTransportService {
                     }
                     break;
                 } catch (InterruptedException e) {
-                    ToastUtil.showShort(R.string.thread_exception);
+                    CommonUtil.showShort(AppContext.getAppContext(), R.string.thread_exception);
                     e.printStackTrace();
                 }
             }
@@ -90,7 +92,7 @@ public class ParamTransportService {
     private void processReceiveMsg(MsgBeen msgBeen) {
         Logger.d("motianhu", "processReceiveMsg: " + msgBeen.getStrMsg() + "," + msgBeen.getHexMsg() + ", getLastByte: " + msgBeen.getLastByte());
         if(BluetoothConnectService.INSTRUCTIONS_CONTINUE == msgBeen.getLastByte()) {
-            ToastUtil.showShort(R.string.send_finish);
+            CommonUtil.showShort(AppContext.getAppContext(), R.string.send_finish);
         }
     }
 
@@ -107,7 +109,7 @@ public class ParamTransportService {
         String param = String.format(INSTRUCTIONS_PARAM, speed, press);
         Logger.d("motianhu", "sendParam: " + param);
         if (!ConnectService.getInstance().isConnecting()) {
-            ToastUtil.showShort(R.string.device_not_connect);
+            CommonUtil.showShort(AppContext.getAppContext(), R.string.device_not_connect);
             return;
         }
         try {
@@ -116,7 +118,7 @@ public class ParamTransportService {
             mOutStream.write(data);
             mOutStream.flush();
         } catch (Exception e) {
-            ToastUtil.showShort(R.string.send_failed);
+            CommonUtil.showShort(AppContext.getAppContext(), R.string.send_failed);
             e.printStackTrace();
         }
     }

@@ -4,8 +4,9 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.smona.btwriter.R;
+import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.common.exception.InitExceptionProcess;
-import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.util.CommonUtil;
 
 /**
  * description:
@@ -29,9 +30,9 @@ public class FinishExceptionFilter extends AbsExceptionFilter {
             }
         }
         if (TextUtils.isEmpty(errMsg)) {
-            ToastUtil.showShort(R.string.network_error);
+            CommonUtil.showShort(AppContext.getAppContext(), R.string.network_error);
         } else {
-            ToastUtil.showShort(errMsg);
+            CommonUtil.showShort(AppContext.getAppContext(), errMsg);
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.smona.btwriter.main.fragment;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -22,7 +21,6 @@ import com.smona.btwriter.notify.event.ParamChangeEvent;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 import com.smona.btwriter.widget.CommonOkDialog;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -143,7 +141,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
                 if(success) {
                     transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()), Integer.valueOf(pressValueTv.getText().toString()));
                 } else {
-                    ToastUtil.showShort("发送失败!");
+                    CommonUtil.showShort(getContext(), "发送失败!");
                 }
             }
 
@@ -202,7 +200,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
             return;
         }
         showLoadingDialog();
-        transportService.connectBluetooth();
+        transportService.connectBluetooth(getContext());
     }
 
     private void clickAdd() {

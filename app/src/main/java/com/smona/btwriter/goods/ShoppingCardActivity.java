@@ -20,7 +20,6 @@ import com.smona.btwriter.goods.presenter.ShoppingCardPresenter;
 import com.smona.btwriter.language.BaseLoadingPresenterActivity;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 import com.smona.btwriter.widget.CommonOkDialog;
 
 import java.util.List;
@@ -102,11 +101,11 @@ public class ShoppingCardActivity extends BaseLoadingPresenterActivity<ShoppingC
 
     private void clickSubmit() {
         if(addressBean == null) {
-            ToastUtil.showShort(R.string.empty_address);
+            CommonUtil.showShort(this, R.string.empty_address);
             return;
         }
         if(adapter.getItemCount() ==0) {
-            ToastUtil.showShort(R.string.empty_shoppingcard);
+            CommonUtil.showShort(this, R.string.empty_shoppingcard);
             return;
         }
         List<GoodsNum> list = adapter.getGoodsListNum();

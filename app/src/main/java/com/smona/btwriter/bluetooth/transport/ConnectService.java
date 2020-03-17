@@ -3,7 +3,8 @@ package com.smona.btwriter.bluetooth.transport;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 
-import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.common.exception.AppContext;
+import com.smona.btwriter.util.CommonUtil;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -62,7 +63,7 @@ public class ConnectService {
                     onServiceListener.onConnect(true);
                 }
             } catch (IOException e) {
-                ToastUtil.showShort("连接异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
+                CommonUtil.showShort(AppContext.getAppContext(), "连接异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
                 e.printStackTrace();
                 if(onServiceListener != null) {
                     onServiceListener.onConnect(false);

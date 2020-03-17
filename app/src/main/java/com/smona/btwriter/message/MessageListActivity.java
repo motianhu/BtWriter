@@ -14,7 +14,6 @@ import com.smona.btwriter.message.bean.MessageBean;
 import com.smona.btwriter.message.presenter.MessageListPreseter;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 import com.smona.btwriter.widget.CommonOkDialog;
 
 import java.util.List;
@@ -81,7 +80,7 @@ public class MessageListActivity extends BaseLoadingPresenterActivity<MessageLis
     private void clickDelete() {
         List<Integer> ids = adapter.getSelectedMessage();
         if (CommonUtil.isEmptyList(ids)) {
-            ToastUtil.showShort(R.string.empty_select_message);
+            CommonUtil.showShort(this, R.string.empty_select_message);
             return;
         }
         clickDelete(ids);

@@ -16,7 +16,6 @@ import com.smona.btwriter.login.presenter.LoginPresenter;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 
 import java.util.Locale;
 
@@ -108,19 +107,19 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
 
     private void clickLogin(String email, String pwd) {
         if (TextUtils.isEmpty(email)) {
-            ToastUtil.showShort(R.string.empty_email);
+            CommonUtil.showShort(this, R.string.empty_email);
             return;
         }
         if (!CommonUtil.isEmail(email)) {
-            ToastUtil.showShort(R.string.invalid_email);
+            CommonUtil.showShort(this, R.string.invalid_email);
             return;
         }
         if (TextUtils.isEmpty(pwd)) {
-            ToastUtil.showShort(R.string.empty_pwd);
+            CommonUtil.showShort(this, R.string.empty_pwd);
             return;
         }
         if (pwd.length() < 6) {
-            ToastUtil.showShort(R.string.no_than_pwd);
+            CommonUtil.showShort(this, R.string.no_than_pwd);
             return;
         }
         showLoadingDialog();

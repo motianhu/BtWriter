@@ -4,8 +4,9 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.smona.btwriter.R;
+import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.common.exception.InitExceptionProcess;
-import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.util.CommonUtil;
 
 /**
  * description:
@@ -23,7 +24,7 @@ public class NetExceptionFilter extends AbsExceptionFilter {
 
     @Override
     void exeFilter(String api, String errCode, String errMsg, InitExceptionProcess.OnReloadListener listener) {
-        ToastUtil.showShort(R.string.network_error);
+        CommonUtil.showShort(AppContext.getAppContext(), R.string.network_error);
         if (TextUtils.isEmpty(api) || api.endsWith("_first")) { //控制显示的请求;非控制类接口不处理(可能有问题)
             mProcess.getErrorView().setNoNetwork(listener);
             for (View view : mProcess.getContentViews()) {

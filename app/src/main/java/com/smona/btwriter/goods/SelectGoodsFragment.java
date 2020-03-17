@@ -16,7 +16,6 @@ import com.smona.btwriter.goods.bean.GoodsTypeBean;
 import com.smona.btwriter.goods.presenter.SelectGoodsPresenter;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.PopupAnim;
-import com.smona.btwriter.util.ToastUtil;
 import com.smona.image.loader.ImageLoaderDelegate;
 
 public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresenter, SelectGoodsPresenter.ISelectGoodsView> implements SelectGoodsPresenter.ISelectGoodsView {
@@ -79,7 +78,7 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
     private void clickOk() {
         GoodsTypeBean goodsTypeBean = goodsTypeAdapter.getSelectedId();
         if(goodsTypeBean == null) {
-            ToastUtil.showShort(R.string.empty_goods_type);
+            CommonUtil.showShort(getContext(), R.string.empty_goods_type);
             return;
         }
         showLoadingDialog();

@@ -10,7 +10,6 @@ import com.smona.btwriter.changepwd.presenter.ChangePwdPresenter;
 import com.smona.btwriter.language.BaseLanguagePresenterActivity;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 
 @Route(path = ARouterPath.PATH_TO_CHANGEPWD)
 public class ChangePwdActivity extends BaseLanguagePresenterActivity<ChangePwdPresenter,ChangePwdPresenter.IChangePwdView> implements ChangePwdPresenter.IChangePwdView {
@@ -50,24 +49,24 @@ public class ChangePwdActivity extends BaseLanguagePresenterActivity<ChangePwdPr
     private void clickSubmit() {
         String pwd = resetPwdEt.getText().toString();
         if (TextUtils.isEmpty(pwd)) {
-            ToastUtil.showShort(R.string.empty_pwd);
+            CommonUtil.showShort(this, R.string.empty_pwd);
             return;
         }
         if (pwd.length() < 6) {
-            ToastUtil.showShort(R.string.no_than_pwd);
+            CommonUtil.showShort(this, R.string.no_than_pwd);
             return;
         }
         String cpwd = resetCpwdEt.getText().toString();
         if (TextUtils.isEmpty(cpwd)) {
-            ToastUtil.showShort(R.string.empty_cpwd);
+            CommonUtil.showShort(this, R.string.empty_cpwd);
             return;
         }
         if (cpwd.length() < 6) {
-            ToastUtil.showShort(R.string.no_than_c_pwd);
+            CommonUtil.showShort(this, R.string.no_than_c_pwd);
             return;
         }
         if (!pwd.equals(cpwd)) {
-            ToastUtil.showShort(R.string.not_pwd_common);
+            CommonUtil.showShort(this, R.string.not_pwd_common);
             return;
         }
         showLoadingDialog();
@@ -83,7 +82,7 @@ public class ChangePwdActivity extends BaseLanguagePresenterActivity<ChangePwdPr
     @Override
     public void onChangePwd() {
         hideLoadingDialog();
-        ToastUtil.showShort(R.string.change_pwd_success);
+        CommonUtil.showShort(this, R.string.change_pwd_success);
         finish();
     }
 }

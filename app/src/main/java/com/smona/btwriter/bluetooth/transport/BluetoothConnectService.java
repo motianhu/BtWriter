@@ -1,8 +1,11 @@
 package com.smona.btwriter.bluetooth.transport;
 
+import android.content.Context;
+
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetoothspp2.MsgBeen;
-import com.smona.btwriter.util.ToastUtil;
+import com.smona.btwriter.common.exception.AppContext;
+import com.smona.btwriter.util.CommonUtil;
 import com.smona.logger.Logger;
 
 import java.io.File;
@@ -30,12 +33,12 @@ public class BluetoothConnectService {
         this.onReadListener = onReadListener;
     }
 
-    public void connectBluetooth() {
+    public void connectBluetooth(Context context) {
         if(ConnectService.getInstance().isConnecting()) {
             startRead();
         } else {
             onReadListener.onCreateChannel(false);
-            ToastUtil.showShort(R.string.blue_not_connection);
+            CommonUtil.showShort(context, R.string.blue_not_connection);
         }
     }
 
@@ -72,7 +75,7 @@ public class BluetoothConnectService {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    ToastUtil.showShort(R.string.read_exception);
+                    CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
                     try {
                         if (mInStream != null) {
                             mInStream.close();
@@ -82,7 +85,7 @@ public class BluetoothConnectService {
                     }
                     break;
                 } catch (InterruptedException e) {
-                    ToastUtil.showShort(R.string.thread_exception);
+                    CommonUtil.showShort(AppContext.getAppContext(),R.string.thread_exception);
                     e.printStackTrace();
                 }
             }
@@ -111,7 +114,7 @@ public class BluetoothConnectService {
             return;
         }
         if (!ConnectService.getInstance().isConnecting()) {
-            ToastUtil.showShort(R.string.device_not_connect);
+            CommonUtil.showShort(AppContext.getAppContext(),R.string.device_not_connect);
             return;
         }
         WriteThread writeThread = new WriteThread(filePath);
@@ -150,7 +153,7 @@ public class BluetoothConnectService {
                 }
                 onReadListener.executeFinish(true);
             } catch (Exception e) {
-                ToastUtil.showShort("发送失败！");
+                CommonUtil.showShort(AppContext.getAppContext(),"发送失败！");
                 e.printStackTrace();
                 onReadListener.executeFinish(false);
                 Logger.d("motianhu", "wrate Exception  " + e);
@@ -169,6 +172,6 @@ public class BluetoothConnectService {
     }
 
 
-    public static final byte INSTRUCTIONS_PAUSE = 0x13;//暂停发送
-    public static final byte INSTRUCTIONS_CONTINUE = 0x11;//继续发送。终止靠自己计算累计发送字节总数。
+    static final byte INSTRUCTIONS_PAUSE = 0x13;//暂停发送
+    static final byte INSTRUCTIONS_CONTINUE = 0x11;//继续发送。终止靠自己计算累计发送字节总数。
 }

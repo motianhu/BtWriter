@@ -15,7 +15,6 @@ import com.smona.btwriter.notify.event.ParamChangeEvent;
 import com.smona.btwriter.param.presenter.ParamPresenter;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
-import com.smona.btwriter.util.ToastUtil;
 
 @Route(path = ARouterPath.PATH_TO_PARAM)
 public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter, ParamPresenter.IParamView> implements ParamPresenter.IParamView {
@@ -126,7 +125,7 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
     private void clickSave() {
         String name = nameEt.getText().toString();
         if(TextUtils.isEmpty(name)) {
-            ToastUtil.showShort(R.string.add_name_hint);
+            CommonUtil.showShort(this, R.string.add_name_hint);
             return;
         }
 
