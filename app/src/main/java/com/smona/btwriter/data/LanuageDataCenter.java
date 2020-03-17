@@ -8,13 +8,13 @@ import java.util.Locale;
 
 public class LanuageDataCenter {
 
-    public final static String ZH_CN = "zh_CN";
-    public final static String EN_US = "en_US";
+    public final static String SERVER_ZH_CN = "zh_CN";
+    public final static String SERVER_EN_US = "en_US";
 
-    private static final String LOCALE_ZH_CN = "zh_CN";
+    public static final String LOCALE_ZH_CN = "zh_CN";
     private static final String LOCALE_ZH_HK = "zh_HK";
     private static final String LOCALE_ZH_TW = "zh_TW";
-    private static final String LOCALE_EN = "en";
+    public static final String LOCALE_EN = "en";
 
 
     private String lanuage;
@@ -48,16 +48,18 @@ public class LanuageDataCenter {
     }
 
     public void saveLanuage(String lanuage) {
+        //刷新内存
         setLanuage(lanuage);
+        //持久化数据
         SPUtils.put(SPUtils.CONFIG_INFO, lanuage);
     }
 
-    public static String getSysLanuage(){
+    private static String getSysLanuage(){
         String curSysLa = Locale.getDefault().toString();
         if (LOCALE_ZH_CN.equalsIgnoreCase(curSysLa) || LOCALE_ZH_HK.equalsIgnoreCase(curSysLa) || LOCALE_ZH_TW.equalsIgnoreCase(curSysLa)) {
-            return ZH_CN;
+            return SERVER_ZH_CN;
         } else {
-            return EN_US;
+            return SERVER_EN_US;
         }
     }
 }

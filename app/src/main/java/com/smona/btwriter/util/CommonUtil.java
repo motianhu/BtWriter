@@ -70,7 +70,7 @@ public class CommonUtil {
     }
 
     public static final int MAX_NAME_LENGHT = 100;
-    public static final int MAX_PWD_LENGHT = 60;
+    public static final int MAX_PWD_LENGHT = 20;
     public static final int MAX_PHONE_LENGHT = 30;
 
     /**

@@ -1,0 +1,234 @@
+<resources>
+    <string name="app_name">Cutter</string>
+
+    <string name="network_error">连接失败</string>
+    <string name="reload_click">点击重试</string>
+    <string name="no_data">没有数据</string>
+    <string name="no_content">暂时没有数据</string>
+    <string name="app_exit_tip">再按一次离开App</string>
+
+    <string name="home">首页</string>
+    <string name="param">参数设置</string>
+    <string name="mine">个人中心</string>
+
+
+    <string name="switch_language">切换语言</string>
+    <string name="welcome">您好,\n欢迎登录</string>
+    <string name="login">登录</string>
+    <string name="email">邮箱</string>
+
+    <string name="email_input">邮  箱:</string>
+    <string name="email_hint">输入您的邮箱</string>
+    <string name="password">密码</string>
+
+    <string name="vercodeinput">验证码:</string>
+    <string name="getvercode">获取验证码</string>
+
+    <string name="password_input">密  码:</string>
+    <string name="password_hint">设置登录密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="confirm_password_hint">再次输入登录密码</string>
+
+    <string name="guide_forgetpwd">忘记密码?</string>
+    <string name="guide_register">没有账号?</string>
+    <string name="guide_register1">去注册></string>
+
+    <string name="chinese">中文</string>
+    <string name="english">英文</string>
+
+    <string name="action_ok">确定</string>
+    <string name="action_hint">提示</string>
+    <string name="action_delete_content">确定删除？</string>
+    <string name="action_cancel">取消</string>
+
+    <string name="register">用戶注册</string>
+    <string name="register_account">注册账号</string>
+    <string name="register_action">确定注册</string>
+    <string name="get_code_retry">s后重试</string>
+    <string name="agree_protocol">我已阅读并同意</string>
+    <string name="user_protocol">"《用户协议》"</string>
+    <string name="not_select_agree_protocol">请先同意用户协议</string>
+
+    <string name="serial_number">序列号:</string>
+    <string name="serial_number_hint">注册序列号</string>
+
+    <string name="email_code_error">请输入验证码</string>
+    <string name="empty_serialnum">请输入序列号</string>
+    <string name="empty_email">请输入邮箱</string>
+
+    <string name="confirm">确定</string>
+
+    <string name="empty_code">请输入验证码</string>
+    <string name="empty_pwd">请输入密码</string>
+    <string name="not_pwd_common">密码与确认密码不一致</string>
+    <string name="invalid_email">邮箱格式不正确</string>
+    <string name="no_than_pwd">密码必需6至60位</string>
+    <string name="no_than_n_pwd">新密码必需6至60位</string>
+    <string name="no_than_s_pwd">当前密码必需6至60位</string>
+    <string name="no_than_c_pwd">确认密码必需6至60位</string>
+    <string name="empty_cpwd">请输入确认密码</string>
+
+    <string name="forget_pwd">忘记密码</string>
+
+    <string name="home_phone_full">手机前膜 全面</string>
+    <string name="home_phone_shell">手机前膜 带壳</string>
+    <string name="home_phone_behind">彩膜 背贴</string>
+
+    <string name="scan">扫一扫</string>
+    <string name="click_light">点触照亮</string>
+    <string name="authorization_is_prohibited">授权被禁止</string>
+
+    <string name="bluetooth_match_status">匹配状态:</string>
+
+    <string name="current_bluetooth">正在使用的设备:</string>：
+    <string name="bluetooth_not_match">尚未配对</string>
+    <string name="start_mathc">开始配对</string>
+    <string name="total_cut_times">总切割次数</string>
+    <string name="remain_cut_times">剩余切割次数</string>
+    <string name="num_cut_times">%次</string>
+
+    <string name="cut_speed">切割速度</string>
+    <string name="knife_press">下刀压力</string>
+
+    <string name="cut_speed1">切割速度: </string>
+    <string name="knife_press1">下刀压力: </string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="use">使用</string>
+
+    <string name="name">名称</string>
+    <string name="save">保存</string>
+
+    <string name="new_param">新增</string>
+    <string name="edit_param">编辑</string>
+
+    <string name="reset_value">刻刀起始点位置调节</string>
+    <string name="param_info_list">常规设置</string>
+    <string name="add">新增</string>
+    <string name="add_name_hint">请输入名称</string>
+
+    <string name="current_device">正在使用的设备: </string>
+    <string name="not_match">未匹配</string>
+    <string name="connecting">连接中...</string>
+    <string name="start_match">开始匹配</string>
+    <string name="scan_blue">重新扫描</string>
+
+    <string name="message_list">消息列表</string>
+    <string name="message_detail">消息详情</string>
+    <string name="empty_select_message">请选择消息</string>
+    <string name="empty_message">暂无任何消息</string>
+    <string name="message_delete">删除消息</string>
+    <string name="finish">完成</string>
+
+    <string name="goods_list">采购需求</string>
+    <string name="order_list">采购记录</string>
+    <string name="order_detail">采购详情</string>
+    <string name="goods_detail">商品详情</string>
+    <string name="shoppingcard_list">购买清单</string>
+    <string name="changepwd">修改密码</string>
+    <string name="change_pwd_success">密码修改成功</string>
+
+    <string name="logout">退出登录</string>
+
+    <string name="select">选择</string>
+    <string name="select_brand">选择品牌</string>
+    <string name="select_model">选择机型</string>
+
+    <string name="address_new">新增地址</string>
+    <string name="address_edit">编辑地址</string>
+    <string name="addressList">我的地址</string>
+    <string name="address_add">新建地址</string>
+    <string name="empty_address_list">暂无地址信息</string>
+
+    <string name="seach_tips">请输入你需要的商品名称</string>
+    <string name="seach">搜索</string>
+    <string name="sort_all">综合</string>
+    <string name="sort_sales">销量</string>
+    <string name="sort_price">价格</string>
+    <string name="sales_num">已售: </string>
+
+    <string name="price_two_dot">%1$.2f</string>
+    <string name="rmb_sign">¥</string>
+    <string name="num_unit">次</string>
+
+    <string name="start_make">确定制作</string>
+    <string name="make">制作手机膜</string>
+
+    <string name="shoppingcard">购物车</string>
+    <string name="goods_introduce">商品简介</string>
+    <string name="add_shopping">加入购物车</string>
+
+    <string name="shoppingcard_detail">商品明细:&#160;&#160;</string>
+    <string name="number">数量: </string>
+    <string name="submit">确定提交</string>
+    <string name="remark">备注：</string>
+
+    <string name="category">分类：</string>
+
+
+    <string name="user_name">姓名</string>
+    <string name="user_phone">手机号</string>
+    <string name="user_address">详细地址</string>
+    <string name="default_address">默认</string>
+    <string name="user_address_default">设为默认地址</string>
+    <string name="user_name_hint">请输入收件人姓名</string>
+    <string name="user_phone_hint">请输入收件人手机号</string>
+    <string name="user_address_hint">请输入详细地址</string>
+
+    <string name="receiver_name">收件人:&#160;&#160;</string>
+    <string name="receiver_phone">电话:&#160;&#160;</string>
+    <string name="receiver_address">收货地址:&#160;&#160;</string>
+    <string name="empty_address">请设置收货人信息</string>
+    <string name="empty_shoppingcard">请选择商品</string>
+
+    <string name="empty_goods_type">请选择规格</string>
+
+    <string name="select_bluetooth">选择蓝牙</string>
+    <string name="match_bluetooth">已匹配过的蓝牙</string>
+    <string name="not_match_bluetooth">未匹配过的蓝牙</string>
+    <string name="bluetooth_bonded">已绑定</string>
+    <string name="bluetooth_not_bond">未绑定</string>
+    <string name="bluetooth_bonding">绑定中</string>
+    <string name="bluetooth_useing">正在使用</string>
+
+    <string name="shopping_submit_success">已提交购物清单</string>
+    <string name="device_not_connect">设配未连接</string>
+    <string name="thread_exception">线程异常!</string>
+    <string name="read_exception">读取异常!</string>
+    <string name="blue_not_connection">未连接蓝牙,请先连接!</string>
+    <string name="send_finish">发送结束！</string>
+    <string name="send_failed">发送失败！</string>
+    <string name="plt_download_failed">文件下載失敗</string>
+    <string name="plt_transport_failed">传输失败,请重新传输！</string>
+    <string name="plt_transport_success">传输成功</string>
+    <string name="add_shoppingcard_success">已加入购物车</string>
+    <string name="email_send_success">邮件发送成功</string>
+
+    <string name="order_no">购物编号:&#160;&#160;</string>
+    <string name="order_time">采购时间:&#160;&#160; </string>
+    <string name="order_price">订单价格:&#160;&#160;</string>
+    <string name="order_status_wait">待确认</string>
+    <string name="order_status_ok">已确认</string>
+    <string name="order_status_refuse">已拒绝</string>
+    
+    
+    <string name="qc_code_close">关闭</string>
+    <string name="qr_code_select_picture">照片</string>
+    <string name="qr_code_open_flash_light">打开手电筒</string>
+    <string name="qr_code_close_flash_light">关闭手电筒</string>
+    <string name="qr_code_auto_scan_notification">将二维码放入框内即可自动扫描</string>
+    <string name="qr_code_notification">提示</string>
+    <string name="qr_code_camera_not_open">您的相机功能好像没有打开哦~去\"设置>隐私>相机\"设置一下吧</string>
+    <string name="qr_code_positive_button_know">知道了</string>
+    <string name="qr_code_positive_button_confirm">确认</string>
+    <string name="qr_code_could_not_read_qr_code_from_picture">没有读出图片中的链接，换张图片试试吧~</string>
+    <string name="qr_code_could_not_read_qr_code_from_scanner">对不起，无法打开扫出的内容</string>
+    <string name="qr_code_camera_not_found">未检测到相机</string>
+    <string name="qr_num_light_tip">您的手机没有闪光灯!</string>
+    <string name="qr_scanner_err_title">识别失败</string>
+    <string name="qr_scanner_err_content">请扫描正确的二维码</string>
+    <string name="qr_scanner_err_cancel">确定</string>
+    <string name="qr_scanner_error_open">打开相机出错</string>
+
+    <string name="qr_warn_network_error">当前网络不可用\n请检查网络设置</string>
+</resources>

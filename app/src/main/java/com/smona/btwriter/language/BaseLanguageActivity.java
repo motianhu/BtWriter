@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.smona.base.ui.activity.BaseActivity;
+import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.btwriter.util.CommonUtil;
 
 import java.util.Locale;
@@ -22,8 +23,11 @@ public abstract class BaseLanguageActivity extends BaseActivity {
     }
 
     private void setLanguage() {
-        String language = CommonUtil.getSysLanuage();
+        String language = LanuageDataCenter.getInstance().getLanuage();
         Locale locale = Locale.ENGLISH;
+        if(LanuageDataCenter.SERVER_ZH_CN.equals(language)) {
+            locale = Locale.SIMPLIFIED_CHINESE;
+        }
         setAppLanguage(locale);
     }
 }

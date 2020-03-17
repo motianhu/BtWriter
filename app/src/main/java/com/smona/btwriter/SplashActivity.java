@@ -43,7 +43,6 @@ public class SplashActivity extends BaseLanguageActivity {
             ARouterManager.getInstance().gotoActivity(path);
             overridePendingTransition(0, 0);
             finish();
-        }, (long) (1000));
+        }, 1000);
     }
-
 }

@@ -18,15 +18,28 @@ import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.ToastUtil;
 
+import java.util.Locale;
+
 @Route(path = ARouterPath.PATH_TO_LOGIN)
 public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter, LoginPresenter.ILoginView> implements LoginPresenter.ILoginView {
 
     //popwindow
     private PopupWindow popupWindow;
 
+    private TextView welcomeTv;
+    private TextView languageTv;
+
     private EditText emailEt;
     private EditText emailPwd;
-    private TextView languageTv;
+
+    private TextView forgetTv;
+    private TextView loginTv;
+
+    private TextView guideRegisterTv;
+    private TextView goRegisterTv;
+
+    private TextView chinaTv;
+    private TextView englishTv;
 
     @Override
     protected LoginPresenter initPresenter() {
@@ -45,11 +58,16 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
     }
 
     private void initViews() {
-        findViewById(R.id.forget_pwd).setOnClickListener(view -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_FORGETPWD));
+        welcomeTv = findViewById(R.id.welcome);
+        forgetTv = findViewById(R.id.forget_pwd);
+        forgetTv.setOnClickListener(view -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_FORGETPWD));
         findViewById(R.id.goRegister).setOnClickListener(view -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_REGISTER));
-        findViewById(R.id.btn_login).setOnClickListener(view -> clickLogin(emailEt.getText().toString(), emailPwd.getText().toString()));
+        loginTv = findViewById(R.id.btn_login);
+        loginTv.setOnClickListener(view -> clickLogin(emailEt.getText().toString(), emailPwd.getText().toString()));
         languageTv = findViewById(R.id.switchLanguage);
         languageTv.setOnClickListener(view -> clickSwitchLanguage());
+        guideRegisterTv = findViewById(R.id.guide_register);
+        goRegisterTv = findViewById(R.id.goRegister);
 
         emailEt = findViewById(R.id.et_input_email);
         CommonUtil.setMaxLenght(emailEt, CommonUtil.MAX_NAME_LENGHT);
@@ -74,13 +92,17 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
 
-        popContentView.findViewById(R.id.chinese).setOnClickListener(v -> {
+        chinaTv = popContentView.findViewById(R.id.chinese);
+        chinaTv.setOnClickListener(v -> {
             popupWindow.dismiss();
-            LanuageDataCenter.getInstance().saveLanuage(LanuageDataCenter.ZH_CN);
+            LanuageDataCenter.getInstance().saveLanuage(LanuageDataCenter.SERVER_ZH_CN);
+            applyLanguage(LanuageDataCenter.LOCALE_ZH_CN);
         });
-        popContentView.findViewById(R.id.english).setOnClickListener(v -> {
+        englishTv = popContentView.findViewById(R.id.english);
+        englishTv.setOnClickListener(v -> {
             popupWindow.dismiss();
-            LanuageDataCenter.getInstance().saveLanuage(LanuageDataCenter.EN_US);
+            LanuageDataCenter.getInstance().saveLanuage(LanuageDataCenter.SERVER_EN_US);
+            applyLanguage(LanuageDataCenter.LOCALE_EN);
         });
     }
 
@@ -117,4 +139,31 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MAIN);
         finish();
     }
+
+    private void applyLanguage(String locale) {
+        if (LanuageDataCenter.LOCALE_ZH_CN.equals(locale)) {
+            setAppLanguage(Locale.SIMPLIFIED_CHINESE);
+        } else {
+            setAppLanguage(Locale.ENGLISH);
+        }
+        refreshViews();
+    }
+
+    private void refreshViews() {
+        welcomeTv.setText(R.string.welcome);
+        languageTv.setText(R.string.switch_language);
+        emailEt.setHint(R.string.email);
+        emailPwd.setHint(R.string.password);
+
+
+        forgetTv.setText(R.string.guide_forgetpwd);
+        loginTv.setText(R.string.login);
+
+        guideRegisterTv.setText(R.string.guide_register);
+        goRegisterTv.setText(R.string.guide_register1);
+
+        chinaTv.setText(R.string.chinese);
+        englishTv.setText(R.string.english);
+    }
+
 }
