@@ -52,21 +52,21 @@
     <string name="serial_number">Serial number:</string>
     <string name="serial_number_hint">Registration serial number</string>
 
-    <string name="email_code_error">verification code</string>
+    <string name="email_code_error">Verify code is error</string>
     <string name="empty_serialnum">Serial number</string>
     <string name="empty_email">Email</string>
 
     <string name="confirm">OK</string>
 
-    <string name="empty_code">Verify code</string>
-    <string name="empty_pwd">Password</string>
+    <string name="empty_code">Verify code can not be empty</string>
+    <string name="empty_pwd">Password can not be empty</string>
     <string name="not_pwd_common">Inconsistent passwords twice</string>
     <string name="invalid_email">The email is malformed</string>
     <string name="no_than_pwd">Password must be 6 to 20 characters</string>
     <string name="no_than_n_pwd">New password must be 6 to 20 characters</string>
     <string name="no_than_s_pwd">The current password must be 6 to 20 digits</string>
     <string name="no_than_c_pwd">Confirm password must be 6 to 20 digits</string>
-    <string name="empty_cpwd">Confirmation password</string>
+    <string name="empty_cpwd">Confirmation password can not be empty</string>
 
     <string name="forget_pwd">Forgot your password</string>
 
