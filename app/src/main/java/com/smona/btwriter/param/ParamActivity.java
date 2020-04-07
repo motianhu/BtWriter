@@ -79,7 +79,7 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                pressValueTv.setText((CommonUtil.SPEED_START + progress) + "");
+                speedValueTv.setText((CommonUtil.SPEED_START + progress) + "");
             }
 
             @Override

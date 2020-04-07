@@ -142,9 +142,9 @@
 
    <string name="seach_tips">Please enter the product name you need</string>
     <string name="seach">Search</string>
-    <string name="sort_all">composite</string>
+    <string name="sort_all">Composite</string>
     <string name="sort_sales">Sales</string>
-    <string name="sort_price">price</string>
+    <string name="sort_price">Price</string>
     <string name="sales_num">Sold:</string>
 
 	<string name="price_two_dot">% 1 $ .2f</string>
