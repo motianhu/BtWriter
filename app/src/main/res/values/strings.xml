@@ -53,7 +53,7 @@
     <string name="serial_number_hint">Registration serial number</string>
 
     <string name="email_code_error">Verify code is error</string>
-    <string name="empty_serialnum">Serial number</string>
+    <string name="empty_serialnum">Serial number can not be empty</string>
     <string name="empty_email">Email can not be empty</string>
 
     <string name="confirm">OK</string>
