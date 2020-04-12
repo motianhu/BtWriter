@@ -130,8 +130,8 @@ public class ParamActivity extends BaseLanguagePresenterActivity<ParamPresenter,
         }
 
         paramInfo.setName(nameEt.getText().toString());
-        paramInfo.setSpeed(speedBar.getProgress());
-        paramInfo.setPressure(pressBar.getProgress());
+        paramInfo.setSpeed(speedBar.getProgress() + CommonUtil.SPEED_START);
+        paramInfo.setPressure(pressBar.getProgress() + CommonUtil.PRESS_START);
 
         showLoadingDialog();
         mPresenter.requestSaveParam(paramInfo);

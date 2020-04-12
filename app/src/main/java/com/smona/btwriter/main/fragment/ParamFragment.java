@@ -139,7 +139,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
             public void onCreateChannel(boolean success) {
                 hideDialog();
                 if(success) {
-                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()), Integer.valueOf(pressValueTv.getText().toString()));
+                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()) + CommonUtil.SPEED_START, Integer.valueOf(pressValueTv.getText().toString()) + CommonUtil.PRESS_START);
                 } else {
                     CommonUtil.showShort(getContext(), "发送失败!");
                 }
