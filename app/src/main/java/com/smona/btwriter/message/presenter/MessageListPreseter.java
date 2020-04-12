@@ -12,6 +12,7 @@ import com.smona.http.wrapper.OnResultListener;
 import java.util.List;
 
 public class MessageListPreseter extends BasePresenter<MessageListPreseter.IMessageView> {
+
     private MessageModel messageModel = new MessageModel();
 
     public void requestMessageList() {

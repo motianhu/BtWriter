@@ -26,7 +26,7 @@ public class MessageAdapter extends XBaseAdapter<MessageBean, MessageHolder> {
     @Override
     protected void convert(MessageHolder holder, MessageBean item, int pos) {
         holder.bindView(item);
-        holder.itemView.setOnClickListener(v -> ARouterManager.getInstance().sgotoActivitySble(ARouterPath.PATH_TO_MESSAGEDETAIL, item));
+        holder.itemView.setOnClickListener(v -> ARouterManager.getInstance().gotoActivityWithInt(ARouterPath.PATH_TO_MESSAGEDETAIL, ARouterPath.PATH_TO_MESSAGEDETAIL, item.getId()));
         holder.selectedIv.setVisibility(isEditStatus ? View.VISIBLE : View.GONE);
     }
 

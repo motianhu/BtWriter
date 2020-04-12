@@ -40,6 +40,7 @@ public interface BusinessHttpService {
     String MODEL_LIST = "/api/phoneBrand/queryPhoneListByBrand";
 
     //message
+    String MESSAGE_DETAIL = "/api/message/viewMessageDetail";
     String MESSAGE_LIST = "/api/message/queryMsgList";
     String MESSAGE_DELETE = "/api/message/deleteMsg";
 

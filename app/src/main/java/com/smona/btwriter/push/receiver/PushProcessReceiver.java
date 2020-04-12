@@ -50,20 +50,24 @@ public class PushProcessReceiver extends BroadcastReceiver {
                 if (messageBean != null) {
                     sendNotification(context, messageBean);
                 }
-
             } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
                 Log.d(TAG, "[PushProcessReceiver] 接收到推送下来的通知");
                 int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
                 Log.d(TAG, "[PushProcessReceiver] 接收到推送下来的通知的ID: " + notifactionId);
-
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 Log.d(TAG, "[PushProcessReceiver] 用户点击打开了通知");
                 //do something
-                ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_SPLASH);
+                String content = bundle.getString(JPushInterface.EXTRA_EXTRA);
+                if(TextUtils.isEmpty(content)) {
+                    return;
+                }
+                MessageBean messageBean = GsonUtil.jsonToObj(content, MessageBean.class);
+                if (messageBean != null) {
+                    ARouterManager.getInstance().gotoActivityWithInt(ARouterPath.PATH_TO_MESSAGEDETAIL, ARouterPath.PATH_TO_MESSAGEDETAIL, messageBean.getId());
+                }
             } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
                 Log.d(TAG, "[PushProcessReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
                 //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..
-
             } else {
                 Log.d(TAG, "[PushProcessReceiver] Unhandled intent - " + intent.getAction());
             }
@@ -75,7 +79,7 @@ public class PushProcessReceiver extends BroadcastReceiver {
     private void sendNotification(Context context, MessageBean messageBean) {
         Intent intent = new Intent(context, MessageActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(ARouterPath.PATH_TO_MESSAGEDETAIL, messageBean);
+        intent.putExtra(ARouterPath.PATH_TO_MESSAGEDETAIL, messageBean.getId());
         intent.putExtra("aaa", 120);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
