@@ -3,16 +3,20 @@ package com.smona.btwriter;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.smona.base.http.HttpManager;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.common.exception.AppContext;
+import com.smona.btwriter.data.AccountDataCenter;
+import com.smona.btwriter.data.AccountInfo;
 import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.btwriter.push.PushApiManager;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.SPUtils;
+import com.smona.http.config.GsonUtil;
 import com.smona.http.wrapper.FilterChains;
 import com.smona.logger.Logger;
 
@@ -41,6 +45,8 @@ public class BtWriterApplication extends Application {
         PushApiManager.getInstance().init(this);
         //初始化语言
         LanuageDataCenter.getInstance().loadLanuage();
+        //load user info
+        loadLoginInfo();
     }
 
     private void processLogout() {
@@ -49,8 +55,20 @@ public class BtWriterApplication extends Application {
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
     }
 
+    private void loadLoginInfo() {
+        String loginInfo = (String) SPUtils.get(SPUtils.LOGIN_INFO, "");
+        if (TextUtils.isEmpty(loginInfo)) {
+            return;
+        }
+        AccountInfo accountInfo = GsonUtil.jsonToObj(loginInfo, AccountInfo.class);
+        if (accountInfo != null && !TextUtils.isEmpty(accountInfo.getToken())) {
+            AccountDataCenter.getInstance().setAccountInfo(accountInfo.getEmail(), accountInfo.getToken());
+        }
+    }
+
     /**
      * 非主进程
+     *
      * @return
      */
     protected boolean isMainProcess() {

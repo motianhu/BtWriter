@@ -1,18 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/color_main"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_main">
 
     <TextView
         android:id="@+id/switchLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/dimen_20dp"
-        android:textColor="@color/white"
         android:layout_marginTop="@dimen/dimen_20dp"
-        android:textSize="@dimen/font_14"
-        android:text="@string/switch_language" />
+        android:layout_marginEnd="@dimen/dimen_20dp"
+        android:text="@string/switch_language"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_14" />
 
     <TextView
         android:id="@+id/welcome"
@@ -23,7 +23,7 @@
         android:text="@string/welcome"
         android:textColor="@color/white"
         android:textSize="@dimen/font_40"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/ll_login"
@@ -61,9 +61,9 @@
             android:drawablePadding="@dimen/dimen_20dp"
             android:gravity="center_vertical"
             android:hint="@string/password"
-            android:text="11111111"
             android:inputType="textPassword"
             android:paddingStart="@dimen/dimen_20dp"
+            android:text="xia4698083"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="@dimen/font_12" />
@@ -72,11 +72,11 @@
             android:id="@+id/forget_pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_gravity="end"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:text="@string/guide_forgetpwd"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_12"
-            android:text="@string/guide_forgetpwd" />
+            android:textSize="@dimen/font_12" />
 
         <TextView
             android:id="@+id/btn_login"
@@ -105,17 +105,17 @@
                 android:id="@+id/guide_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/guide_register"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_12"
-                android:text="@string/guide_register" />
+                android:textSize="@dimen/font_12" />
 
             <TextView
                 android:id="@+id/goRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/guide_register1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_12"
-                android:text="@string/guide_register1" />
+                android:textSize="@dimen/font_12" />
         </LinearLayout>
 
     </LinearLayout>
