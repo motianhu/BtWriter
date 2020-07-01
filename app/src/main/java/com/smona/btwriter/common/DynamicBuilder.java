@@ -1,5 +1,7 @@
 package com.smona.btwriter.common;
 
+import android.text.TextUtils;
+
 import com.smona.btwriter.data.AccountDataCenter;
 import com.smona.btwriter.data.LanuageDataCenter;
 import com.smona.http.business.BtBuilder;
@@ -14,7 +16,11 @@ import com.smona.http.business.BtBuilder;
 public class DynamicBuilder<R> extends BtBuilder<R> {
     public DynamicBuilder(int type, String path) {
         super(type, path);
-        addHeader("token", AccountDataCenter.getInstance().getAccountInfo().getToken());
-        addHeader("language", LanuageDataCenter.getInstance().getLanuage());
+        if(!TextUtils.isEmpty(AccountDataCenter.getInstance().getAccountInfo().getToken())) {
+            addHeader("token", AccountDataCenter.getInstance().getAccountInfo().getToken());
+        }
+        if(!TextUtils.isEmpty(LanuageDataCenter.getInstance().getLanuage())) {
+            addHeader("language", LanuageDataCenter.getInstance().getLanuage());
+        }
     }
 }
