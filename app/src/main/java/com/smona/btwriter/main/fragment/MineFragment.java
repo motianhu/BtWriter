@@ -1,5 +1,7 @@
 package com.smona.btwriter.main.fragment;
 
+import android.app.Dialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,19 +10,21 @@ import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetooth.BluetoothDataCenter;
 import com.smona.btwriter.data.AccountDataCenter;
+import com.smona.btwriter.main.bean.CompanyBean;
 import com.smona.btwriter.main.presenter.MinePresenter;
 import com.smona.btwriter.notify.NotifyCenter;
 import com.smona.btwriter.notify.event.BluetoothChangeEvent;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.btwriter.widget.EditCommonDialog;
+import com.smona.btwriter.widget.ShowCompanyDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class MineFragment extends BasePresenterFragment<MinePresenter, MinePresenter.IMineView> implements MinePresenter.IMineView {
 
-    private ImageView userIconIv;
     private TextView userNameTv;
     private TextView matchStatusTv;
 
@@ -37,18 +41,18 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     @Override
     protected void initView(View content) {
         super.initView(content);
-        userIconIv = content.findViewById(R.id.icon);
         userNameTv = content.findViewById(R.id.email);
 
         matchStatusTv = content.findViewById(R.id.bluetoothStatus);
         refreshBluetoothStatus();
         content.findViewById(R.id.bind_bluetooth).setOnClickListener(v->clickConnect());
 
-
+        content.findViewById(R.id.contact_mch).setOnClickListener(v -> clickContactMch());
         content.findViewById(R.id.messages).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_MESSAGELIST));
         content.findViewById(R.id.orderlist).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_ORDERLIST));
         content.findViewById(R.id.purchase).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_GOODSLIST));
         content.findViewById(R.id.changepwd).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_CHANGEPWD));
+        content.findViewById(R.id.modify_info).setOnClickListener(v -> clickModifyInfo());
         content.findViewById(R.id.logout).setOnClickListener(v -> clickLogout());
 
         NotifyCenter.getInstance().registerListener(this);
@@ -58,6 +62,24 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     public void onDestroyView() {
         super.onDestroyView();
         NotifyCenter.getInstance().unRegisterListener(this);
+    }
+
+    private void clickContactMch() {
+        showLoadingDialog();
+        mPresenter.requestCompany();
+    }
+
+    private void clickModifyInfo() {
+        EditCommonDialog editCommonDialog = new EditCommonDialog(getContext()).setOnCommitListener((dialog, content) -> {
+            if(TextUtils.isEmpty(content)) {
+                CommonUtil.showShort(getContext(), R.string.empty_phone);
+            } else {
+                dialog.dismiss();
+                showLoadingDialog();
+                mPresenter.requestModifyPhone(content);
+            }
+        });
+        editCommonDialog.show();
     }
 
     private void clickConnect() {
@@ -86,6 +108,18 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
         hideLoadingDialog();
         ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_LOGIN);
         mActivity.finish();
+    }
+
+    @Override
+    public void onModify() {
+        hideLoadingDialog();
+        CommonUtil.showCustomToast(getString(R.string.modify_phone_success));
+    }
+
+    @Override
+    public void onCompany(CompanyBean companyBean) {
+        hideLoadingDialog();
+        new ShowCompanyDialog(getContext()).setCompanyBean(companyBean).setOnCommitListener(Dialog::dismiss).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

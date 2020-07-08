@@ -210,8 +210,8 @@
     <string name="order_status_wait">待确认</string>
     <string name="order_status_ok">已确认</string>
     <string name="order_status_refuse">已拒绝</string>
-    
-    
+
+
     <string name="qc_code_close">关闭</string>
     <string name="qr_code_select_picture">照片</string>
     <string name="qr_code_open_flash_light">打开手电筒</string>
@@ -231,4 +231,16 @@
     <string name="qr_scanner_error_open">打开相机出错</string>
 
     <string name="qr_warn_network_error">当前网络不可用\n请检查网络设置</string>
+
+    <string name="modify_info">修改资料</string>
+    <string name="contact_mch">联系商家</string>
+    <string name="modify_phone_success">号码修改成功</string>
+       
+    <string name="empty_phone">号码不能为空</string>
+       
+    <string name="distributor">经销商</string>
+    <string name="phone">电话</string>
+    <string name="company">公司</string>
+    <string name="contact">联系人</string>
+    <string name="account">账户</string>
 </resources>

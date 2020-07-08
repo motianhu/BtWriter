@@ -10,6 +10,8 @@ public interface BusinessHttpService {
     String CHANGEPWD = "/api/account/modifyPassword";
     String RESETPWD = "/app/account/resetPassword";
     String LOGOUT = "/app/account/logout";
+    String MODIFY_ACCOUNT  = "/api/account/modifyAccountInfo";
+    String CONTACT  = "/api/account/Contact";
 
     //home
     String HOME_INFO = "/api/index/indexInfo";
