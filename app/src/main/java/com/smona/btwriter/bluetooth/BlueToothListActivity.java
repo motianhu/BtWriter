@@ -128,6 +128,16 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
         ConnectService.getInstance().setOnServiceListener(new OnConnectListener() {
             @Override
             public void onConnect(boolean success) {
+                runUI(device, success);
+            }
+        });
+        ConnectService.getInstance().setBluetoothDevice(device);
+    }
+
+    private void runUI(BluetoothDevice device, boolean success) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
                 hideLoadingDialog();
                 if(success) {
                     BluetoothDataCenter.getInstance().setCurrentBluetoothDevice(device);
@@ -138,6 +148,5 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
                 }
             }
         });
-        ConnectService.getInstance().setBluetoothDevice(device);
     }
 }

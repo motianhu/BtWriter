@@ -1,6 +1,7 @@
 package com.smona.btwriter.bluetooth.transport;
 
 import android.content.Context;
+import android.support.annotation.RequiresPermission;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.bluetoothspp2.MsgBeen;
@@ -19,8 +20,6 @@ public class ParamTransportService {
     private InputStream mInStream;
     private OutputStream mOutStream;
 
-    private ReadThread readThread;
-
     public static ParamTransportService buildService(OnReadListener onReadListener) {
         return new ParamTransportService(onReadListener);
     }
@@ -31,33 +30,48 @@ public class ParamTransportService {
 
     public void connectBluetooth(Context context) {
         if(ConnectService.getInstance().isConnecting()) {
-            startRead();
+            startWork(context);
         } else {
             onReadListener.onCreateChannel(false);
             CommonUtil.showShort(context, R.string.blue_not_connection);
         }
     }
 
+    private void startWork(Context context) {
+        try {
+            mInStream = ConnectService.getInstance().getBluetoothSocket().getInputStream();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            onReadListener.onCreateChannel(false);
+            CommonUtil.showShort(context, R.string.blue_not_connection);
+            return;
+        }
+        startRead();
+        startWrite();
+    }
+
     private void startRead() {
-        readThread = new ReadThread();
+        ReadThread readThread = new ReadThread();
         readThread.start();
     }
 
+    private void startWrite() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                onReadListener.onCreateChannel(true);
+            }
+        }).start();
+    }
+
     /**
-     * 读取数据
+     * 读取数据.参数设置需要先监听再设置，这个设置是实时反馈的。
      */
     private class ReadThread extends Thread {
 
         public void run() {
             byte[] buffer = new byte[1024];
             int bytes = -1;
-            try {
-                mInStream = ConnectService.getInstance().getBluetoothSocket().getInputStream();
-                onReadListener.onCreateChannel(true);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                onReadListener.onCreateChannel(false);
-            }
             while (ConnectService.getInstance().getBluetoothSocket().isConnected()) {
                 try {
                     if ((bytes = mInStream.read(buffer)) > 0) {
@@ -71,7 +85,7 @@ public class ParamTransportService {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
+                    //CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
                     try {
                         if (mInStream != null) {
                             mInStream.close();
@@ -81,7 +95,7 @@ public class ParamTransportService {
                     }
                     break;
                 } catch (InterruptedException e) {
-                    CommonUtil.showShort(AppContext.getAppContext(), R.string.thread_exception);
+                    //CommonUtil.showShort(AppContext.getAppContext(), R.string.thread_exception);
                     e.printStackTrace();
                 }
             }
@@ -92,7 +106,7 @@ public class ParamTransportService {
     private void processReceiveMsg(MsgBeen msgBeen) {
         Logger.d("motianhu", "processReceiveMsg: " + msgBeen.getStrMsg() + "," + msgBeen.getHexMsg() + ", getLastByte: " + msgBeen.getLastByte());
         if(BluetoothConnectService.INSTRUCTIONS_CONTINUE == msgBeen.getLastByte()) {
-            CommonUtil.showShort(AppContext.getAppContext(), R.string.send_finish);
+            //CommonUtil.showShort(AppContext.getAppContext(), R.string.send_finish);
         }
     }
 

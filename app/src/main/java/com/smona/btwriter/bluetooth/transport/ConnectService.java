@@ -63,7 +63,6 @@ public class ConnectService {
                     onServiceListener.onConnect(true);
                 }
             } catch (IOException e) {
-                CommonUtil.showShort(AppContext.getAppContext(), "连接异常: " + bluetoothDevice.getName() + "(" + bluetoothDevice.getAddress() + ")");
                 e.printStackTrace();
                 if(onServiceListener != null) {
                     onServiceListener.onConnect(false);

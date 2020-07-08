@@ -75,7 +75,7 @@ public class BluetoothConnectService {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
+                    //CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
                     try {
                         if (mInStream != null) {
                             mInStream.close();
@@ -85,7 +85,7 @@ public class BluetoothConnectService {
                     }
                     break;
                 } catch (InterruptedException e) {
-                    CommonUtil.showShort(AppContext.getAppContext(),R.string.thread_exception);
+                    //CommonUtil.showShort(AppContext.getAppContext(),R.string.thread_exception);
                     e.printStackTrace();
                 }
             }

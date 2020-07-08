@@ -137,12 +137,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         transportService = ParamTransportService.buildService(new OnReadListener() {
             @Override
             public void onCreateChannel(boolean success) {
-                hideDialog();
-                if(success) {
-                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()) + CommonUtil.SPEED_START, Integer.valueOf(pressValueTv.getText().toString()) + CommonUtil.PRESS_START);
-                } else {
-                    CommonUtil.showShort(getContext(), "发送失败!");
-                }
+                sendParams(success);
             }
 
             @Override
@@ -152,6 +147,21 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         });
 
         NotifyCenter.getInstance().registerListener(this);
+    }
+
+    private void sendParams(boolean success) {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                hideDialog();
+                if(success) {
+                    CommonUtil.showShort(getContext(), "发送完毕!");
+                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()) + CommonUtil.SPEED_START, Integer.valueOf(pressValueTv.getText().toString()) + CommonUtil.PRESS_START);
+                } else {
+                    CommonUtil.showShort(getContext(), "发送失败!");
+                }
+            }
+        });
     }
 
     private void clickDelete(ParamInfo item) {
