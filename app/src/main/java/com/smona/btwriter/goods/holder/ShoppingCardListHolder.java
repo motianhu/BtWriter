@@ -11,8 +11,12 @@ import android.widget.TextView;
 
 import com.smona.btwriter.R;
 import com.smona.btwriter.common.XViewHolder;
+import com.smona.btwriter.goods.bean.CategoryContract;
 import com.smona.btwriter.goods.bean.ShoppingCardBean;
 import com.smona.image.loader.ImageLoaderDelegate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShoppingCardListHolder extends XViewHolder {
 
@@ -25,14 +29,18 @@ public class ShoppingCardListHolder extends XViewHolder {
     private View addView;
     public View delView;
 
+    private CategoryContract categoryContract;
+
     public ShoppingCardListHolder(View itemView) {
         super(itemView);
+        categoryContract = new CategoryContract(itemView.getContext());
         iconIv = itemView.findViewById(R.id.icon);
         nameTv = itemView.findViewById(R.id.name);
         categoryTv = itemView.findViewById(R.id.category);
         priceTv = itemView.findViewById(R.id.price);
         minusView = itemView.findViewById(R.id.minus);
-        numTv = itemView.findViewById(R.id.num);;
+        numTv = itemView.findViewById(R.id.num);
+        ;
         addView = itemView.findViewById(R.id.plus);
         delView = itemView.findViewById(R.id.delete);
     }
@@ -41,9 +49,14 @@ public class ShoppingCardListHolder extends XViewHolder {
         Context context = itemView.getContext();
         ImageLoaderDelegate.getInstance().showCornerImage(goodsBean.getCoverImg(), iconIv, context.getResources().getDimensionPixelSize(R.dimen.dimen_10dp), 0);
         nameTv.setText(goodsBean.getName());
-        categoryTv.setText(context.getResources().getString(R.string.category) + goodsBean.getGoodsTypeName());
+        if (goodsBean.getGoodsKind() == 1) {
+            categoryTv.setVisibility(View.VISIBLE);
+            categoryTv.setText(context.getResources().getString(R.string.category) + "  " + categoryContract.getCategoryName(goodsBean.getGoodsType() + ""));
+        } else {
+            categoryTv.setVisibility(View.GONE);
+        }
         priceTv.setText(context.getString(R.string.rmb_sign) + ": " + goodsBean.getTotalPrice());
-        if(goodsBean.getTmpCount() == 0) {
+        if (goodsBean.getTmpCount() == 0) {
             goodsBean.setTmpCount(goodsBean.getAmount());
         }
         numTv.addTextChangedListener(new TextWatcher() {
@@ -61,12 +74,12 @@ public class ShoppingCardListHolder extends XViewHolder {
             public void afterTextChanged(Editable s) {
                 if (s.toString().equals("")) {
                     numTv.setText("1");
-                } else if(s.toString().startsWith("0") && s.toString().length() == 1) {
+                } else if (s.toString().startsWith("0") && s.toString().length() == 1) {
                     numTv.setText("1");
-                } else if(s.toString().startsWith("0") && s.toString().length() > 1){
+                } else if (s.toString().startsWith("0") && s.toString().length() > 1) {
                     numTv.setText(s.toString().substring(1));
                 }
-                if(!TextUtils.isEmpty(s.toString())) {
+                if (!TextUtils.isEmpty(s.toString())) {
                     goodsBean.setTmpCount(Integer.parseInt(s.toString()));
                 }
             }
@@ -77,7 +90,7 @@ public class ShoppingCardListHolder extends XViewHolder {
     }
 
     private void clickMinus(ShoppingCardBean goodsBean) {
-        if(goodsBean.getTmpCount() <= 1) {
+        if (goodsBean.getTmpCount() <= 1) {
             minusView.setEnabled(false);
         } else {
             minusView.setEnabled(true);

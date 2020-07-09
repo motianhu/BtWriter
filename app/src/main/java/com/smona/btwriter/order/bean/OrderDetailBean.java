@@ -9,6 +9,7 @@ public class OrderDetailBean extends OrderBean {
     private String phone;
     private String address;
     private String userName;
+    private String payAccount;
     private double totalPrice;
     private List<ShoppingCardBean> goodsList;
 
@@ -50,6 +51,14 @@ public class OrderDetailBean extends OrderBean {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getPayAccount() {
+        return payAccount;
+    }
+
+    public void setPayAccount(String payAccount) {
+        this.payAccount = payAccount;
     }
 
     public List<ShoppingCardBean> getGoodsList() {

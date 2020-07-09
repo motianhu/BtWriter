@@ -1,22 +1,22 @@
 package com.smona.btwriter.goods;
 
 import android.graphics.Paint;
-import android.support.v7.widget.GridLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.smona.base.ui.fragment.BasePresenterFragment;
 import com.smona.btwriter.R;
-import com.smona.btwriter.common.CommonItemDecoration;
-import com.smona.btwriter.goods.adapter.GoodsTypeAdapter;
+import com.smona.btwriter.goods.bean.CategoryContract;
 import com.smona.btwriter.goods.bean.GoodsBean;
-import com.smona.btwriter.goods.bean.GoodsTypeBean;
 import com.smona.btwriter.goods.presenter.SelectGoodsPresenter;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.util.PopupAnim;
 import com.smona.image.loader.ImageLoaderDelegate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresenter, SelectGoodsPresenter.ISelectGoodsView> implements SelectGoodsPresenter.ISelectGoodsView {
 
@@ -26,18 +26,18 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
     private View contentView;
     private View maskView;
 
-    private XRecyclerView recyclerView;
-    private GoodsTypeAdapter goodsTypeAdapter;
-
     private ImageView iconIv;
     private TextView nameTv;
     private TextView salesNumTv;
     private TextView priceTv;
     private TextView realPriceTv;
+    private View goodTypeView;
+    private TextView goodTypeTv;
+
+    private CategoryContract categoryContract;
 
     public static SelectGoodsFragment buildInstance() {
-        SelectGoodsFragment selectGoodsFragment = new SelectGoodsFragment();
-        return selectGoodsFragment;
+        return new SelectGoodsFragment();
     }
 
     @Override
@@ -53,51 +53,26 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
     @Override
     protected void initView(View content) {
         super.initView(content);
+        categoryContract = new CategoryContract(getContext());
 
         contentView = content.findViewById(R.id.contentView);
         maskView = content.findViewById(R.id.maskView);
-        maskView.setOnClickListener(v->closeFragment());
+        maskView.setOnClickListener(v -> closeFragment());
 
         iconIv = content.findViewById(R.id.icon);
         nameTv = content.findViewById(R.id.name);
-        recyclerView = content.findViewById(R.id.goods_type);
-        recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 4));
-        CommonItemDecoration commonItemDecoration = new CommonItemDecoration(0, mActivity.getResources().getDimensionPixelSize(R.dimen.dimen_4dp));
-        recyclerView.addItemDecoration(commonItemDecoration);
-        recyclerView.setPullRefreshEnabled(false);
-        recyclerView.setLoadingMoreEnabled(false);
-        goodsTypeAdapter = new GoodsTypeAdapter(R.layout.item_goods_type);
-        recyclerView.setAdapter(goodsTypeAdapter);
         salesNumTv = content.findViewById(R.id.sales_num);
         priceTv = content.findViewById(R.id.price);
         realPriceTv = content.findViewById(R.id.real_price);
-        content.findViewById(R.id.btn_ok).setOnClickListener(v-> clickOk());
-        requestData();
+        goodTypeView = content.findViewById(R.id.goods_type);
+        goodTypeTv = content.findViewById(R.id.category);
+        content.findViewById(R.id.btn_ok).setOnClickListener(v -> clickOk());
+        refreshViews();
     }
 
     private void clickOk() {
-        GoodsTypeBean goodsTypeBean = goodsTypeAdapter.getSelectedId();
-        if(goodsTypeBean == null) {
-            CommonUtil.showShort(getContext(), R.string.empty_goods_type);
-            return;
-        }
         showLoadingDialog();
-        mPresenter.requestAddGoods(goodsBean.getId(), goodsTypeBean.getId());
-    }
-
-    @Override
-    public void onGoodsDetail(GoodsBean goodsBean) {
-        this.goodsBean = goodsBean;
-        if (contentView == null) {
-            return;
-        }
-
-        View rootView = getView();
-        if (rootView == null) {
-            // Fragment View 还没创建
-            return;
-        }
-        refreshViews();
+        mPresenter.requestAddGoods(goodsBean.getId());
     }
 
     @Override
@@ -113,30 +88,23 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
         CommonUtil.showToastByFilter(getContext(), errCode, errInfo);
     }
 
-    private void requestData() {
-        if(CommonUtil.isEmptyList(goodsBean.getTypeList())) {
-            if(mPresenter != null) {
-                mPresenter.requestGoodsDetail(goodsBean.getId());
-            }
-        }  else {
-            refreshViews();
-        }
-    }
-
     private void refreshViews() {
-        if(goodsBean == null) {
+        if (goodsBean == null) {
             return;
         }
         ImageLoaderDelegate.getInstance().showCornerImage(goodsBean.getCoverImg(), iconIv, mActivity.getResources().getDimensionPixelSize(R.dimen.dimen_5dp), 0);
         nameTv.setText(goodsBean.getName());
-        if(!CommonUtil.isEmptyList(goodsBean.getTypeList()) && goodsBean.getTypeList().size() == 1) {
-            goodsBean.getTypeList().get(0).setSelected(true);
+        if (goodsBean.getKind() == 1) {
+            goodTypeView.setVisibility(View.VISIBLE);
+            goodTypeTv.setText(categoryContract.getCategoryName(goodsBean.getType()));
+            goodTypeTv.setSelected(true);
+        } else {
+            goodTypeView.setVisibility(View.GONE);
         }
-        goodsTypeAdapter.setNewData(goodsBean.getTypeList());
-        salesNumTv.setText(mActivity.getString(R.string.sales_num) + "  "  + goodsBean.getSaleAmount());
+        salesNumTv.setText(mActivity.getString(R.string.sales_num) + "  " + goodsBean.getSaleAmount());
         priceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice());
         realPriceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getPrice());
-        realPriceTv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
+        realPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     //外部设置
@@ -153,7 +121,7 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
             // Fragment View 还没创建
             return;
         }
-        requestData();
+        refreshViews();
         popupAnim.ejectView(true, mActivity, rootView, maskView, contentView);
     }
 

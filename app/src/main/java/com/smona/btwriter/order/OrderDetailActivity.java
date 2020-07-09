@@ -27,6 +27,7 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
     private TextView remarkTv;
     private TextView contactTv;
     private TextView phoneTv;
+    private TextView distributorTv;
     private TextView addressTv;
 
     private XRecyclerView xRecyclerView;
@@ -68,6 +69,7 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
         remarkTv = findViewById(R.id.remark);
         contactTv = findViewById(R.id.contact);
         phoneTv = findViewById(R.id.phone);
+        distributorTv = findViewById(R.id.distributor);
         addressTv = findViewById(R.id.address);
 
         xRecyclerView = findViewById(R.id.goods_list);
@@ -109,6 +111,9 @@ public class OrderDetailActivity extends BaseLoadingPresenterActivity<OrderPrese
 
         String receiver_phone = getString(R.string.receiver_phone) + item.getPhone();
         phoneTv.setText(receiver_phone);
+
+        String distributor = getString(R.string.account) + ":  "+ item.getPayAccount();
+        distributorTv.setText(distributor);
 
         String receiver_address = getString(R.string.receiver_address) + item.getAddress();
         addressTv.setText(receiver_address);

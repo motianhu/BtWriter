@@ -12,33 +12,11 @@ import com.smona.http.business.BaseResponse;
 import com.smona.http.wrapper.OnResultListener;
 
 public class SelectGoodsPresenter extends BasePresenter<SelectGoodsPresenter.ISelectGoodsView> {
-    private GoodsModel goodsModel = new GoodsModel();
     private ShoppingCardModel shoppingCardModel = new ShoppingCardModel();
 
-    public void requestGoodsDetail(int id) {
-        ReqGoods reqGoodsDetailBean = new ReqGoods();
-        reqGoodsDetailBean.setId(id);
-        goodsModel.requestGoodsDetail(reqGoodsDetailBean, new OnResultListener<BaseResponse<GoodsBean>>() {
-            @Override
-            public void onSuccess(BaseResponse<GoodsBean> response) {
-                if (mView != null) {
-                    mView.onGoodsDetail(response.data);
-                }
-            }
-
-            @Override
-            public void onError(String stateCode, String errorInfo) {
-                if (mView != null) {
-                    mView.onError("requestGoodsDetail", stateCode, errorInfo);
-                }
-            }
-        });
-    }
-
-    public void requestAddGoods(int id, int typeId) {
+    public void requestAddGoods(int id) {
         ReqAddGoodsBean reqGoodsDetailBean = new ReqAddGoodsBean();
         reqGoodsDetailBean.setId(id);
-        reqGoodsDetailBean.setTypeId(typeId);
         shoppingCardModel.addGoods(reqGoodsDetailBean, new OnResultListener<BaseResponse<RespEmpty>>() {
             @Override
             public void onSuccess(BaseResponse<RespEmpty> response) {
@@ -57,7 +35,6 @@ public class SelectGoodsPresenter extends BasePresenter<SelectGoodsPresenter.ISe
     }
 
     public interface ISelectGoodsView extends ICommonView {
-        void onGoodsDetail(GoodsBean goodsBean);
         void onAddGoods();
     }
 }

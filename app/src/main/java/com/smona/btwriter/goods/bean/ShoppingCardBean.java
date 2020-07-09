@@ -9,7 +9,7 @@ public class ShoppingCardBean {
     private String coverImg;
     private int goodsType;
     private int goodsId;
-    private String goodsTypeName;
+    private int goodsKind;
 
     private int tmpCount;
 
@@ -69,12 +69,12 @@ public class ShoppingCardBean {
         this.goodsType = goodsType;
     }
 
-    public String getGoodsTypeName() {
-        return goodsTypeName;
+    public int getGoodsKind() {
+        return goodsKind;
     }
 
-    public void setGoodsTypeName(String goodsTypeName) {
-        this.goodsTypeName = goodsTypeName;
+    public void setGoodsKind(int goodsKind) {
+        this.goodsKind = goodsKind;
     }
 
     public int getTmpCount() {

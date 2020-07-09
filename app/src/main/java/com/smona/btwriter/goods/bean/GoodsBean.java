@@ -11,10 +11,10 @@ public class GoodsBean {
     private double discountPrice;
     private int saleAmount;
     private int stock;
+    private int kind;
     private String type;
     private int status;
     private String coverImg;
-    private List<GoodsTypeBean> typeList;
     private List<String> imageList;
 
     public int getId() {
@@ -81,6 +81,14 @@ public class GoodsBean {
         this.stock = stock;
     }
 
+    public int getKind() {
+        return kind;
+    }
+
+    public void setKind(int kind) {
+        this.kind = kind;
+    }
+
     public String getType() {
         return type;
     }
@@ -103,14 +111,6 @@ public class GoodsBean {
 
     public void setCoverImg(String coverImg) {
         this.coverImg = coverImg;
-    }
-
-    public List<GoodsTypeBean> getTypeList() {
-        return typeList;
-    }
-
-    public void setTypeList(List<GoodsTypeBean> typeList) {
-        this.typeList = typeList;
     }
 
     public List<String> getImageList() {

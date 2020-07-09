@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="type_array">
+        <item>钢化膜</item>
+        <item>磨砂膜</item>
+        <item>普通膜</item>
+        <item>橡胶膜</item>
+        <item>其他</item>
+    </string-array>
+</resources>
