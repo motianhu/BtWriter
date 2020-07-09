@@ -140,17 +140,14 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
 
     @Override
     public void onError(String api, String errCode, String errInfo) {
-        onError(api);
+        onError(api, errInfo);
     }
 
-    private void onError(String api) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                hideLoadingDialog();
-                if ("downloadPlt".equals(api)) {
-                    CommonUtil.showShort(MakeActivity.this, R.string.plt_download_failed);
-                }
+    private void onError(String api, String errMsg) {
+        this.runOnUiThread(() -> {
+            hideLoadingDialog();
+            if ("downloadPlt".equals(api)) {
+                CommonUtil.showShort(MakeActivity.this, MakeActivity.this.getString(R.string.plt_download_failed) + ": " + errMsg);
             }
         });
     }

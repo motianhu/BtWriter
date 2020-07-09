@@ -3,6 +3,7 @@ package com.smona.btwriter.download;
 import com.smona.btwriter.common.exception.AppContext;
 import com.smona.btwriter.download.model.DownloadModel;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.logger.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,7 +28,7 @@ public class PltDownload {
             @Override
             public void onFailure(Call call, IOException e) {
                 if (mView != null) {
-                    mView.onFailure();
+                    mView.onFailure(e + "");
                 }
             }
 
@@ -62,12 +63,13 @@ public class PltDownload {
                         if (md5 != null && md5.equalsIgnoreCase(fileMD5)) {
                             mView.onComplete();
                         } else {
-                            mView.onFailure();
+                            mView.onFailure("md5 is null or error");
                         }
                     }
                 } catch (Exception e) {
+                    Logger.e("motianhu", "e: " + e);
                     if (mView != null) {
-                        mView.onFailure();
+                        mView.onFailure(e + "");
                     }
                 } finally {
                     try {
@@ -94,6 +96,6 @@ public class PltDownload {
 
         void onComplete();
 
-        void onFailure();
+        void onFailure(String errMsg);
     }
 }

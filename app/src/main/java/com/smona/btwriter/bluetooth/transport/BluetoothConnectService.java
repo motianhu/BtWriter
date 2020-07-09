@@ -156,10 +156,10 @@ public class BluetoothConnectService {
                 CommonUtil.showShort(AppContext.getAppContext(),"发送失败！");
                 e.printStackTrace();
                 onReadListener.executeFinish(false);
-                Logger.d("motianhu", "wrate Exception  " + e);
+                Logger.e("motianhu", "wrate Exception  " + e);
             } finally {
 
-                Logger.d("motianhu", "wrate finally  ");
+                Logger.e("motianhu", "wrate finally  ");
                 if (fis != null) {
                     try {
                         fis.close();

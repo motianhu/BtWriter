@@ -73,9 +73,9 @@ public class MakePresenter extends BasePresenter<MakePresenter.IMakeView> {
             }
 
             @Override
-            public void onFailure() {
+            public void onFailure(String errMsg) {
                 if(mView != null) {
-                    mView.onError("downloadPlt", "", "");
+                    mView.onError("downloadPlt", "", errMsg);
                 }
             }
         });
