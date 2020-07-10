@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.smona.base.ui.activity.BaseActivity;
 import com.smona.btwriter.R;
+import com.smona.btwriter.async.WeakHandler;
 import com.smona.btwriter.common.ActionModeCallbackInterceptor;
 import com.smona.btwriter.common.exception.AppContext;
 
@@ -42,12 +43,15 @@ public class CommonUtil {
 
     public static final String CURRENT_USE_PLT = "current_plt_file.plt";
 
+    private static WeakHandler weakHandler = new WeakHandler();
+    ;
 
     /**
      * 获取启动时的系统语言，并转换为可支持的语言。
+     *
      * @return
      */
-    public static String getSysLanuage(){
+    public static String getSysLanuage() {
         String curSysLa = Locale.getDefault().toString();
         return curSysLa;
     }
@@ -58,6 +62,7 @@ public class CommonUtil {
 
     /**
      * 检验是否是邮箱
+     *
      * @param email
      * @return
      */
@@ -75,6 +80,7 @@ public class CommonUtil {
 
     /**
      * 禁用密码框的复制粘贴
+     *
      * @param editText
      */
     public static void disableEditTextCopy(EditText editText) {
@@ -113,19 +119,20 @@ public class CommonUtil {
     }
 
     public static void showShort(Context context, int resId) {
-        Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+        weakHandler.post(() -> Toast.makeText(context, resId, Toast.LENGTH_SHORT).show());
+
     }
 
     public static void showShort(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        weakHandler.post(() -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show());
     }
 
     public static void showToastByFilter(Context context, String stateCode, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        weakHandler.post(() -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show());
     }
 
     public static void showLongToastByFilter(Context context, String stateCode, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+        weakHandler.post(() -> Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
     }
 
     public static boolean isEmptyList(List list) {
@@ -134,6 +141,7 @@ public class CommonUtil {
 
     /**
      * 关掉所有页面
+     *
      * @param context
      */
     public static void sendCloseAllActivity(Context context) {
@@ -164,15 +172,19 @@ public class CommonUtil {
             e.printStackTrace();
             return null;
         }
-        BigInteger bigInt = new BigInteger(1, digest.digest());
-        return bigInt.toString(16);
+        byte[] b = digest.digest();
+        StringBuilder result = new StringBuilder();
+        for (byte value : b) {
+            result.append(Integer.toString((value & 0xff) + 0x100, 16).substring(1));
+        }
+        return result.toString();
     }
 
     public static void showCustomToast(String content) {
         View layout = View.inflate(AppContext.getAppContext(), R.layout.custom_toast, null);
         TextView textView = layout.findViewById(R.id.tv_content);
         textView.setText(content);
-        Toast toast=new Toast(AppContext.getAppContext());
+        Toast toast = new Toast(AppContext.getAppContext());
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toast.setView(layout);

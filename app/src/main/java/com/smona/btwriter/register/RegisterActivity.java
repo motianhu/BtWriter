@@ -20,6 +20,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     private EditText serialNumEt;
     private EditText userEmailEt;
     private EditText codeEt;
+    private EditText phoneEt;
     private EditText userPwdEt;
     private EditText userConfirmPwdEt;
 
@@ -57,6 +58,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
         userEmailEt = findViewById(R.id.user_email);
         CommonUtil.setMaxLenght(userEmailEt, CommonUtil.MAX_NAME_LENGHT);
         codeEt = findViewById(R.id.email_code);
+        phoneEt = findViewById(R.id.phone);
         userPwdEt = findViewById(R.id.user_password);
         CommonUtil.disableEditTextCopy(userPwdEt);
         CommonUtil.setMaxLenght(userPwdEt, CommonUtil.MAX_PWD_LENGHT);
@@ -109,6 +111,11 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
             CommonUtil.showShort(this, R.string.empty_code);
             return;
         }
+        String phone = phoneEt.getText().toString();
+        if(TextUtils.isEmpty(phone)) {
+            CommonUtil.showShort(this, R.string.input_phone_tips);
+            return;
+        }
         String pwd = userPwdEt.getText().toString();
         if (TextUtils.isEmpty(pwd)) {
             CommonUtil.showShort(this, R.string.empty_pwd);
@@ -137,7 +144,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
             return;
         }
         showLoadingDialog();
-        mPresenter.requestRegister(userName, email, code, pwd);
+        mPresenter.requestRegister(userName, email, code, phone, pwd);
     }
 
     private void clickUserAgree() {

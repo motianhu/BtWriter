@@ -35,12 +35,13 @@ public class RegisterPresetenr extends BasePresenter<RegisterPresetenr.IRegister
         });
     }
 
-    public void requestRegister( String userName, String email, String code, String pwd) {
+    public void requestRegister( String userName, String email, String code, String phone, String pwd) {
         ReqRegister reqRegister = new ReqRegister();
         reqRegister.setSerialNo(userName);
         reqRegister.setEmail(email);
         reqRegister.setCode(code);
         reqRegister.setPassword(pwd);
+        reqRegister.setPhone(phone);
         registerModel.requestRegister(reqRegister, new OnResultListener<BaseResponse<RespEmpty>>() {
             @Override
             public void onSuccess(BaseResponse<RespEmpty> respEmptyBaseResponse) {

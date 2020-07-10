@@ -5,6 +5,7 @@ public class ReqRegister {
     private String email;
     private String code;
     private String password;
+    private String phone;
 
     public String getSerialNo() {
         return serialNo;
@@ -36,5 +37,13 @@ public class ReqRegister {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

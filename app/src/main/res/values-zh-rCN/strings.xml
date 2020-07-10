@@ -243,4 +243,5 @@
     <string name="company">公司</string>
     <string name="contact">联系人</string>
     <string name="account">账户</string>
+    <string name="input_phone_tips">请输入您的手机号</string>
 </resources>

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.smona.btwriter.R;
+import com.smona.btwriter.async.WeakHandler;
 import com.smona.btwriter.bluetooth.transport.BluetoothConnectService;
 import com.smona.btwriter.bluetooth.transport.OnReadListener;
 import com.smona.btwriter.common.exception.AppContext;
@@ -144,11 +145,9 @@ public class MakeActivity extends BaseLanguagePresenterActivity<MakePresenter, M
     }
 
     private void onError(String api, String errMsg) {
-        this.runOnUiThread(() -> {
-            hideLoadingDialog();
-            if ("downloadPlt".equals(api)) {
-                CommonUtil.showShort(MakeActivity.this, MakeActivity.this.getString(R.string.plt_download_failed) + ": " + errMsg);
-            }
-        });
+        this.runOnUiThread(this::hideLoadingDialog);
+        if ("downloadPlt".equals(api)) {
+            CommonUtil.showShort(MakeActivity.this, MakeActivity.this.getString(R.string.plt_download_failed) + ": " + errMsg);
+        }
     }
 }
