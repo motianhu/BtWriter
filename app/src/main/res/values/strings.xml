@@ -353,9 +353,9 @@
         
     <string name="order_status_wait">To be confirmed</string>
         
-    <string name="order_status_ok">Confirmed</string>
+    <string name="order_status_ok">Confirmed, to be delivered</string>
         
-    <string name="order_status_refuse">Rejected</string>
+    <string name="order_status_refuse">Delivered</string>
 
 
     <string name="qc_code_close">Close</string>

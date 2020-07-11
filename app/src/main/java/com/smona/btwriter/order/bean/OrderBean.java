@@ -3,7 +3,7 @@ package com.smona.btwriter.order.bean;
 public class OrderBean {
     private int id;
     private String orderNo;
-    private int status; //1未确认，2确认，3拒绝
+    private int status; //1未确认，2已确认，待发货，3已发货
     private String createTime;
 
     public int getId() {
@@ -42,7 +42,7 @@ public class OrderBean {
         return getStatus() == 2;
     }
 
-    public boolean isRefuse() {
+    public boolean isDelivered() {
         return getStatus() == 3;
     }
 }

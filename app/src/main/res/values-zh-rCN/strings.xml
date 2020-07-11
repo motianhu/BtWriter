@@ -208,8 +208,8 @@
     <string name="order_time">采购时间:&#160;&#160; </string>
     <string name="order_price">订单价格:&#160;&#160;</string>
     <string name="order_status_wait">待确认</string>
-    <string name="order_status_ok">已确认</string>
-    <string name="order_status_refuse">已拒绝</string>
+    <string name="order_status_ok">已确认，待发货</string>
+    <string name="order_status_refuse">已发货</string>
 
 
     <string name="qc_code_close">关闭</string>
