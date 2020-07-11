@@ -32,8 +32,8 @@ public class OrderHolder extends XViewHolder {
         if (item.isOk()) {
             resId = R.drawable.bg_corner_1fdc37_10;
             status = context.getString(R.string.order_status_ok);
-        } else if (item.isRefuse()) {
-            resId = R.drawable.bg_corner_f65566_10;
+        } else if (item.isDelivered()) {
+            resId = R.drawable.bg_corner_1fdc37_10;
             status = context.getString(R.string.order_status_refuse);
         }
         statusTv.setText(status);
