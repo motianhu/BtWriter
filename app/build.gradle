@@ -102,6 +102,9 @@ dependencies {
 
     implementation EVENTBUS
 
+    implementation CRASHREPORT
+    implementation NATIVECRASHREPORT
+
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'cn.jiguang.sdk:jpush:3.4.0'  // 此处以JPush 3.4.0 版本为例。
     implementation 'cn.jiguang.sdk:jcore:2.2.2' // 此处以JCore 2.2.2 版本为例。

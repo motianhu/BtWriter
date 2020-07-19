@@ -19,6 +19,7 @@ import com.smona.btwriter.util.SPUtils;
 import com.smona.http.config.GsonUtil;
 import com.smona.http.wrapper.FilterChains;
 import com.smona.logger.Logger;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class BtWriterApplication extends Application {
         }
 
         AppContext.setAppContext(this);
+        CrashReport.initCrashReport(this);
         Logger.init(this);
         //初始化页面路由
         ARouterManager.init(this, true);
