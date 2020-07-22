@@ -353,7 +353,7 @@
         
     <string name="order_status_wait">To be confirmed</string>
         
-    <string name="order_status_ok">Confirmed, to be delivered</string>
+    <string name="order_status_ok">Delivered</string>
         
     <string name="order_status_refuse">Delivered</string>
 
@@ -400,9 +400,9 @@
        
     <string name="empty_phone">Phone is empty</string>
     <string name="distributor">Distributor</string>
-   <string name="phone">Phone</string>
-   <string name="company">Company</string>
-   <string name="contact">Contact</string>
-   <string name="account">Account</string>
+    <string name="phone">Phone</string>
+    <string name="company">Company</string>
+    <string name="contact">Contact</string>
+    <string name="account">Account</string>
     <string name="input_phone_tips">Enter your phone</string>
 </resources>
