@@ -85,7 +85,7 @@ public class ParamTransportService {
                         Thread.sleep(100);
                     }
                 } catch (IOException e) {
-                    //CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
+                    CommonUtil.showShort(AppContext.getAppContext(), R.string.read_exception);
                     try {
                         if (mInStream != null) {
                             mInStream.close();
@@ -95,7 +95,7 @@ public class ParamTransportService {
                     }
                     break;
                 } catch (InterruptedException e) {
-                    //CommonUtil.showShort(AppContext.getAppContext(), R.string.thread_exception);
+                    CommonUtil.showShort(AppContext.getAppContext(), R.string.thread_exception);
                     e.printStackTrace();
                 }
             }
@@ -106,7 +106,7 @@ public class ParamTransportService {
     private void processReceiveMsg(MsgBeen msgBeen) {
         Logger.d("motianhu", "processReceiveMsg: " + msgBeen.getStrMsg() + "," + msgBeen.getHexMsg() + ", getLastByte: " + msgBeen.getLastByte());
         if(BluetoothConnectService.INSTRUCTIONS_CONTINUE == msgBeen.getLastByte()) {
-            //CommonUtil.showShort(AppContext.getAppContext(), R.string.send_finish);
+            CommonUtil.showShort(AppContext.getAppContext(), R.string.send_finish);
         }
     }
 
