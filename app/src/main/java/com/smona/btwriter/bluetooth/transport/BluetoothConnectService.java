@@ -141,7 +141,7 @@ public class BluetoothConnectService {
                 fis = new FileInputStream(file);
                 mOutStream = ConnectService.getInstance().getBluetoothSocket().getOutputStream();
                 while ((index = fis.read(buffer)) != -1) {
-                    mOutStream.write(buffer);
+                    mOutStream.write(buffer, 0, index);
                     mOutStream.flush();
                     if(pauseFlag.get()) {
                         Logger.d("motianhu", "write  wait========================== ");
