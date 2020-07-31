@@ -353,7 +353,7 @@
         
     <string name="order_status_wait">To be confirmed</string>
         
-    <string name="order_status_ok">Delivered</string>
+    <string name="order_status_ok">Confirmed</string>
         
     <string name="order_status_refuse">Delivered</string>
 
