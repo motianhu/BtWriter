@@ -81,7 +81,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
         pressSeekBar = content.findViewById(R.id.pressureBar);
         pressValueTv = content.findViewById(R.id.pressureValue);
         pressValueTv.setText("0");
-        pressSeekBar.setMax(CommonUtil.PRESS_END);
+        pressSeekBar.setMax(CommonUtil.PRESS_DIFF);
         pressSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -156,7 +156,7 @@ public class ParamFragment extends BasePresenterFragment<ParamPresenter, ParamPr
                 hideDialog();
                 if(success) {
                     CommonUtil.showShort(getContext(), "发送完毕!");
-                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()) + CommonUtil.SPEED_START, Integer.valueOf(pressValueTv.getText().toString()) + CommonUtil.PRESS_START);
+                    transportService.sendParam(Integer.valueOf(speedValueTv.getText().toString()), Integer.valueOf(pressValueTv.getText().toString()));
                 } else {
                     CommonUtil.showShort(getContext(), "发送失败!");
                 }

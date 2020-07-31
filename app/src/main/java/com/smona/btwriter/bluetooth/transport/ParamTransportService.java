@@ -120,7 +120,10 @@ public class ParamTransportService {
         if(press < CommonUtil.PRESS_START || press > CommonUtil.PRESS_END) {
             return;
         }
-        String param = String.format(INSTRUCTIONS_PARAM, speed, press);
+        String param = String.format(INSTRUCTIONS_PARAM, press, speed);
+        //String param = "#G;########";
+        //String param = "#F200;#####";
+        //String param = "#S400;#####";
         Logger.d("motianhu", "sendParam: " + param);
         if (!ConnectService.getInstance().isConnecting()) {
             CommonUtil.showShort(AppContext.getAppContext(), R.string.device_not_connect);
@@ -136,5 +139,5 @@ public class ParamTransportService {
             e.printStackTrace();
         }
     }
-    private static final String INSTRUCTIONS_PARAM = "#S%s;F%s;";//同时发送速度和压力值
+    private static final String INSTRUCTIONS_PARAM = "#F%s;S%s;#";//同时发送速度和压力值
 }
