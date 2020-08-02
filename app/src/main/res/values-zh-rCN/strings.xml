@@ -244,4 +244,5 @@
     <string name="contact">联系人</string>
     <string name="account">账户</string>
     <string name="input_phone_tips">请输入您的手机号</string>
+    <string name="unlimit_num">不限次数</string>
 </resources>

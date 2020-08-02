@@ -150,10 +150,15 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
     }
 
     private void refreshViews(RespHomeBean homeBean) {
-        String numUnit = getString(R.string.num_unit);
-        totalCutTimesTv.setText(homeBean.getUseAmount() + numUnit);
-        remainCutTimesTv.setText(homeBean.getUnUseAmount() + numUnit);
 
+        if(homeBean.getAccountType() == 1) {
+            totalCutTimesTv.setText(R.string.unlimit_num);
+            remainCutTimesTv.setText(R.string.unlimit_num);
+        } else {
+            String numUnit = getString(R.string.num_unit);
+            totalCutTimesTv.setText(homeBean.getUseAmount() + numUnit);
+            remainCutTimesTv.setText(homeBean.getUnUseAmount() + numUnit);
+        }
         bannerImageList.clear();
         bannerImageList.addAll(homeBean.getAdList());
         bannerView.setImages(homeBean.getAdList()).start();

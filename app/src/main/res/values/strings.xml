@@ -405,4 +405,5 @@
     <string name="contact">Contact</string>
     <string name="account">Account</string>
     <string name="input_phone_tips">Enter your phone</string>
+    <string name="unlimit_num">Unlimited times</string>
 </resources>
