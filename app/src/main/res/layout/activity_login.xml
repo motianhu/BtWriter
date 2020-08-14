@@ -46,7 +46,6 @@
             android:gravity="center_vertical"
             android:hint="@string/email"
             android:paddingStart="@dimen/dimen_20dp"
-            android:text="1976075166@qq.com"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="@dimen/font_12" />
@@ -63,7 +62,6 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingStart="@dimen/dimen_20dp"
-            android:text="xia4698083"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="@dimen/font_12" />

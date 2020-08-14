@@ -146,6 +146,24 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomePrese
         membraneBean.setTitle(getString(R.string.home_phone_behind));
         data.add(membraneBean);
 
+        membraneBean = new MembraneBean();
+        membraneBean.setResId(R.drawable.phone_lens);
+        membraneBean.setType(MembraneType.LENS_TYPE);
+        membraneBean.setTitle(getString(R.string.home_phone_lens));
+        data.add(membraneBean);
+
+        membraneBean = new MembraneBean();
+        membraneBean.setResId(R.drawable.phone_preview);
+        membraneBean.setType(MembraneType.OCA_TYPE);
+        membraneBean.setTitle(getString(R.string.home_phone_oca));
+        data.add(membraneBean);
+
+        membraneBean = new MembraneBean();
+        membraneBean.setResId(R.drawable.phone_shell);
+        membraneBean.setType(MembraneType.OTHER_TYPE);
+        membraneBean.setTitle(getString(R.string.home_phone_other));
+        data.add(membraneBean);
+
         return data;
     }
 

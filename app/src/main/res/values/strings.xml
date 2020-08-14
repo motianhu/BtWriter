@@ -123,11 +123,14 @@
     <string name="forget_pwd">Forgot your password</string>
 
         
-    <string name="home_phone_full">Front membrane full</string>
+    <string name="home_phone_full">Front film (full scale)</string>
         
-    <string name="home_phone_shell">Front membrane with shell</string>
+    <string name="home_phone_shell">Front film (with shell)</string>
         
-    <string name="home_phone_behind">Color film back sticker</string>
+    <string name="home_phone_behind">Color film (back sticker)</string>
+    <string name="home_phone_lens">Lens film</string>
+    <string name="home_phone_oca">OCA glue</string>
+    <string name="home_phone_other">Others</string>
 
         
     <string name="scan">Scanning</string>

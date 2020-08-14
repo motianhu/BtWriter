@@ -70,9 +70,12 @@
 
     <string name="forget_pwd">忘记密码</string>
 
-    <string name="home_phone_full">手机前膜 全面</string>
-    <string name="home_phone_shell">手机前膜 带壳</string>
-    <string name="home_phone_behind">彩膜 背贴</string>
+    <string name="home_phone_full">前膜(全面)</string>
+    <string name="home_phone_shell">前膜(带壳)</string>
+    <string name="home_phone_behind">彩膜(背贴)</string>
+    <string name="home_phone_lens">镜头膜</string>
+    <string name="home_phone_oca">oca胶</string>
+    <string name="home_phone_other">其他</string>
 
     <string name="scan">扫一扫</string>
     <string name="click_light">点触照亮</string>
