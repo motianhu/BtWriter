@@ -135,7 +135,7 @@ public class GoodsDetailActivity extends BaseLoadingPresenterActivity<GoodsDetai
         bannerView.setImages(goodsBean.getImageList()).start();
         titleTv.setText(goodsBean.getName());
         salesNumTv.setText(getString(R.string.sales_num) + "  "  + goodsBean.getSaleAmount());
-        priceTv.setText(getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice() );
+        priceTv.setText(getString(R.string.rmb_sign) + ": " + goodsBean.getRealPrice() );
         realPriceTv.setText(getString(R.string.rmb_sign) + ": " + goodsBean.getPrice());
         commentTv.setText(goodsBean.getComment());
     }

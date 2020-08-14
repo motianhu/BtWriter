@@ -102,7 +102,7 @@ public class SelectGoodsFragment extends BasePresenterFragment<SelectGoodsPresen
             goodTypeView.setVisibility(View.GONE);
         }
         salesNumTv.setText(mActivity.getString(R.string.sales_num) + "  " + goodsBean.getSaleAmount());
-        priceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getDiscountPrice());
+        priceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getRealPrice());
         realPriceTv.setText(mActivity.getString(R.string.rmb_sign) + ": " + goodsBean.getPrice());
         realPriceTv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }

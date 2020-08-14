@@ -120,4 +120,8 @@ public class GoodsBean {
     public void setImageList(List<String> imageList) {
         this.imageList = imageList;
     }
+
+    public double getRealPrice() {
+        return isDiscount == 1 ? getDiscountPrice():getPrice();
+    }
 }
