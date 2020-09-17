@@ -1,7 +1,7 @@
 package com.smona.http.business;
 
 public interface BusinessHttpService {
-    String API_URL = "http://134.175.242.78:8080";
+    String API_URL = "http://api.huixiuapp.com";
 
     //ACCOUNT
     String REGISTER = "/app/account/register";
