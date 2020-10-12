@@ -1,0 +1,16 @@
+android {
+    signingConfigs {
+        debug {
+            keyAlias 'btwriter'
+            keyPassword 'smonatech'
+            storeFile file('../keystore/release.jks')
+            storePassword 'smonatech'
+        }
+        release {
+            keyAlias 'btwriter'
+            keyPassword 'smonatech'
+            storeFile file('../keystore/release.jks')
+            storePassword 'smonatech'
+        }
+    }
+}
