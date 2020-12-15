@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Cutter</string>
-    <string name="get_info_content1">感谢您信任并使用Cutter APP。根据相关法律法规,我们将在充分保障您的知情权且获得您的明确授权后收集、使用您的个人信息。当您使用感谢您信任并使用Cutter APP及服务前,请您务必仔细阅读</string>
+    <string name="app_name">切膜机</string>
+    <string name="get_info_content1">感谢您信任并使用切膜机APP。根据相关法律法规,我们将在充分保障您的知情权且获得您的明确授权后收集、使用您的个人信息。当您使用感谢您信任并使用切膜机APP及服务前,请您务必仔细阅读</string>
     <string name="get_info_content2">,并确保您已经全部了解关于您个人信息的收集使用规则</string>
     <string name="get_info_title">温馨提示</string>
     <string name="agreen">同意</string>
