@@ -1,8 +1,11 @@
 <resources>
         
     <string name="app_name">Cutter</string>
-
-        
+    <string name="get_info_content1">Thank you for trusting and using cutter app. According to relevant laws and regulations, we will collect and use your personal information after fully protecting your right to know and obtaining your explicit authorization. Before using cutter app and service, please read it carefully</string>
+    <string name="get_info_content2">,And make sure that you have fully understood the collection and use rules of your personal information</string>
+    <string name="agreen">Agree</string>
+    <string name="get_info_title">Tips</string>
+    <string name="not_agreen">Disagree and quit</string>
     <string name="network_error">Connection failed</string>
         
     <string name="reload_click">Click to retry</string>
@@ -81,7 +84,8 @@
         
     <string name="agree_protocol">I have read and agree</string>
         
-    <string name="user_protocol">"" User Agreement ""</string>
+    <string name="user_protocol">《User Agreement》</string>
+    <string name="privacy_protocol">《Privacy Agreement》</string>
         
     <string name="not_select_agree_protocol">Please agree to the user agreement first</string>
 

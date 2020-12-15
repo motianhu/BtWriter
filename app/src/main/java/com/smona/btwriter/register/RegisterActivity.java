@@ -13,6 +13,7 @@ import com.smona.btwriter.register.presenter.RegisterPresetenr;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.http.business.BusinessHttpService;
 
 @Route(path = ARouterPath.PATH_TO_REGISTER)
 public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPresetenr, RegisterPresetenr.IRegisterView> implements RegisterPresetenr.IRegisterView {
@@ -148,7 +149,7 @@ public class RegisterActivity extends BaseLanguagePresenterActivity<RegisterPres
     }
 
     private void clickUserAgree() {
-        ARouterManager.getInstance().gotoActivityWithString(ARouterPath.PATH_TO_WEBVIEW, ARouterPath.PATH_TO_WEBVIEW, "http://www.baidu.com");
+        ARouterManager.getInstance().gotoActivityWithString(ARouterPath.PATH_TO_WEBVIEW, ARouterPath.PATH_TO_WEBVIEW, BusinessHttpService.USER_PROTOCOL);
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
 import com.smona.btwriter.widget.EditCommonDialog;
 import com.smona.btwriter.widget.ShowCompanyDialog;
+import com.smona.http.business.BusinessHttpService;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -53,6 +54,8 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
         content.findViewById(R.id.purchase).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_GOODSLIST));
         content.findViewById(R.id.changepwd).setOnClickListener(v -> ARouterManager.getInstance().gotoActivity(ARouterPath.PATH_TO_CHANGEPWD));
         content.findViewById(R.id.modify_info).setOnClickListener(v -> clickModifyInfo());
+        content.findViewById(R.id.user_protocol).setOnClickListener(v -> startH5(BusinessHttpService.USER_PROTOCOL));
+        content.findViewById(R.id.privacy_protocol).setOnClickListener(v -> startH5(BusinessHttpService.PRIVACY_PROTOCOL));
         content.findViewById(R.id.logout).setOnClickListener(v -> clickLogout());
 
         NotifyCenter.getInstance().registerListener(this);
@@ -114,6 +117,10 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MinePrese
     public void onModify() {
         hideLoadingDialog();
         CommonUtil.showCustomToast(getString(R.string.modify_phone_success));
+    }
+
+    private void startH5(String url) {
+        ARouterManager.getInstance().gotoActivityWithString(ARouterPath.PATH_TO_WEBVIEW, ARouterPath.PATH_TO_WEBVIEW, url);
     }
 
     @Override

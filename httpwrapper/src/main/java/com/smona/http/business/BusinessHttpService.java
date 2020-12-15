@@ -49,4 +49,8 @@ public interface BusinessHttpService {
     //make
     String MAKE_SUCCESS = "/api/account/successNotify";
     String MAKE_CHECK = "/api/account/checkUserCutTimes";
+
+    //user protocol
+    String USER_PROTOCOL = "http://admin.huixiuapp.com/app/files/UserProtocal.html";
+    String PRIVACY_PROTOCOL = "http://admin.huixiuapp.com/app/files/PrivacyProtocal.html";
 }
