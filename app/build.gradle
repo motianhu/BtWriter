@@ -37,6 +37,11 @@ android {
                 JPUSH_PKGNAME: APP_PACKAGE_NAME as String,
                 JPUSH_APPKEY : "86678fd9f03c28ee5b9a094b",
                 JPUSH_CHANNEL: "developer-default",
+                //bugly配置
+                BUGLY_APPID: "${BUGLY_APP_ID}",
+                BUGLY_APP_VERSION: "product_" + "${APP_VERSION_NAME}",
+                APP_CHANNEL: "DEFUALT",
+                BUGLY_ENABLE_DEBUG: true,
         ]
     }
 
