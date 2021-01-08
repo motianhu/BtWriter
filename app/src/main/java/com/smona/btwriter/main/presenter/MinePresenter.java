@@ -9,6 +9,7 @@ import com.smona.btwriter.main.bean.CompanyBean;
 import com.smona.btwriter.main.bean.ReqModifyPhone;
 import com.smona.btwriter.main.model.MineModel;
 import com.smona.btwriter.push.PushApiManager;
+import com.smona.btwriter.util.SPUtils;
 import com.smona.http.business.BaseResponse;
 import com.smona.http.wrapper.OnResultListener;
 
@@ -20,6 +21,7 @@ public class MinePresenter extends BasePresenter<MinePresenter.IMineView> {
             @Override
             public void onSuccess(BaseResponse<RespEmpty> respEmptyBaseResponse) {
                 if (mView != null) {
+                    SPUtils.put(SPUtils.LOGIN_INFO, "");
                     PushApiManager.getInstance().removeTag(AppContext.getAppContext(), AccountDataCenter.getInstance().getAccountInfo().getEmail());
                     mView.onLogout();
                 }

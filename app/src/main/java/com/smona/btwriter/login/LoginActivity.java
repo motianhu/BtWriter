@@ -16,6 +16,7 @@ import com.smona.btwriter.login.presenter.LoginPresenter;
 import com.smona.btwriter.util.ARouterManager;
 import com.smona.btwriter.util.ARouterPath;
 import com.smona.btwriter.util.CommonUtil;
+import com.smona.btwriter.util.SPUtils;
 
 import java.util.Locale;
 
@@ -70,6 +71,10 @@ public class LoginActivity extends BaseLanguagePresenterActivity<LoginPresenter,
 
         emailEt = findViewById(R.id.et_input_email);
         CommonUtil.setMaxLenght(emailEt, CommonUtil.MAX_NAME_LENGHT);
+        String email = (String)SPUtils.get(SPUtils.LAST_ACCOUNT, "");
+        if(!TextUtils.isEmpty(email)) {
+            emailEt.setText(email);
+        }
         emailPwd = findViewById(R.id.et_input_password);
         CommonUtil.disableEditTextCopy(emailPwd);
         CommonUtil.setMaxLenght(emailPwd, CommonUtil.MAX_PWD_LENGHT);

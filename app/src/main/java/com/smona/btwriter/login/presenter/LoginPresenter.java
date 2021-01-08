@@ -26,6 +26,7 @@ public class LoginPresenter extends BasePresenter<LoginPresenter.ILoginView> {
             public void onSuccess(BaseResponse<RespLogin> response) {
                 if(mView!= null) {
                     AccountDataCenter.getInstance().setAccountInfo(email, response.data.getToken());
+                    SPUtils.put(SPUtils.LAST_ACCOUNT, email);
                     SPUtils.put(SPUtils.LOGIN_INFO, GsonUtil.objToJson(AccountDataCenter.getInstance().getAccountInfo()));
                     PushApiManager.getInstance().addTag(AppContext.getAppContext(), email);
                     mView.onLoginSuccess();
