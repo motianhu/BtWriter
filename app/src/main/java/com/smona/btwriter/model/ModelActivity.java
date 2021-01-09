@@ -2,6 +2,9 @@ package com.smona.btwriter.model;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -24,6 +27,7 @@ public class ModelActivity extends BaseLoadingPresenterActivity<ModePresenter,Mo
 
     private ModelParam brandParam;
 
+    private EditText searchView;
     private XRecyclerView xRecyclerView;
     private ModelAdapter adapter;
 
@@ -64,6 +68,7 @@ public class ModelActivity extends BaseLoadingPresenterActivity<ModePresenter,Mo
     }
 
     private void initViews() {
+        searchView = findViewById(R.id.search_keyword);
         xRecyclerView = findViewById(R.id.modelList);
         xRecyclerView.setLoadingMoreEnabled(false);
         xRecyclerView.setPullRefreshEnabled(false);
@@ -73,6 +78,24 @@ public class ModelActivity extends BaseLoadingPresenterActivity<ModePresenter,Mo
         xRecyclerView.addItemDecoration(commonItemDecoration);
         adapter = new ModelAdapter(R.layout.adapter_item_model);
         xRecyclerView.setAdapter(adapter);
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (adapter != null) {
+                    adapter.getFilter().filter(s);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         initExceptionProcess(findViewById(R.id.loadingresult), xRecyclerView);
     }

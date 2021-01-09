@@ -413,4 +413,5 @@
     <string name="account">Account</string>
     <string name="input_phone_tips">Enter your phone</string>
     <string name="unlimit_num">Unlimited times</string>
+    <string name="input_search_model_tips">Please enter the model you want to search</string>
 </resources>

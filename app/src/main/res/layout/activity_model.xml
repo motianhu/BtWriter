@@ -9,6 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/search_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_30dp"
+        android:drawableStart="@drawable/search"
+        android:drawablePadding="@dimen/dimen_4dp"
+        android:paddingStart="@dimen/dimen_5dp"
+        android:background="@drawable/bg_search"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:hint="@string/input_search_model_tips"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:singleLine="true"
+        android:textColor="@color/color_222A37"
+        android:textColorHint="@color/color_A4A9AF"
+        android:textSize="@dimen/font_14" />
+    
     <include
         android:id="@+id/modelList"
         layout="@layout/widget_xrecycleview"
@@ -18,7 +35,6 @@
         android:layout_height="wrap_content" />
 
     <include
-        android:layout_below="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         layout="@layout/common_loading"/>
