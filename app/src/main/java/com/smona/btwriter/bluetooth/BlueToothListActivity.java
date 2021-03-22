@@ -141,10 +141,10 @@ public class BlueToothListActivity extends BaseUiActivity implements OnBluetooth
                 hideLoadingDialog();
                 if(success) {
                     BluetoothDataCenter.getInstance().setCurrentBluetoothDevice(device);
-                    CommonUtil.showShort(BlueToothListActivity.this, "连接成功！");
+                    CommonUtil.showShort(BlueToothListActivity.this, R.string.ble_conn_success_tips);
                     finish();
                 } else {
-                    CommonUtil.showShort(BlueToothListActivity.this, "连接失败,请重新扫描设备再选择！");
+                    CommonUtil.showShort(BlueToothListActivity.this, R.string.ble_conn_failed_tips);
                 }
             }
         });

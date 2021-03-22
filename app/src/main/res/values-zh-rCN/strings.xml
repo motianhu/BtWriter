@@ -254,4 +254,6 @@
     <string name="input_phone_tips">请输入您的手机号</string>
     <string name="unlimit_num">不限次数</string>
     <string name="input_search_model_tips">请输入要搜索的机型</string>
+    <string name="ble_conn_failed_tips">"连接失败,请重新扫描设备再选择！"</string>
+    <string name="ble_conn_success_tips">"连接成功！"</string>
 </resources>

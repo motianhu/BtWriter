@@ -414,4 +414,6 @@
     <string name="input_phone_tips">Enter your phone</string>
     <string name="unlimit_num">Unlimited times</string>
     <string name="input_search_model_tips">Please enter the model you want to search</string>
+    <string name="ble_conn_failed_tips">"Failed, Please rescan and try again！"</string>
+    <string name="ble_conn_success_tips">"Success！"</string>
 </resources>
